@@ -232,6 +232,7 @@ nn <leader>s :lcd %:p:h<CR>:VimShellPop<CR>
 let g:vimshell_prompt_expr =
 \ '"λ ".escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
 let g:vimshell_prompt_pattern = '^λ \%(\f\|\\.\)\+> '
+let g:vimshell_editor_command = 'vim'
 aug vimshellOverride
   au FileType vimshell imap <buffer> <SPACE> <SPACE>
   au FileType vimshell nmap <buffer> <C-k> <C-w>k
@@ -241,3 +242,48 @@ aug END
 au FileType scss setlocal commentstring=//%s
 
 let g:syntastic_javascript_jshint_args='-c ~/.jshintrc'
+"Unite"
+nnoremap <C-p> :<C-u>Unite -start-insert file_rec/async<CR>
+let g:unite_enable_start_insert = 1
+let g:unite_winheight = 10
+let g:unite_split_rule = 'botright'
+au FileType unite nmap <buffer> <esc> <Plug>(unite_exit)
+au FileType unite nmap <buffer> <C-;> <Plug>(unite_rotate_next_source)
+
+"vundle
+filetype off                   " required!
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+"vundle bundle
+Bundle 'gmarik/vundle'
+Bundle 'L9'
+Bundle 'scrooloose/nerdtree'
+Bundle 'vim-scripts/YankRing.vim'
+Bundle 'vim-scripts/grep.vim'
+Bundle 'Yggdroot/indentLine'
+Bundle 'scrooloose/syntastic'
+Bundle 'majutsushi/tagbar'
+Bundle 'sjl/gundo.vim'
+Bundle 'SirVer/ultisnips'
+Bundle 'JazzCore/neocomplcache-ultisnips'
+Bundle 'marijnh/tern_for_vim'
+Bundle 'maksimr/vim-jsbeautify'
+Bundle 'Shougo/neocomplcache.vim'
+Bundle 'Shougo/vimproc.vim'
+Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/vimshell.vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-rsi'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'othree/eregex.vim'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'gregsexton/gitv'
+Bundle 'Raimondi/delimitMate'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'godlygeek/tabular'
+Bundle 'terryma/vim-multiple-cursors'
+"Bundle 'Valloric/YouCompleteMe'
+
+filetype plugin indent on

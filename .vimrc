@@ -68,9 +68,9 @@ set previewheight=2
 set completeopt-=preview
 
 "Disable faux syntax element"
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-endif
+"if !exists('g:neocomplcache_keyword_patterns')
+    "let g:neocomplcache_keyword_patterns = {}
+"endif
 
 " Enable omni completion."
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -178,6 +178,10 @@ no k gk
 no gj j
 no gk k
 
+"Quick switch buffer"
+noremap <TAB>   :bn<CR>
+noremap <S-TAB>   :bp<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Editing Mappings!!
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -207,6 +211,9 @@ set <A-d>=∂
 
 " => File Browswing
 nn <leader>b :NERDTreeToggle<CR>
+let NERDTreeMapOpenSplit = 's'
+let NERDTreeMapOpenVSplit = 'v'
+
 " => TernJs shortcut
 autocmd FileType javascript nn <buffer> <leader>. :TernDef<cr>
 autocmd FileType javascript nn <buffer> <leader>r :TernRefs<cr>
@@ -214,12 +221,16 @@ autocmd FileType javascript nn <buffer> <leader>t :TernType<cr>
 autocmd FileType javascript nn <buffer> <leader>q :TernRename<cr>
 
 " => Syntastic Lint
-nnoremap <silent><F2> :call ToggleLocationList()<CR>
+nmap <silent> <F2> :call ToggleLocationList()<CR>
+
 "yank history yankring"
 nn <silent> <F12> :YRShow<CR>
 "disable c-p for ctrl-p"
 nn <silent> <F8> :TagbarToggle<CR>
 let g:yankring_replace_n_pkey='<a-p>'
+
+"CtrlP MRU first"
+let g:ctrlp_cmd = 'CtrlPMRU'
 
 "undo list"
 nn <leader>u :GundoToggle<CR>
@@ -242,13 +253,13 @@ aug END
 au FileType scss setlocal commentstring=//%s
 
 let g:syntastic_javascript_jshint_args='-c ~/.jshintrc'
+
 "Unite"
-nnoremap <C-p> :<C-u>Unite -start-insert file_rec/async<CR>
+nnoremap <leader><C-p> :<C-u>Unite -start-insert file_rec/async<CR>
 let g:unite_enable_start_insert = 1
 let g:unite_winheight = 10
 let g:unite_split_rule = 'botright'
-au FileType unite nmap <buffer> <esc> <Plug>(unite_exit)
-au FileType unite nmap <buffer> <C-;> <Plug>(unite_rotate_next_source)
+
 
 "vundle
 filetype off                   " required!
@@ -257,6 +268,7 @@ call vundle#rc()
 
 "vundle bundle
 Bundle 'gmarik/vundle'
+Bundle 'kien/ctrlp.vim'
 Bundle 'L9'
 Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/YankRing.vim'
@@ -281,9 +293,14 @@ Bundle 'othree/eregex.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'gregsexton/gitv'
 Bundle 'Raimondi/delimitMate'
-Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'godlygeek/tabular'
+Bundle 'milkypostman/vim-togglelist'
 Bundle 'terryma/vim-multiple-cursors'
+Bundle 'othree/html5.vim'
+Bundle 'slim-template/vim-slim'
+Bundle 'cakebaker/scss-syntax.vim'
+"Bundle 'kien/rainbow_parentheses.vim'
+"Bundle 'fholgado/minibufexpl.vim'
 "Bundle 'Valloric/YouCompleteMe'
 
 filetype plugin indent on

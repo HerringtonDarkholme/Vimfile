@@ -2,6 +2,7 @@
 " => configuration
 """"""""""""""""""""""""""""""""""""""""""""""""
 set encoding=utf-8
+set fileencoding=utf-8
 set hidden
 set backspace=2 "update2 vim74"
 let tabsize=2
@@ -17,7 +18,6 @@ set foldlevel=9999
 set cursorline
 set wildmenu
 set wildignore=*.o,*.pyc
-
 "highlight search result"
 set hlsearch
 "instant search(help re?)"
@@ -92,6 +92,12 @@ inoremap <expr><C-l> neocomplcache#complete_common_string()
 " Close popup by <Space>.
 inoremap <expr><Space> pumvisible() ? neocomplcache#smart_close_popup() : "\<Space>"
 
+""""""""""""""""""""""""""""""""
+" => TextMate like Ultisnip"
+"""""""""""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Text, Tab and Indent Related
@@ -178,6 +184,9 @@ no k gk
 no gj j
 no gk k
 
+inoremap <c-k> <space><left><c-o>d$
+
+
 "Quick switch buffer"
 noremap <TAB>   :bn<CR>
 noremap <S-TAB>   :bp<CR>
@@ -219,6 +228,7 @@ autocmd FileType javascript nn <buffer> <leader>. :TernDef<cr>
 autocmd FileType javascript nn <buffer> <leader>r :TernRefs<cr>
 autocmd FileType javascript nn <buffer> <leader>t :TernType<cr>
 autocmd FileType javascript nn <buffer> <leader>q :TernRename<cr>
+
 
 " => Syntastic Lint
 nmap <silent> <F2> :call ToggleLocationList()<CR>
@@ -296,9 +306,15 @@ Bundle 'Raimondi/delimitMate'
 Bundle 'godlygeek/tabular'
 Bundle 'milkypostman/vim-togglelist'
 Bundle 'terryma/vim-multiple-cursors'
+Bundle 'vim-ruby/vim-ruby'
 Bundle 'othree/html5.vim'
 Bundle 'slim-template/vim-slim'
-Bundle 'cakebaker/scss-syntax.vim'
+Bundle 'tpope/vim-haml'
+Bundle 'mattn/emmet-vim'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'fisadev/vim-ctrlp-cmdpalette'
+"Bundle 'cakebaker/scss-syntax.vim'
+"Bundle 'sheerun/vim-polyglot'
 "Bundle 'kien/rainbow_parentheses.vim'
 "Bundle 'fholgado/minibufexpl.vim'
 "Bundle 'Valloric/YouCompleteMe'

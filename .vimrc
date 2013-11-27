@@ -185,6 +185,7 @@ no gj j
 no gk k
 
 inoremap <c-k> <space><left><c-o>d$
+cnoremap <c-k> <space><left><c-o>d$
 
 
 "Quick switch buffer"
@@ -260,7 +261,9 @@ aug vimshellOverride
   au FileType vimshell imap <buffer> <expr><Tab> neocomplcache#complete_common_string()
 aug END
 
+" comment plugin"
 au FileType scss setlocal commentstring=//%s
+vmap gcc <leader>c<space>
 
 let g:syntastic_javascript_jshint_args='-c ~/.jshintrc'
 
@@ -291,7 +294,7 @@ Bundle 'SirVer/ultisnips'
 Bundle 'JazzCore/neocomplcache-ultisnips'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'maksimr/vim-jsbeautify'
-Bundle 'Shougo/neocomplcache.vim'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimshell.vim'
@@ -319,10 +322,10 @@ Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-repeat'
-"Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdcommenter'
+"Bundle 'Shougo/neocomplcache.vim'
 "Bundle 'sheerun/vim-polyglot'
 "Bundle 'kien/rainbow_parentheses.vim'
 "Bundle 'fholgado/minibufexpl.vim'
-"Bundle 'Valloric/YouCompleteMe'
 
 filetype plugin indent on

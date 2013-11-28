@@ -51,19 +51,19 @@ set omnifunc=syntaxcomplete#Complete
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => auto complete and snippet for DarkVimMaster
 """"""""""""""""""""""""""""""""""""""""""""""""
-"let g:neocomplcache_enable_at_startup=1
-"let g:neocomplcache_enable_smart_case=1
-"let g:neocomplcache_auto_completion_start_length=1
-"let g:neocomplcache_enable_auto_select=1
-""cursor move for insert mode"
-"let g:neocomplcache_enable_insert_char_pre=1
-""let g:neocomplcache_enable_cursor_hold_i=1
-""make compl list reasonably long. George Miller: huh?"
-"let g:neocomplcache_max_list=7
-""don't auto close preview. makes it no ostentatious"
-"let g:neocomplcache_enable_auto_close_preview=0
-"set previewheight=2
-"set completeopt-=preview
+let g:neocomplcache_enable_at_startup=1
+let g:neocomplcache_enable_smart_case=1
+let g:neocomplcache_auto_completion_start_length=1
+let g:neocomplcache_enable_auto_select=1
+"cursor move for insert mode"
+let g:neocomplcache_enable_insert_char_pre=1
+"let g:neocomplcache_enable_cursor_hold_i=1
+"make compl list reasonably long. George Miller: huh?"
+let g:neocomplcache_max_list=7
+"don't auto close preview. makes it no ostentatious"
+let g:neocomplcache_enable_auto_close_preview=0
+set previewheight=2
+set completeopt-=preview
 
 "Disable faux syntax element"
 "if !exists('g:neocomplcache_keyword_patterns')
@@ -87,9 +87,9 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 "" Plugin key-mappings.
 "inoremap <expr><C-g> neocomplcache#undo_completion()
-"inoremap <expr><C-l> neocomplcache#complete_common_string()
-"" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplcache#smart_close_popup() : "\<Space>"
+inoremap <expr><C-l> neocomplcache#complete_common_string()
+" Close popup by <Space>.
+inoremap <expr><Space> pumvisible() ? neocomplcache#smart_close_popup() : "\<Space>"
 
 """"""""""""""""""""""""""""""""
 " => TextMate like Ultisnip"
@@ -293,10 +293,11 @@ Bundle 'sjl/gundo.vim'
 Bundle 'SirVer/ultisnips'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'maksimr/vim-jsbeautify'
-Bundle 'Valloric/YouCompleteMe'
 Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimshell.vim'
+Bundle 'Shougo/neocomplcache.vim'
+Bundle 'JazzCore/neocomplcache-ultisnips'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-rsi'
@@ -325,8 +326,7 @@ Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-repeat'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'jon-jacky/PyModel'
-"Bundle 'JazzCore/neocomplcache-ultisnips'
-"Bundle 'Shougo/neocomplcache.vim'
+"Bundle 'Valloric/YouCompleteMe'
 "Bundle 'sheerun/vim-polyglot'
 "Bundle 'kien/rainbow_parentheses.vim'
 "Bundle 'fholgado/minibufexpl.vim'

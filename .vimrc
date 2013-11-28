@@ -52,26 +52,26 @@ set omnifunc=syntaxcomplete#Complete
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => auto complete and snippet for DarkVimMaster
 """"""""""""""""""""""""""""""""""""""""""""""""
-let g:neocomplcache_enable_at_startup=1
-let g:neocomplcache_enable_smart_case=1
-let g:neocomplcache_auto_completion_start_length=1
-let g:neocomplcache_enable_auto_select=1
-"cursor move for insert mode"
-let g:neocomplcache_enable_insert_char_pre=1
-"let g:neocomplcache_enable_cursor_hold_i=1
-"make compl list reasonably long. George Miller: huh?"
-let g:neocomplcache_max_list=7
-"don't auto close preview. makes it no ostentatious"
-let g:neocomplcache_enable_auto_close_preview=0
-set splitbelow
-set previewheight=2
-set completeopt-=preview
+"let g:neocomplcache_enable_at_startup=1
+"let g:neocomplcache_enable_smart_case=1
+"let g:neocomplcache_auto_completion_start_length=1
+"let g:neocomplcache_enable_auto_select=1
+""cursor move for insert mode"
+"let g:neocomplcache_enable_insert_char_pre=1
+""let g:neocomplcache_enable_cursor_hold_i=1
+""make compl list reasonably long. George Miller: huh?"
+"let g:neocomplcache_max_list=7
+""don't auto close preview. makes it no ostentatious"
+"let g:neocomplcache_enable_auto_close_preview=0
+"set previewheight=2
+"set completeopt-=preview
 
 "Disable faux syntax element"
 "if !exists('g:neocomplcache_keyword_patterns')
     "let g:neocomplcache_keyword_patterns = {}
 "endif
 
+set splitbelow
 " Enable omni completion."
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -79,18 +79,18 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" <CR>: close popup and save indent.
-ino <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    "use silent mode to avoid bizzare char insertion"
-function! s:my_cr_function()
-    return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-endfunction
+"" <CR>: close popup and save indent.
+"ino <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    ""use silent mode to avoid bizzare char insertion"
+"function! s:my_cr_function()
+    "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+"endfunction
 
-" Plugin key-mappings.
-inoremap <expr><C-g> neocomplcache#undo_completion()
-inoremap <expr><C-l> neocomplcache#complete_common_string()
-" Close popup by <Space>.
-inoremap <expr><Space> pumvisible() ? neocomplcache#smart_close_popup() : "\<Space>"
+"" Plugin key-mappings.
+"inoremap <expr><C-g> neocomplcache#undo_completion()
+"inoremap <expr><C-l> neocomplcache#complete_common_string()
+"" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? neocomplcache#smart_close_popup() : "\<Space>"
 
 """"""""""""""""""""""""""""""""
 " => TextMate like Ultisnip"
@@ -258,12 +258,13 @@ let g:vimshell_editor_command = 'vim'
 aug vimshellOverride
   au FileType vimshell imap <buffer> <SPACE> <SPACE>
   au FileType vimshell nmap <buffer> <C-k> <C-w>k
-  au FileType vimshell imap <buffer> <expr><Tab> neocomplcache#complete_common_string()
+  " au FileType vimshell imap <buffer> <expr><Tab> neocomplcache#complete_common_string()
 aug END
 
 " comment plugin"
 au FileType scss setlocal commentstring=//%s
 vmap gcc <leader>c<space>
+nmap gcc <leader>c<space>
 
 let g:syntastic_javascript_jshint_args='-c ~/.jshintrc'
 
@@ -291,7 +292,6 @@ Bundle 'scrooloose/syntastic'
 Bundle 'majutsushi/tagbar'
 Bundle 'sjl/gundo.vim'
 Bundle 'SirVer/ultisnips'
-Bundle 'JazzCore/neocomplcache-ultisnips'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'maksimr/vim-jsbeautify'
 Bundle 'Valloric/YouCompleteMe'
@@ -323,6 +323,8 @@ Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-repeat'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'jon-jacky/PyModel'
+"Bundle 'JazzCore/neocomplcache-ultisnips'
 "Bundle 'Shougo/neocomplcache.vim'
 "Bundle 'sheerun/vim-polyglot'
 "Bundle 'kien/rainbow_parentheses.vim'

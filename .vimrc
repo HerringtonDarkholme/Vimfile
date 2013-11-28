@@ -91,6 +91,16 @@ inoremap <expr><C-l> neocomplcache#complete_common_string()
 " Close popup by <Space>.
 inoremap <expr><Space> pumvisible() ? neocomplcache#smart_close_popup() : "\<Space>"
 
+if !exists('g:neocomplcache_force_omni_patterns')
+  let g:neocomplcache_force_omni_patterns = {}
+endif
+let g:neocomplcache_force_omni_patterns.c =
+\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
+let g:neocomplcache_force_omni_patterns.javascript =
+\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
+let g:neocomplcache_force_omni_patterns.python =
+\'[^. \t]\.\w*'
+
 """"""""""""""""""""""""""""""""
 " => TextMate like Ultisnip"
 """""""""""""""""""""""""""""""
@@ -297,6 +307,7 @@ Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimshell.vim'
 Bundle 'Shougo/neocomplcache.vim'
+Bundle 'davidhalter/jedi-vim'
 Bundle 'JazzCore/neocomplcache-ultisnips'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'

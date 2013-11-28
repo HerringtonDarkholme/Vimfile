@@ -45,7 +45,6 @@ endif
 " => plugin
 """"""""""""""""""""""""""""""""""""""""""""""""
 filetype plugin indent on
-execute pathogen#infect()
 set omnifunc=syntaxcomplete#Complete
 
 
@@ -316,6 +315,7 @@ Bundle 'mattn/emmet-vim'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'fisadev/vim-ctrlp-cmdpalette'
 Bundle 'cakebaker/scss-syntax.vim'
+Bundle 'digitaltoad/vim-jade'
 Bundle 'moll/vim-node'
 Bundle 'tpope/vim-rails'
 Bundle 'michaeljsmith/vim-indent-object'

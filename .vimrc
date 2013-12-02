@@ -214,9 +214,6 @@ inoremap <c-k> <space><left><c-o>d$
 cnoremap <c-k> <space><left><c-o>d$
 
 
-"Quick switch buffer"
-noremap <TAB>   :bn<CR>
-noremap <S-TAB>   :bp<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Editing Mappings!!

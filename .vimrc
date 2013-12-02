@@ -91,15 +91,18 @@ inoremap <expr><C-l> neocomplcache#complete_common_string()
 " Close popup by <Space>.
 inoremap <expr><Space> pumvisible() ? neocomplcache#smart_close_popup() : "\<Space>"
 
-if !exists('g:neocomplcache_force_omni_patterns')
-  let g:neocomplcache_force_omni_patterns = {}
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
 endif
-let g:neocomplcache_force_omni_patterns.c =
+let g:neocomplcache_omni_patterns.c =
 \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
-let g:neocomplcache_force_omni_patterns.javascript =
+let g:neocomplcache_omni_patterns.javascript =
 \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
-let g:neocomplcache_force_omni_patterns.python =
+let g:neocomplcache_omni_patterns.python =
 \'[^. \t]\.\w*'
+let g:jedi#auto_initialization = 1
+let g:jedi#popup_on_dot = 0
+autocmd  FileType python let b:did_ftplugin = 1
 
 """"""""""""""""""""""""""""""""
 " => TextMate like Ultisnip"

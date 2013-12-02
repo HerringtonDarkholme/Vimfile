@@ -211,9 +211,10 @@ no gj j
 no gk k
 
 inoremap <c-k> <space><left><c-o>d$
-cnoremap <c-k> <space><left><c-o>d$
 
-
+"Quick switch buffer"
+noremap <c-tab> :bn<CR>
+noremap <c-s-tab> :bp<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Editing Mappings!!

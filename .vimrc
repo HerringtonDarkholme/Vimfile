@@ -213,8 +213,8 @@ no gk k
 inoremap <c-k> <space><left><c-o>d$
 
 "Quick switch buffer"
-noremap <c-tab> :bn<CR>
-noremap <c-s-tab> :bp<CR>
+noremap [b :bn<CR>
+noremap ]b :bp<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Editing Mappings!!

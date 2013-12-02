@@ -41,6 +41,12 @@ if ! has('gui_running')
      augroup END
 endif
 
+let g:Powerline_dividers_override = ['', '', '', '']
+let g:Powerline_symbols_override = {}
+let g:Powerline_symbols_override.BRANCH = ''
+let g:Powerline_symbols_override.READONLY = ''
+let g:Powerline_symbols_override.LINENR = ''
+
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => plugin
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -58,8 +64,8 @@ let g:neocomplcache_enable_auto_select=1
 "cursor move for insert mode"
 let g:neocomplcache_enable_insert_char_pre=1
 "let g:neocomplcache_enable_cursor_hold_i=1
-"make compl list reasonably long. George Miller: huh?"
-let g:neocomplcache_max_list=7
+"make compl list reasonably long.
+let g:neocomplcache_max_list=9
 "don't auto close preview. makes it no ostentatious"
 let g:neocomplcache_enable_auto_close_preview=0
 set previewheight=2
@@ -78,12 +84,12 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-"" <CR>: close popup and save indent.
-"ino <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    ""use silent mode to avoid bizzare char insertion"
-"function! s:my_cr_function()
-    "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
-"endfunction
+" <CR>: close popup and save indent.
+ino <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    "use silent mode to avoid bizzare char insertion"
+function! s:my_cr_function()
+    return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+endfunction
 
 "" Plugin key-mappings.
 "inoremap <expr><C-g> neocomplcache#undo_completion()
@@ -93,15 +99,23 @@ inoremap <expr><Space> pumvisible() ? neocomplcache#smart_close_popup() : "\<Spa
 
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
+  let g:neocomplcache_omni_functions = {}
 endif
+
 let g:neocomplcache_omni_patterns.c =
 \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
 let g:neocomplcache_omni_patterns.javascript =
 \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
 let g:neocomplcache_omni_patterns.python =
 \'[^. \t]\.\w*'
-let g:jedi#auto_initialization = 1
+
+let g:neocomplcache_omni_functions.python = 'jedi#completions'
+let g:neocomplcache_omni_functions.javascript = 'tern#Complete'
+
+"neo-jedi compatibility"
 let g:jedi#popup_on_dot = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#completions_command = ''
 autocmd  FileType python let b:did_ftplugin = 1
 
 """"""""""""""""""""""""""""""""

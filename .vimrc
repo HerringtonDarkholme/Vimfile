@@ -41,6 +41,12 @@ if ! has('gui_running')
      augroup END
 endif
 
+let g:Powerline_dividers_override = ['', '', '', '']
+let g:Powerline_symbols_override = {}
+let g:Powerline_symbols_override.BRANCH = ''
+let g:Powerline_symbols_override.READONLY = ''
+let g:Powerline_symbols_override.LINENR = ''
+
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => plugin
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -91,10 +97,12 @@ inoremap <expr><C-l> neocomplcache#complete_common_string()
 " Close popup by <Space>.
 inoremap <expr><Space> pumvisible() ? neocomplcache#smart_close_popup() : "\<Space>"
 
-if !exists('g:neocomplcache_force_omni_patterns')
-  let g:neocomplcache_force_omni_patterns = {}
-endif
 let g:neocomplcache_force_overwrite_completefunc = 1
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+  let g:neocomplcache_omni_functions = {}
+endif
+
 let g:neocomplcache_omni_patterns.c =
 \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
 let g:neocomplcache_omni_patterns.javascript =
@@ -102,9 +110,6 @@ let g:neocomplcache_omni_patterns.javascript =
 let g:neocomplcache_omni_patterns.python =
 \'[^. \t]\.\w*'
 
-if !exists('g:neocomplcache_omni_functions')
-    let g:neocomplcache_omni_functions = {}
-endif
 let g:neocomplcache_omni_functions.python = 'jedi#completions'
 let g:neocomplcache_omni_functions.javascript = 'tern#Complete'
 
@@ -207,12 +212,10 @@ no gj j
 no gk k
 
 inoremap <c-k> <space><left><c-o>d$
-cnoremap <c-k> <space><left><c-o>d$
-
 
 "Quick switch buffer"
-noremap <TAB>   :bn<CR>
-noremap <S-TAB>   :bp<CR>
+noremap [b :bn<CR>
+noremap ]b :bp<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Editing Mappings!!

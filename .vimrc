@@ -299,6 +299,13 @@ let g:unite_enable_start_insert = 1
 let g:unite_winheight = 10
 let g:unite_split_rule = 'botright'
 
+"clang"
+let g:clang_library_path = '/usr/lib'
+let g:clang_snippets = 1
+let g:clang_snippets_engine = 'ultisnips'
+
+"ctrlp"
+let g:yankring_replace_n_pkey = '<A-p>'
 
 "vundle
 filetype off                   " required!

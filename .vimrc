@@ -244,7 +244,7 @@ set <A-a>=å
 set <A-d>=∂
 
 " => File Browswing
-nn <leader>b :NERDTreeToggle<CR>
+nn - :NERDTreeToggle<CR>
 let NERDTreeMapOpenSplit = 's'
 let NERDTreeMapOpenVSplit = 'v'
 

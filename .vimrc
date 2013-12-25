@@ -97,6 +97,7 @@ inoremap <expr><C-l> neocomplcache#complete_common_string()
 " Close popup by <Space>.
 inoremap <expr><Space> pumvisible() ? neocomplcache#smart_close_popup() : "\<Space>"
 
+let g:neocomplcache_force_overwrite_completefunc = 1
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
   let g:neocomplcache_omni_functions = {}
@@ -352,6 +353,7 @@ Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-repeat'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'jon-jacky/PyModel'
+Bundle 'Rip-Rip/clang_complete'
 "Bundle 'Valloric/YouCompleteMe'
 "Bundle 'sheerun/vim-polyglot'
 "Bundle 'kien/rainbow_parentheses.vim'

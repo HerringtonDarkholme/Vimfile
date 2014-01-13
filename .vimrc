@@ -5,7 +5,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 set hidden
 set backspace=2 "update2 vim74"
-let tabsize=2
+let tabsize=4
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => highlight help
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -57,17 +57,17 @@ set omnifunc=syntaxcomplete#Complete
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => auto complete and snippet for DarkVimMaster
 """"""""""""""""""""""""""""""""""""""""""""""""
-let g:neocomplcache_enable_at_startup=1
-let g:neocomplcache_enable_smart_case=1
-let g:neocomplcache_auto_completion_start_length=1
-let g:neocomplcache_enable_auto_select=1
+let g:neocomplete#enable_auto_select=1
+let g:neocomplete#auto_completion_start_length=1
+let g:neocomplete#enable_at_startup=1
+"let g:neocomplete#enable_smart_case=1
 "cursor move for insert mode"
-let g:neocomplcache_enable_insert_char_pre=1
-"let g:neocomplcache_enable_cursor_hold_i=1
+let g:neocomplete#enable_insert_char_pre=1
+"let g:neocomplete#enable_cursor_hold_i=1
 "make compl list reasonably long.
-let g:neocomplcache_max_list=9
+let g:neocomplete#max_list=9
 "don't auto close preview. makes it no ostentatious"
-let g:neocomplcache_enable_auto_close_preview=0
+let g:neocomplete#enable_auto_close_preview=0
 set previewheight=2
 set completeopt-=preview
 
@@ -88,30 +88,30 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 ino <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
     "use silent mode to avoid bizzare char insertion"
 function! s:my_cr_function()
-    return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+    return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 
 "" Plugin key-mappings.
 "inoremap <expr><C-g> neocomplcache#undo_completion()
-inoremap <expr><C-l> neocomplcache#complete_common_string()
+inoremap <expr><C-l> neocomplete#complete_common_string()
 " Close popup by <Space>.
-inoremap <expr><Space> pumvisible() ? neocomplcache#smart_close_popup() : "\<Space>"
+inoremap <expr><Space> pumvisible() ? neocomplete#smart_close_popup() : "\<Space>"
 
-let g:neocomplcache_force_overwrite_completefunc = 1
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-  let g:neocomplcache_omni_functions = {}
+let g:neocomplete#force_overwrite_completefunc = 1
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+  let g:neocomplete#sources#omni#functions = {}
 endif
 
-let g:neocomplcache_omni_patterns.c =
+let g:neocomplete#sources#omni#input_patterns.c =
 \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
-let g:neocomplcache_omni_patterns.javascript =
+let g:neocomplete#sources#omni#input_patterns.javascript =
 \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
-let g:neocomplcache_omni_patterns.python =
+let g:neocomplete#sources#omni#input_patterns.python =
 \'[^. \t]\.\w*'
 
-let g:neocomplcache_omni_functions.python = 'jedi#completions'
-let g:neocomplcache_omni_functions.javascript = 'tern#Complete'
+let g:neocomplete#sources#omni#functions.python = 'jedi#completions'
+let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
 
 "neo-jedi compatibility"
 let g:jedi#popup_on_dot = 0
@@ -169,11 +169,8 @@ set autoread
 
 "Allow  256 colors in Terminal
 set t_Co=256
-set t_ZH=[3m
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 "Set colorscheme
-colorscheme monoterm
+colorscheme molokai
 
 
 
@@ -267,6 +264,7 @@ let g:yankring_replace_n_pkey='<a-p>'
 
 "CtrlP MRU first"
 let g:ctrlp_cmd = 'CtrlPMRU'
+noremap <C-p> :<C-u>CtrlPMRU<CR>
 
 "undo list"
 nn <leader>u :GundoToggle<CR>
@@ -288,8 +286,6 @@ aug END
 
 " comment plugin"
 au FileType scss setlocal commentstring=//%s
-vmap gcc <leader>c<space>
-nmap gcc <leader>c<space>
 
 let g:syntastic_javascript_jshint_args='-c ~/.jshintrc'
 
@@ -299,71 +295,123 @@ let g:unite_enable_start_insert = 1
 let g:unite_winheight = 10
 let g:unite_split_rule = 'botright'
 
-"clang"
-let g:clang_library_path = '/usr/lib'
-let g:clang_snippets = 1
-let g:clang_snippets_engine = 'ultisnips'
-
-"ctrlp"
-let g:yankring_replace_n_pkey = '<A-p>'
 
 "vundle
-filetype off                   " required!
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+function FiletypeLoad(...)
+    return {'autoload': { 'filetypes' : a:000 }}
+endfunction
 
-"vundle bundle
-Bundle 'gmarik/vundle'
-Bundle 'kien/ctrlp.vim'
-Bundle 'L9'
-Bundle 'scrooloose/nerdtree'
-Bundle 'vim-scripts/YankRing.vim'
-Bundle 'vim-scripts/grep.vim'
-Bundle 'Yggdroot/indentLine'
-Bundle 'scrooloose/syntastic'
-Bundle 'majutsushi/tagbar'
-Bundle 'sjl/gundo.vim'
-Bundle 'SirVer/ultisnips'
-Bundle 'marijnh/tern_for_vim'
-Bundle 'maksimr/vim-jsbeautify'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimshell.vim'
-Bundle 'Shougo/neocomplcache.vim'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'JazzCore/neocomplcache-ultisnips'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-rsi'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'othree/eregex.vim'
-Bundle 'gregsexton/gitv'
-Bundle 'Raimondi/delimitMate'
-Bundle 'godlygeek/tabular'
-Bundle 'milkypostman/vim-togglelist'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'othree/html5.vim'
-Bundle 'slim-template/vim-slim'
-Bundle 'tpope/vim-haml'
-Bundle 'HerringtonDarkholme/vim-coffee-script'
-Bundle 'mattn/emmet-vim'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'fisadev/vim-ctrlp-cmdpalette'
-Bundle 'cakebaker/scss-syntax.vim'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'moll/vim-node'
-Bundle 'tpope/vim-rails'
-Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-repeat'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'jon-jacky/PyModel'
-Bundle 'Rip-Rip/clang_complete'
+function CMDLoad(...)
+    return {'autoload': { 'commands' : a:000 }}
+endfunction
+
+filetype off                   " required!
+set rtp+=~/.vim/bundle/neobundle.vim/
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+"Neo bundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+NeoBundle 'L9'
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc.vim'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'gregsexton/gitv'
+NeoBundle 'michaeljsmith/vim-indent-object'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-rsi'
+NeoBundle 'zhuangya/YankRing.vim'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'tpope/vim-abolish'
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'SirVer/ultisnips'
+
+NeoBundleLazy 'Shougo/vimshell',{
+            \ 'depends' : 'Shougo/vimproc.vim',
+            \ 'autoload' : {
+            \   'commands' : [{ 'name' : 'VimShell',
+            \                   'complete' : 'customlist,vimshell#complete'},
+            \                 'VimShellExecute', 'VimShellInteractive',
+            \                 'VimShellTerminal', 'VimShellPop'],
+            \   'mappings' : ['<Plug>(vimshell_']
+            \ }}
+
+"Bundle 'Shougo/neocomplcache.vim'
 "Bundle 'Valloric/YouCompleteMe'
 "Bundle 'sheerun/vim-polyglot'
 "Bundle 'kien/rainbow_parentheses.vim'
 "Bundle 'fholgado/minibufexpl.vim'
+
+
+"NeoBundleCheck
+NeoBundleLazy 'HerringtonDarkholme/vim-coffee-script',
+            \FiletypeLoad('coffee')
+NeoBundleLazy 'Rip-Rip/clang_complete',
+            \FiletypeLoad('c', 'cpp')
+NeoBundleLazy 'cakebaker/scss-syntax.vim',
+            \FiletypeLoad('scss', 'sass')
+NeoBundleLazy 'davidhalter/jedi-vim',
+            \FiletypeLoad('python')
+NeoBundleLazy 'digitaltoad/vim-jade',
+            \FiletypeLoad('jade')
+NeoBundleLazy 'jon-jacky/PyModel',
+            \FiletypeLoad('python')
+NeoBundleLazy 'maksimr/vim-jsbeautify',
+            \FiletypeLoad('javascript')
+NeoBundleLazy 'marijnh/tern_for_vim',
+            \FiletypeLoad('javascript')
+NeoBundleLazy 'mattn/emmet-vim',
+            \FiletypeLoad('html', 'xml')
+NeoBundleLazy 'moll/vim-node',
+            \FiletypeLoad('javascript')
+NeoBundleLazy 'othree/html5.vim',
+            \FiletypeLoad('html', 'slim', 'jade')
+NeoBundleLazy 'slim-template/vim-slim',
+            \FiletypeLoad('slim')
+NeoBundleLazy 'tpope/vim-haml',
+            \FiletypeLoad('slim', 'haml')
+NeoBundleLazy 'tpope/vim-rails',
+            \FiletypeLoad('ruby')
+NeoBundleLazy 'vim-ruby/vim-ruby',
+            \FiletypeLoad('ruby')
+
+NeoBundleLazy 'Yggdroot/indentLine',
+            \CMDLoad('IndentLineToggle')
+NeoBundleLazy 'fisadev/vim-ctrlp-cmdpalette',
+            \CMDLoad('CtrlPCmdPalette')
+NeoBundleLazy 'godlygeek/tabular',
+            \CMDLoad('Tabularize')
+NeoBundleLazy 'kien/ctrlp.vim',
+            \CMDLoad('CtrlPMRU')
+NeoBundleLazy 'majutsushi/tagbar',
+            \CMDLoad('TagbarToggle')
+NeoBundleLazy 'scrooloose/nerdtree',
+            \CMDLoad('NERDTreeToggle')
+NeoBundleLazy 'sjl/gundo.vim',
+            \CMDLoad('GundoToggle')
+NeoBundleLazy 'vim-scripts/grep.vim',
+            \CMDLoad('Grep', 'GrepArgs', 'GrepBuffer')
+
+" NeoBundle 'JazzCore/neocomplcache-ultisnips'
+" NeoBundle 'Shougo/neocomplete.vim'
+NeoBundleLazy 'JazzCore/neocomplcache-ultisnips',
+            \{'autoload': {'insert': 1 }}
+NeoBundleLazy 'Shougo/neocomplete.vim',
+            \{'autoload': {'insert': 1 }}
+
+NeoBundleLazy 'milkypostman/vim-togglelist',{
+            \ 'autoload': {'functions':
+            \   'ToggleLocationList'
+            \}}
+NeoBundleLazy 'othree/eregex.vim',{
+            \ 'autoload': {'functions':
+            \   'eregex#toggle'
+            \}}
+
 
 filetype plugin indent on

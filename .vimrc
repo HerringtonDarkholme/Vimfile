@@ -399,7 +399,7 @@ NeoBundleLazy 'vim-scripts/grep.vim',
 
 " NeoBundle 'JazzCore/neocomplcache-ultisnips'
 " NeoBundle 'Shougo/neocomplete.vim'
-NeoBundleLazy 'JazzCore/neocomplcache-ultisnips',
+NeoBundleLazy 'HerringtonDarkholme/neocomplcache-ultisnips',
             \{'autoload': {'insert': 1 }}
 NeoBundleLazy 'Shougo/neocomplete.vim',
             \{'autoload': {'insert': 1 }}

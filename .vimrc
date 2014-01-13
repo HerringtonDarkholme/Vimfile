@@ -18,6 +18,7 @@ set foldlevel=9999
 set cursorline
 set wildmenu
 set wildignore=*.o,*.pyc
+
 "highlight search result"
 set hlsearch
 "instant search(help re?)"
@@ -53,7 +54,6 @@ let g:Powerline_symbols_override.LINENR = ''
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => auto complete and snippet for DarkVimMaster
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -64,7 +64,6 @@ let g:neocomplete#enable_at_startup=1
 "cursor move for insert mode"
 let g:neocomplete#enable_insert_char_pre=1
 "let g:neocomplete#enable_cursor_hold_i=1
-"make compl list reasonably long.
 let g:neocomplete#max_list=9
 "don't auto close preview. makes it no ostentatious"
 let g:neocomplete#enable_auto_close_preview=0
@@ -154,7 +153,6 @@ let g:indentLine_enabled = 0
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Files and Backup
 """""""""""""""""""""""""""""""""""""""""""""""""
-
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowb
@@ -169,8 +167,9 @@ set autoread
 
 "Allow  256 colors in Terminal
 set t_Co=256
+set t_ZH=[3m
 "Set colorscheme
-colorscheme molokai
+colorscheme monoterm
 
 
 
@@ -208,6 +207,7 @@ no k gk
 no gj j
 no gk k
 
+"Emacs like c-k"
 inoremap <c-k> <space><left><c-o>d$
 
 "Quick switch buffer"
@@ -225,9 +225,7 @@ vn <A-j> :m '>+1<CR>gv=gv
 vn <A-k> :m '<-2<CR>gv=gv
 nn <A-h> <lt><lt>
 nn <A-l> >>
-"vn <A-left> <lt>gv4h
 exe "vn <A-h> <lt>gv".tabsize."h"
-"vn <A-right> >gv4l
 exe "vn <A-l> >gv".tabsize."l"
 
 "switch tab"
@@ -252,36 +250,38 @@ autocmd FileType javascript nn <buffer> <leader>r :TernRefs<cr>
 autocmd FileType javascript nn <buffer> <leader>t :TernType<cr>
 autocmd FileType javascript nn <buffer> <leader>q :TernRename<cr>
 
-
 " => Syntastic Lint
-nmap <silent> <F2> :call ToggleLocationList()<CR>
+nnoremap <silent><F2> :call ToggleLocationList()<CR>
 
 "yank history yankring"
 nn <silent> <F12> :YRShow<CR>
-"disable c-p for ctrl-p"
 nn <silent> <F8> :TagbarToggle<CR>
-let g:yankring_replace_n_pkey='<a-p>'
+"disable c-p for ctrl-p"
+let g:yankring_replace_n_pkey = '<a-p>'
 
+"VimShell"
+nn <leader>s :lcd %:p:h<CR>:VimShellPop<CR>
 "CtrlP MRU first"
 let g:ctrlp_cmd = 'CtrlPMRU'
 noremap <C-p> :<C-u>CtrlPMRU<CR>
 
 "undo list"
-nn <leader>u :GundoToggle<CR>
+nn <silent> <leader>u :GundoToggle<CR>
 "Grep"
-nn <leader>g :Grep<CR>
+nn <silent> <leader>gg :Grep<CR>
+nn <silent> <leader>ga :GrepArgs<CR>
+nn <silent> <leader>gb :GrepBuffer<CR>
 
-"vimshell"
-nn <leader>s :lcd %:p:h<CR>:VimShellPop<CR>
 " Use current directory as vimshell prompt.
 let g:vimshell_prompt_expr =
 \ '"λ ".escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
 let g:vimshell_prompt_pattern = '^λ \%(\f\|\\.\)\+> '
 let g:vimshell_editor_command = 'vim'
+
 aug vimshellOverride
   au FileType vimshell imap <buffer> <SPACE> <SPACE>
   au FileType vimshell nmap <buffer> <C-k> <C-w>k
-  " au FileType vimshell imap <buffer> <expr><Tab> neocomplcache#complete_common_string()
+  au FileType vimshell imap <buffer> <expr><Tab> neocomplcache#complete_common_string()
 aug END
 
 " comment plugin"

@@ -263,7 +263,7 @@ let g:yankring_replace_n_pkey = '<a-p>'
 nn <leader>s :lcd %:p:h<CR>:VimShellPop<CR>
 "CtrlP MRU first"
 let g:ctrlp_cmd = 'CtrlPMRU'
-noremap <C-p> :<C-u>CtrlPMRU<CR>
+nnoremap <C-p> :<C-u>CtrlPMRU<CR>
 
 "undo list"
 nn <silent> <leader>u :GundoToggle<CR>
@@ -281,7 +281,7 @@ let g:vimshell_editor_command = 'vim'
 aug vimshellOverride
   au FileType vimshell imap <buffer> <SPACE> <SPACE>
   au FileType vimshell nmap <buffer> <C-k> <C-w>k
-  au FileType vimshell imap <buffer> <expr><Tab> neocomplcache#complete_common_string()
+  au FileType vimshell imap <buffer> <expr><Tab> neocomplete#complete_common_string()
 aug END
 
 " comment plugin"

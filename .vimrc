@@ -281,7 +281,7 @@ let g:vimshell_editor_command = 'vim'
 aug vimshellOverride
   au FileType vimshell imap <buffer> <SPACE> <SPACE>
   au FileType vimshell nmap <buffer> <C-k> <C-w>k
-  au FileType vimshell imap <buffer> <expr><Tab> neocomplcache#complete_common_string()
+  au FileType vimshell imap <buffer> <expr><Tab> neocomplete#complete_common_string()
 aug END
 
 " comment plugin"

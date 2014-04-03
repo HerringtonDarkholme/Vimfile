@@ -209,10 +209,12 @@ no gk k
 
 "Emacs like c-k"
 inoremap <c-k> <space><left><c-o>d$
-
 "Quick switch buffer"
 noremap [b :bn<CR>
 noremap ]b :bp<CR>
+"switch tab"
+nn <A-a> :tabp<CR>
+nn <A-d> :tabn<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Editing Mappings!!
@@ -227,10 +229,8 @@ nn <A-h> <lt><lt>
 nn <A-l> >>
 exe "vn <A-h> <lt>gv".tabsize."h"
 exe "vn <A-l> >gv".tabsize."l"
+nn cr <Plug>Coerce
 
-"switch tab"
-nn <A-a> :tabp<CR>
-nn <A-d> :tabn<CR>
 
 set <A-j>=∆
 set <A-k>=˚
@@ -327,9 +327,13 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-rsi'
 NeoBundle 'zhuangya/YankRing.vim'
 NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'SirVer/ultisnips'
+NeoBundle 'tpope/vim-surround'
+NeoBundleLazy 'tpope/vim-abolish', {
+            \ 'autoloads': {
+            \   'mappings': ['n', '<Plug>Coerce']
+            \ }}
 
 NeoBundleLazy 'Shougo/vimshell',{
             \ 'depends' : 'Shougo/vimproc.vim',
@@ -379,6 +383,8 @@ NeoBundleLazy 'tpope/vim-rails',
             \FiletypeLoad('ruby')
 NeoBundleLazy 'vim-ruby/vim-ruby',
             \FiletypeLoad('ruby')
+NeoBundleLazy 'derekwyatt/vim-scala',
+            \FiletypeLoad('scala')
 
 NeoBundleLazy 'Yggdroot/indentLine',
             \CMDLoad('IndentLineToggle')

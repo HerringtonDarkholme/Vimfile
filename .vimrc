@@ -332,6 +332,7 @@ NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
 NeoBundle 'tpope/vim-surround'
 
 NeoBundleLazy 'Shougo/vimshell',{
@@ -404,8 +405,8 @@ NeoBundleLazy 'vim-scripts/grep.vim',
 
 " NeoBundle 'JazzCore/neocomplcache-ultisnips'
 " NeoBundle 'Shougo/neocomplete.vim'
-NeoBundleLazy 'HerringtonDarkholme/neocomplcache-ultisnips',
-            \{'autoload': {'insert': 1 }}
+" NeoBundleLazy 'HerringtonDarkholme/neocomplcache-ultisnips',
+"             \{'autoload': {'insert': 1 }}
 NeoBundleLazy 'Shougo/neocomplete.vim',
             \{'autoload': {'insert': 1 }}
 

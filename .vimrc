@@ -5,6 +5,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 set hidden
 set backspace=2 "update2 vim74"
+set foldmethod=indent
 let tabsize=4
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => highlight help
@@ -67,6 +68,7 @@ let g:neocomplete#enable_insert_char_pre=1
 let g:neocomplete#max_list=9
 "don't auto close preview. makes it no ostentatious"
 let g:neocomplete#enable_auto_close_preview=0
+let g:neocomplete#enable_fuzzy_completion=0
 set previewheight=2
 set completeopt-=preview
 
@@ -327,13 +329,10 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-rsi'
 NeoBundle 'zhuangya/YankRing.vim'
 NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'tpope/vim-surround'
-NeoBundleLazy 'tpope/vim-abolish', {
-            \ 'autoloads': {
-            \   'mappings': ['n', '<Plug>Coerce']
-            \ }}
 
 NeoBundleLazy 'Shougo/vimshell',{
             \ 'depends' : 'Shougo/vimproc.vim',

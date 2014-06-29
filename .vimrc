@@ -24,7 +24,7 @@ set wildignore=*.o,*.pyc
 set hlsearch
 "instant search(help re?)"
 set incsearch
-nnoremap <F4> :set nohls<CR>
+nn <silent> <F4> :set nohls<CR>
 "egrep for PCRE"
 nnoremap <leader>/ :call eregex#toggle()<CR>
 let g:eregex_default_enable = 0

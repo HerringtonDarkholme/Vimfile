@@ -193,6 +193,8 @@ autocmd FileType javascript nn <buffer>  <leader>f :call JsBeautify()<cr>
 autocmd FileType html nn <buffer> <leader>f :call HtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css nn <buffer> <leader>f :call CSSBeautify()<cr>
+" redraw
+nnoremap <C-S-l> <esc>:<c-u>redraw!
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Moving Around!!

@@ -18,6 +18,10 @@ set foldlevel=9999
 "turn on wild menu
 set cursorline
 set wildmenu
+set wildmode=list:longest,full "list possible commands"
+set showmatch "match parens"
+set nojoinspaces "no space between J"
+set pastetoggle=<f10> "toggle paste"
 set wildignore=*.o,*.pyc
 
 "highlight search result"
@@ -78,6 +82,7 @@ set completeopt-=preview
 "endif
 
 set splitbelow
+set splitright
 " Enable omni completion."
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags

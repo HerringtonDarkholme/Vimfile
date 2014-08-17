@@ -96,7 +96,7 @@ endfunction
 "inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplete#complete_common_string()
 " Close popup by <Space>.
-inoremap <expr><Space> pumvisible() ? neocomplete#smart_close_popup() : "\<Space>"
+inoremap <expr><S-Space> pumvisible() ? neocomplete#smart_close_popup() : "\<S-Space>"
 
 let g:neocomplete#force_overwrite_completefunc = 1
 if !exists('g:neocomplete#sources#omni#input_patterns')

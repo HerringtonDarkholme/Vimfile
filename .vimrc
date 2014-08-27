@@ -63,7 +63,7 @@ set omnifunc=syntaxcomplete#Complete
 " => auto complete and snippet for DarkVimMaster
 """"""""""""""""""""""""""""""""""""""""""""""""
 let g:neocomplete#enable_auto_select=1
-let g:neocomplete#auto_completion_start_length=1
+let g:neocomplete#auto_completion_start_length=2
 let g:neocomplete#enable_at_startup=1
 "let g:neocomplete#enable_smart_case=1
 "cursor move for insert mode"
@@ -73,6 +73,7 @@ let g:neocomplete#max_list=9
 "don't auto close preview. makes it no ostentatious"
 let g:neocomplete#enable_auto_close_preview=0
 let g:neocomplete#enable_fuzzy_completion=0
+let g:neocomplete#enable_refresh_always=1
 set previewheight=2
 set completeopt-=preview
 
@@ -82,12 +83,12 @@ set completeopt-=preview
 "endif
 
 set splitbelow
-set splitright
+" set splitright
 " Enable omni completion."
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " <CR>: close popup and save indent.
@@ -115,6 +116,8 @@ let g:neocomplete#sources#omni#input_patterns.javascript =
 \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
 let g:neocomplete#sources#omni#input_patterns.python =
 \'[^. \t]\.\w*'
+let g:neocomplete#sources#omni#input_patterns.scala =
+\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
 
 let g:neocomplete#sources#omni#functions.python = 'jedi#completions'
 let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
@@ -123,7 +126,9 @@ let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
 let g:jedi#popup_on_dot = 0
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#completions_command = ''
+let g:jedi#goto_definitions_command='<c-]>'
 autocmd  FileType python let b:did_ftplugin = 1
+" let g:jedi#force_py_version = 3
 
 """"""""""""""""""""""""""""""""
 " => TextMate like Ultisnip"
@@ -176,9 +181,18 @@ set autoread
 set t_Co=256
 set t_ZH=[3m
 "Set colorscheme
-colorscheme monoterm
+" colorscheme monoterm
+set background=light
 
-
+"theme
+let g:solarized_bold=1
+let g:solarized_italic=1
+let g:solarized_underline=1
+let g:airline_powerline_fonts=1
+"
+let g:bufferline_echo=0
+nnoremap <tab> :bn<cr>
+nnoremap <s-tab> :bp<cr>
 
 "lint"
 let g:syntastic_auto_loc_list=1
@@ -187,6 +201,9 @@ let g:syntastic_always_populate_loc_list=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='!!'
 let g:toggle_list_no_mappings=1
+let g:syntastic_mode_map = { "mode": "active",
+	\"active_filetypes" : [],
+	\"passive_filetypes": ["scala"]}
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -304,6 +321,11 @@ let g:unite_enable_start_insert = 1
 let g:unite_winheight = 10
 let g:unite_split_rule = 'botright'
 
+"eclim
+let g:EclimCompletionMethod='omnifunc'
+let g:EclimFileTypeValidate = 0
+autocmd FileType scala nn <buffer> <leader>i :ScalaImport<cr>
+autocmd FileType java nn <buffer> <leader>i :JavaImport<cr>
 
 "vundle
 function FiletypeLoad(...)
@@ -322,7 +344,10 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'L9'
-NeoBundle 'Lokaltog/vim-powerline'
+" NeoBundle 'Lokaltog/vim-powerline'
+" NeoBundle 'stephenmckinney/vim-solarized-powerline'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'bling/vim-bufferline'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim'
@@ -392,6 +417,12 @@ NeoBundleLazy 'vim-ruby/vim-ruby',
             \FiletypeLoad('ruby')
 NeoBundleLazy 'derekwyatt/vim-scala',
             \FiletypeLoad('scala')
+NeoBundleLazy 'wavded/vim-stylus',
+			\FiletypeLoad('stylus')
+NeoBundleLazy 'HerringtonDarkholme/jedi-syntax',
+			\FiletypeLoad('jedi')
+NeoBundleLazy 'shawncplus/phpcomplete.vim',
+            \FiletypeLoad('php')
 
 NeoBundleLazy 'Yggdroot/indentLine',
             \CMDLoad('IndentLineToggle')
@@ -426,5 +457,5 @@ NeoBundleLazy 'othree/eregex.vim',{
             \   'eregex#toggle'
             \}}
 
-
 filetype plugin indent on
+colorscheme solarized

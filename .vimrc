@@ -407,7 +407,6 @@ NeoBundleLazy 'Shougo/vimshell',{
             \ }}
 
 "Bundle 'Shougo/neocomplcache.vim'
-NeoBundle 'Valloric/YouCompleteMe'
 "Bundle 'sheerun/vim-polyglot'
 "Bundle 'kien/rainbow_parentheses.vim'
 "Bundle 'fholgado/minibufexpl.vim'
@@ -474,7 +473,9 @@ NeoBundleLazy 'vim-scripts/grep.vim',
 " NeoBundle 'Shougo/neocomplete.vim'
 " NeoBundleLazy 'HerringtonDarkholme/neocomplcache-ultisnips',
 "             \{'autoload': {'insert': 1 }}
-NeoBundleLazy 'Shougo/neocomplete.vim',
+" NeoBundleLazy 'Shougo/neocomplete.vim',
+"             \{'autoload': {'insert': 1 }}
+NeoBundleLazy 'Valloric/YouCompleteMe',
             \{'autoload': {'insert': 1 }}
 
 NeoBundleLazy 'milkypostman/vim-togglelist',{

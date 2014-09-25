@@ -63,41 +63,40 @@ set omnifunc=syntaxcomplete#Complete
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => auto complete and snippet for DarkVimMaster
 """"""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_add_preview_to_completeopt = 1
 
-function! g:UltiSnips_Complete()
-    call UltiSnips#ExpandSnippet()
-    if g:ulti_expand_res == 0
-        if pumvisible()
-            return "\<C-n>"
-        else
-            call UltiSnips#JumpForwards()
-            if g:ulti_jump_forwards_res == 0
-               return "\<TAB>"
-            endif
-        endif
-    endif
-    return ""
-endfunction
+" function! g:UltiSnips_Complete()
+"     call UltiSnips#ExpandSnippet()
+"     if g:ulti_expand_res == 0
+"         if pumvisible()
+"             return "\<C-n>"
+"         else
+"             call UltiSnips#JumpForwards()
+"             if g:ulti_jump_forwards_res == 0
+"                return "\<TAB>"
+"             endif
+"         endif
+"     endif
+"     return ""
+" endfunction
 
-au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsListSnippets="<c-e>"
+" au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsListSnippets="<c-e>"
 
-" let g:neocomplete#enable_auto_select=1
-" let g:neocomplete#auto_completion_start_length=2
-" let g:neocomplete#enable_at_startup=1
-" "let g:neocomplete#enable_smart_case=1
-" "cursor move for insert mode"
-" let g:neocomplete#enable_insert_char_pre=1
-" "let g:neocomplete#enable_cursor_hold_i=1
-" let g:neocomplete#max_list=9
-" "don't auto close preview. makes it no ostentatious"
-" let g:neocomplete#enable_auto_close_preview=0
-" let g:neocomplete#enable_fuzzy_completion=0
-" let g:neocomplete#enable_refresh_always=1
-" set previewheight=2
-" set completeopt-=preview
+let g:neocomplete#enable_auto_select=1
+let g:neocomplete#auto_completion_start_length=2
+let g:neocomplete#enable_at_startup=1
+"let g:neocomplete#enable_smart_case=1
+"cursor move for insert mode"
+let g:neocomplete#enable_insert_char_pre=1
+"let g:neocomplete#enable_cursor_hold_i=1
+let g:neocomplete#max_list=9
+"don't auto close preview. makes it no ostentatious"
+let g:neocomplete#enable_auto_close_preview=0
+let g:neocomplete#enable_fuzzy_completion=0
+let g:neocomplete#enable_refresh_always=1
+set previewheight=2
+set completeopt-=preview
 
 " "Disable faux syntax element"
 " "if !exists('g:neocomplcache_keyword_patterns')
@@ -113,36 +112,36 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" " <CR>: close popup and save indent.
-" ino <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"     "use silent mode to avoid bizzare char insertion"
-" function! s:my_cr_function()
-"     return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-" endfunction
+" <CR>: close popup and save indent.
+ino <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    "use silent mode to avoid bizzare char insertion"
+function! s:my_cr_function()
+    return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
 
-" "" Plugin key-mappings.
-" "inoremap <expr><C-g> neocomplcache#undo_completion()
-" inoremap <expr><C-l> neocomplete#complete_common_string()
-" " Close popup by <Space>.
-" inoremap <expr><S-Space> pumvisible() ? neocomplete#smart_close_popup() : "\<S-Space>"
+"" Plugin key-mappings.
+"inoremap <expr><C-g> neocomplcache#undo_completion()
+inoremap <expr><C-l> neocomplete#complete_common_string()
+" Close popup by <Space>.
+inoremap <expr><S-Space> pumvisible() ? neocomplete#smart_close_popup() : "\<S-Space>"
 
-" let g:neocomplete#force_overwrite_completefunc = 1
-" if !exists('g:neocomplete#sources#omni#input_patterns')
-"   let g:neocomplete#sources#omni#input_patterns = {}
-"   let g:neocomplete#sources#omni#functions = {}
-" endif
+let g:neocomplete#force_overwrite_completefunc = 1
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+  let g:neocomplete#sources#omni#functions = {}
+endif
 
-" let g:neocomplete#sources#omni#input_patterns.c =
-" \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
-" let g:neocomplete#sources#omni#input_patterns.javascript =
-" \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
-" let g:neocomplete#sources#omni#input_patterns.python =
-" \'[^. \t]\.\w*'
-" let g:neocomplete#sources#omni#input_patterns.scala =
-" \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
+let g:neocomplete#sources#omni#input_patterns.c =
+\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
+let g:neocomplete#sources#omni#input_patterns.javascript =
+\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
+let g:neocomplete#sources#omni#input_patterns.python =
+\'[^. \t]\.\w*'
+let g:neocomplete#sources#omni#input_patterns.scala =
+\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
 
-" let g:neocomplete#sources#omni#functions.python = 'jedi#completions'
-" let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
+let g:neocomplete#sources#omni#functions.python = 'jedi#completions'
+let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
 
 "neo-jedi compatibility"
 let g:jedi#popup_on_dot = 0
@@ -465,8 +464,8 @@ NeoBundleLazy 'majutsushi/tagbar',
             \CMDLoad('TagbarToggle')
 NeoBundleLazy 'scrooloose/nerdtree',
             \CMDLoad('NERDTreeToggle')
-NeoBundleLazy 'Xuyuanp/nerdtree-git-plugin',
-            \CMDLoad('NERDTreeToggle')
+" NeoBundleLazy 'Xuyuanp/nerdtree-git-plugin',
+"             \CMDLoad('NERDTreeToggle')
 NeoBundleLazy 'HerringtonDarkholme/vim-worksheet',
             \CMDLoad('WorksheetStart')
 NeoBundleLazy 'sjl/gundo.vim',
@@ -478,10 +477,10 @@ NeoBundleLazy 'vim-scripts/grep.vim',
 " NeoBundle 'Shougo/neocomplete.vim'
 " NeoBundleLazy 'HerringtonDarkholme/neocomplcache-ultisnips',
 "             \{'autoload': {'insert': 1 }}
-" NeoBundleLazy 'Shougo/neocomplete.vim',
-"             \{'autoload': {'insert': 1 }}
-NeoBundleLazy 'Valloric/YouCompleteMe',
+NeoBundleLazy 'Shougo/neocomplete.vim',
             \{'autoload': {'insert': 1 }}
+" NeoBundleLazy 'Valloric/YouCompleteMe',
+"             \{'autoload': {'insert': 1 }}
 
 NeoBundleLazy 'milkypostman/vim-togglelist',{
             \ 'autoload': {'functions':

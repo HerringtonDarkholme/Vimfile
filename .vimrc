@@ -23,6 +23,7 @@ set showmatch "match parens"
 set nojoinspaces "no space between J"
 set pastetoggle=<f10> "toggle paste"
 set wildignore=*.o,*.pyc
+set nojoinspaces
 
 "highlight search result"
 set hlsearch
@@ -436,6 +437,10 @@ NeoBundleLazy 'majutsushi/tagbar',
             \CMDLoad('TagbarToggle')
 NeoBundleLazy 'scrooloose/nerdtree',
             \CMDLoad('NERDTreeToggle')
+NeoBundleLazy 'Xuyuanp/nerdtree-git-plugin',
+            \CMDLoad('NERDTreeToggle')
+NeoBundleLazy 'HerringtonDarkholme/vim-worksheet',
+            \CMDLoad('WorksheetStart')
 NeoBundleLazy 'sjl/gundo.vim',
             \CMDLoad('GundoToggle')
 NeoBundleLazy 'vim-scripts/grep.vim',

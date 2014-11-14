@@ -294,9 +294,10 @@ nnoremap <C-p> :<C-u>CtrlPMRU<CR>
 "undo list"
 nn <silent> <leader>u :GundoToggle<CR>
 "Grep"
-nn <silent> <leader>gg :Grep<CR>
+nn <silent> gb :GrepBuffer<CR>
+nn <silent> <leader>g :Grep<CR>
 nn <silent> <leader>ga :GrepArgs<CR>
-nn <silent> <leader>gb :GrepBuffer<CR>
+nn <silent> gr :Rgrep<CR><CR><CR>.<C-r>=expand("%:e")<CR><CR>
 
 " Use current directory as vimshell prompt.
 let g:vimshell_prompt_expr =
@@ -439,7 +440,7 @@ NeoBundleLazy 'scrooloose/nerdtree',
 NeoBundleLazy 'sjl/gundo.vim',
             \CMDLoad('GundoToggle')
 NeoBundleLazy 'vim-scripts/grep.vim',
-            \CMDLoad('Grep', 'GrepArgs', 'GrepBuffer')
+            \CMDLoad('Grep', 'GrepArgs', 'GrepBuffer', 'Rgrep')
 
 " NeoBundle 'JazzCore/neocomplcache-ultisnips'
 " NeoBundle 'Shougo/neocomplete.vim'

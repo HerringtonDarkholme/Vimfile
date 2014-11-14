@@ -23,6 +23,7 @@ set showmatch "match parens"
 set nojoinspaces "no space between J"
 set pastetoggle=<f10> "toggle paste"
 set wildignore=*.o,*.pyc
+set nojoinspaces
 
 "highlight search result"
 set hlsearch
@@ -62,6 +63,26 @@ set omnifunc=syntaxcomplete#Complete
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => auto complete and snippet for DarkVimMaster
 """"""""""""""""""""""""""""""""""""""""""""""""
+
+" function! g:UltiSnips_Complete()
+"     call UltiSnips#ExpandSnippet()
+"     if g:ulti_expand_res == 0
+"         if pumvisible()
+"             return "\<C-n>"
+"         else
+"             call UltiSnips#JumpForwards()
+"             if g:ulti_jump_forwards_res == 0
+"                return "\<TAB>"
+"             endif
+"         endif
+"     endif
+"     return ""
+" endfunction
+
+" au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsListSnippets="<c-e>"
+
 let g:neocomplete#enable_auto_select=1
 let g:neocomplete#auto_completion_start_length=2
 let g:neocomplete#enable_at_startup=1
@@ -77,10 +98,10 @@ let g:neocomplete#enable_refresh_always=1
 set previewheight=2
 set completeopt-=preview
 
-"Disable faux syntax element"
-"if !exists('g:neocomplcache_keyword_patterns')
-    "let g:neocomplcache_keyword_patterns = {}
-"endif
+" "Disable faux syntax element"
+" "if !exists('g:neocomplcache_keyword_patterns')
+"     "let g:neocomplcache_keyword_patterns = {}
+" "endif
 
 set splitbelow
 " set splitright
@@ -235,6 +256,7 @@ no gk k
 
 "Emacs like c-k"
 inoremap <c-k> <space><left><c-o>d$
+
 "Quick switch buffer"
 noremap [b :bn<CR>
 noremap ]b :bp<CR>
@@ -315,6 +337,12 @@ aug END
 au FileType scss setlocal commentstring=//%s
 
 let g:syntastic_javascript_jshint_args='-c ~/.jshintrc'
+" "clang"
+" let g:clang_library_path = '/usr/lib/llvm-3.2/lib/'
+" let g:clang_snippets = 1
+" let g:clang_snippets_engine = 'ultisnips'
+" let g:clang_complete_auto = 0
+
 
 "Unite"
 nnoremap <leader><C-p> :<C-u>Unite -start-insert file_rec/async<CR>
@@ -367,6 +395,7 @@ NeoBundle 'tpope/vim-commentary'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'altercation/vim-colors-solarized'
 
 NeoBundleLazy 'Shougo/vimshell',{
             \ 'depends' : 'Shougo/vimproc.vim',
@@ -379,7 +408,6 @@ NeoBundleLazy 'Shougo/vimshell',{
             \ }}
 
 "Bundle 'Shougo/neocomplcache.vim'
-"Bundle 'Valloric/YouCompleteMe'
 "Bundle 'sheerun/vim-polyglot'
 "Bundle 'kien/rainbow_parentheses.vim'
 "Bundle 'fholgado/minibufexpl.vim'
@@ -437,6 +465,10 @@ NeoBundleLazy 'majutsushi/tagbar',
             \CMDLoad('TagbarToggle')
 NeoBundleLazy 'scrooloose/nerdtree',
             \CMDLoad('NERDTreeToggle')
+" NeoBundleLazy 'Xuyuanp/nerdtree-git-plugin',
+"             \CMDLoad('NERDTreeToggle')
+NeoBundleLazy 'HerringtonDarkholme/vim-worksheet',
+            \CMDLoad('WorksheetStart')
 NeoBundleLazy 'sjl/gundo.vim',
             \CMDLoad('GundoToggle')
 NeoBundleLazy 'vim-scripts/grep.vim',
@@ -448,6 +480,8 @@ NeoBundleLazy 'vim-scripts/grep.vim',
 "             \{'autoload': {'insert': 1 }}
 NeoBundleLazy 'Shougo/neocomplete.vim',
             \{'autoload': {'insert': 1 }}
+" NeoBundleLazy 'Valloric/YouCompleteMe',
+"             \{'autoload': {'insert': 1 }}
 
 NeoBundleLazy 'milkypostman/vim-togglelist',{
             \ 'autoload': {'functions':

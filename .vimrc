@@ -98,10 +98,10 @@ let g:neocomplete#enable_refresh_always=1
 set previewheight=2
 set completeopt-=preview
 
-" "Disable faux syntax element"
-" "if !exists('g:neocomplcache_keyword_patterns')
-"     "let g:neocomplcache_keyword_patterns = {}
-" "endif
+"Disable faux syntax element"
+"if !exists('g:neocomplcache_keyword_patterns')
+    "let g:neocomplcache_keyword_patterns = {}
+"endif
 
 set splitbelow
 " set splitright
@@ -135,6 +135,8 @@ let g:neocomplete#sources#omni#input_patterns.c =
 \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
 let g:neocomplete#sources#omni#input_patterns.javascript =
 \ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
+let g:neocomplete#sources#omni#input_patterns.typescript =
+\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
 let g:neocomplete#sources#omni#input_patterns.python =
 \'[^. \t]\.\w*'
 let g:neocomplete#sources#omni#input_patterns.scala =
@@ -142,6 +144,7 @@ let g:neocomplete#sources#omni#input_patterns.scala =
 
 let g:neocomplete#sources#omni#functions.python = 'jedi#completions'
 let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
+let g:neocomplete#sources#omni#functions.typescript = 'TSScompleteFunc'
 
 "neo-jedi compatibility"
 let g:jedi#popup_on_dot = 0
@@ -437,6 +440,10 @@ NeoBundleLazy 'maksimr/vim-jsbeautify',
             \FiletypeLoad('javascript')
 NeoBundleLazy 'marijnh/tern_for_vim',
             \FiletypeLoad('javascript')
+NeoBundleLazy 'clausreinke/typescript-tools',
+			\FiletypeLoad('typescript')
+NeoBundleLazy 'leafgarland/typescript-vim',
+			\FiletypeLoad('typescript')
 NeoBundleLazy 'mattn/emmet-vim',
             \FiletypeLoad('html', 'xml')
 NeoBundleLazy 'moll/vim-node',

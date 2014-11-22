@@ -281,6 +281,7 @@ nn <A-l> >>
 exe "vn <A-h> <lt>gv".tabsize."h"
 exe "vn <A-l> >gv".tabsize."l"
 nn cr <Plug>Coerce
+cmap w!! w !sudo tee >/dev/null %
 
 
 set <A-j>=∆

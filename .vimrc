@@ -441,6 +441,9 @@ NeoBundleLazy 'maksimr/vim-jsbeautify',
             \FiletypeLoad('javascript')
 NeoBundleLazy 'marijnh/tern_for_vim',
             \FiletypeLoad('javascript')
+NeoBundleLazy 'pangloss/vim-javascript',
+            \FiletypeLoad('javascript')
+
 NeoBundleLazy 'clausreinke/typescript-tools',
 			\FiletypeLoad('typescript')
 NeoBundleLazy 'leafgarland/typescript-vim',

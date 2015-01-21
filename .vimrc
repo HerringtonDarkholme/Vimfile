@@ -341,9 +341,11 @@ let g:vimshell_prompt_pattern = '^λ \%(\f\|\\.\)\+> '
 let g:vimshell_editor_command = 'vim'
 
 aug vimshellOverride
-  au FileType vimshell imap <buffer> <SPACE> <SPACE>
   au FileType vimshell nmap <buffer> <C-k> <C-w>k
-  au FileType vimshell imap <buffer> <expr><Tab> neocomplete#complete_common_string()
+  au FileType vimshell imap <buffer> <C-l> <Plug>(vimshell_clear)
+  au FileType vimshell imap <buffer> <C-r> <Plug>(vimshell_history_unite)
+  au FileType vimshell inoremap <buffer> <C-x><C-r> <C-r>
+  au BufEnter * let g:neocomplete#enable_auto_select=&filetype != 'vimshell'
 aug END
 
 " comment plugin"

@@ -47,7 +47,7 @@ ZSH_THEME="lambda"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump)
+plugins=(git autojump zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.func/git.sh
@@ -88,8 +88,26 @@ export PYTHONSTARUP="$HOME/.pythonrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # alias v=/path/to/vim
 # alias ctags=/usr/local/bin/ctags
+alias scala="env JAVACMD=drip scala" #boost JVM startup
 alias cm="screen -d -m cmus"
 alias n="cmus-remote -n"
 alias r="cmus-remote -r"
 alias u="cmus-remote -u"
 alias R="cmus-remote -R"
+
+# require auto-fu
+source ~/.zsh/auto-fu; auto-fu-install
+zle-line-init () {auto-fu-init;}; zle -N zle-line-init
+zstyle ':completion:*' completer _oldlist _complete
+# zle -N zle-keymap-select auto-fu-zle-keymap-select
+zstyle ':auto-fu:highlight' input bold
+zstyle ':auto-fu:highlight' completion fg=14
+zstyle ':auto-fu:highlight' completion/one fg=14
+
+# disable auto-stuff inside single and also double quotes.
+# And less than 2 chars before the cursor.
+# zstyle ':auto-fu:var' autoable-function/skiplines \
+#         "('|$'|\")*" "^(??)##" "npm##*"
+# source ~/.zsh/antigen.zsh
+# antigen bundle RobSis/zsh-completion-generator
+# antigen apply

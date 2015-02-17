@@ -104,6 +104,8 @@ zstyle ':auto-fu:highlight' input bold
 zstyle ':auto-fu:highlight' completion fg=14
 zstyle ':auto-fu:highlight' completion/one fg=14
 
+. <(npm completion) # search npm tab completion
+
 # disable auto-stuff inside single and also double quotes.
 # And less than 2 chars before the cursor.
 # zstyle ':auto-fu:var' autoable-function/skiplines \

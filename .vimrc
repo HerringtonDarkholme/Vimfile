@@ -225,6 +225,7 @@ let g:syntastic_always_populate_loc_list=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='!!'
 let g:toggle_list_no_mappings=1
+let g:syntastic_typescript_tsc_args = "-t ES6"
 let g:syntastic_mode_map = { "mode": "active",
 	\"active_filetypes" : [],
 	\"passive_filetypes": ["scala"]}

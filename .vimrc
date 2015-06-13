@@ -329,10 +329,12 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
 "undo list"
 nn <silent> <leader>u :GundoToggle<CR>
 "Grep"
-nn <silent> gb :GrepBuffer<CR>
-nn <silent> <leader>g :Grep<CR>
+nn <silent> <leader>g :RGrep<CR>
 nn <silent> <leader>ga :GrepArgs<CR>
+nn <silent> gb :GrepBuffer<CR><CR>
 nn <silent> gr :Rgrep<CR><CR><CR>.<C-r>=expand("%:e")<CR><CR>
+vn <silent> gr y:Rgrep<CR><C-u><C-r>"<CR><CR>.<C-r>=expand("%:e")<CR><CR>
+vn <silent> gb y:GrepBufer<CR><C-u><C-r>"<CR>
 
 nn gw :W3m<space>
 

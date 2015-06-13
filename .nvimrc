@@ -4,9 +4,9 @@
 set encoding=utf-8
 set fileencoding=utf-8
 set hidden
-set backspace=2 "update2 vim74"
+set foldlevel=99
 set foldmethod=indent
-let tabsize=4
+let tabsize=2
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => highlight help
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -54,6 +54,22 @@ let g:Powerline_symbols_override.BRANCH = ''
 let g:Powerline_symbols_override.READONLY = ''
 let g:Powerline_symbols_override.LINENR = ''
 
+" GUIsh insert cursor"
+function! SetBeamCursor()
+    if &ft !~ 'vimshell'
+        silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+    endif
+endfunction
+
+function! SetBlockCursor()
+    if &ft !~ 'vimshell'
+        silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+    endif
+endfunction
+
+au InsertEnter * call SetBeamCursor()
+au InsertLeave * call SetBlockCursor()
+
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => plugin
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -62,7 +78,8 @@ set omnifunc=syntaxcomplete#Complete
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => auto complete and snippet for DarkVimMaster
-""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""
+" let g:ycm_add_preview_to_completeopt = 1
 
 " function! g:UltiSnips_Complete()
 "     call UltiSnips#ExpandSnippet()
@@ -83,27 +100,6 @@ set omnifunc=syntaxcomplete#Complete
 " let g:UltiSnipsJumpForwardTrigger="<tab>"
 " let g:UltiSnipsListSnippets="<c-e>"
 
-let g:neocomplete#enable_auto_select=1
-let g:neocomplete#auto_completion_start_length=2
-let g:neocomplete#enable_at_startup=1
-let g:neocomplete#enable_smart_case=1
-"cursor move for insert mode"
-let g:neocomplete#enable_insert_char_pre=1
-"let g:neocomplete#enable_cursor_hold_i=1
-let g:neocomplete#max_list=9
-"don't auto close preview. makes it no ostentatious"
-let g:neocomplete#enable_auto_close_preview=0
-let g:neocomplete#enable_fuzzy_completion=0
-let g:neocomplete#enable_refresh_always=1
-let g:echodoc_enable_at_startup=1
-set previewheight=2
-set completeopt-=preview
-
-"Disable faux syntax element"
-"if !exists('g:neocomplcache_keyword_patterns')
-    "let g:neocomplcache_keyword_patterns = {}
-"endif
-
 set splitbelow
 " set splitright
 " Enable omni completion."
@@ -114,38 +110,60 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " <CR>: close popup and save indent.
-ino <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    "use silent mode to avoid bizzare char insertion"
-function! s:my_cr_function()
-    return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
+" ino <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"     "use silent mode to avoid bizzare char insertion"
+" function! s:my_cr_function()
+"     return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+" endfunction
 
-"" Plugin key-mappings.
-"inoremap <expr><C-g> neocomplcache#undo_completion()
-inoremap <expr><C-l> neocomplete#complete_common_string()
-" Close popup by <Space>.
-inoremap <expr><S-Space> pumvisible() ? neocomplete#smart_close_popup() : "\<S-Space>"
+set noshowmode
+let g:echodoc_enable_at_startup=1
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_completion_start_length = 1
+let g:deoplete#omni_patterns = {}
+let g:deoplete#omni_patterns.c =
+\ '[^. *\t]\.\w*\|\h\w*->'
+let g:deoplete#omni_patterns.javascript =
+\ '[^. *\t]\.\w*'
+let g:deoplete#omni_patterns.typescript =
+\ '[^. *\t]\.\w*'
+let g:deoplete#omni_patterns.python =
+\ '[^. *\t]\.\w*'
 
-let g:neocomplete#force_overwrite_completefunc = 1
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-  let g:neocomplete#sources#omni#functions = {}
-endif
+" let g:neocomplete#enable_auto_select=1
+" let g:neocomplete#enable_smart_case=1
+" "cursor move for insert mode"
+" let g:neocomplete#enable_insert_char_pre=1
+" "let g:neocomplete#enable_cursor_hold_i=1
+" let g:neocomplete#max_list=9
+" "don't auto close preview. makes it no ostentatious"
+" let g:neocomplete#enable_auto_close_preview=0
+" let g:neocomplete#enable_fuzzy_completion=0
+" let g:neocomplete#enable_refresh_always=1
+set previewheight=2
+set completeopt-=preview
 
-let g:neocomplete#sources#omni#input_patterns.c =
-\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
-let g:neocomplete#sources#omni#input_patterns.javascript =
-\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
-let g:neocomplete#sources#omni#input_patterns.typescript =
-\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
-let g:neocomplete#sources#omni#input_patterns.python =
-\'[^. \t]\.\w*'
-let g:neocomplete#sources#omni#input_patterns.scala =
-\ '[^.[:digit:] *\t]\%(\.\|->\)\%(\h\w*\)\?'
+"Disable faux syntax element"
+"if !exists('g:neocomplcache_keyword_patterns')
+    "let g:neocomplcache_keyword_patterns = {}
+"endif
 
-let g:neocomplete#sources#omni#functions.python = 'jedi#completions'
-let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
-let g:neocomplete#sources#omni#functions.typescript = 'TSScompleteFunc'
+
+" "" Plugin key-mappings.
+" "inoremap <expr><C-g> neocomplcache#undo_completion()
+" inoremap <expr><C-l> neocomplete#complete_common_string()
+" " Close popup by <Space>.
+" inoremap <expr><S-Space> pumvisible() ? neocomplete#smart_close_popup() : "\<Space>"
+
+" let g:neocomplete#force_overwrite_completefunc = 1
+" if !exists('g:neocomplete#sources#omni#input_patterns')
+"   let g:neocomplete#sources#omni#input_patterns = {}
+"   let g:neocomplete#sources#omni#functions = {}
+" endif
+
+" let g:neocomplete#sources#omni#functions.python = 'jedi#completions'
+" let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
+" let g:neocomplete#sources#omni#functions.typescript = 'TSScompleteFunc'
 
 "neo-jedi compatibility"
 let g:jedi#popup_on_dot = 0
@@ -153,11 +171,11 @@ let g:jedi#auto_vim_configuration = 0
 let g:jedi#completions_command = ''
 let g:jedi#goto_definitions_command='<c-]>'
 autocmd  FileType python let b:did_ftplugin = 1
-" let g:jedi#force_py_version = 3
+let g:jedi#force_py_version = 3
 
 """"""""""""""""""""""""""""""""
 " => TextMate like Ultisnip"
-"""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
@@ -181,9 +199,8 @@ set smartindent
 "Remove trailing whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
 
-" indnet line"
-let g:indentLine_color_term = 236
-let g:indentLine_char = '┊'
+" indent line"
+let g:indentLine_color_term=238
 let g:indentLine_noConcealCursor = 1
 let g:indentLine_enabled = 0
 
@@ -226,11 +243,10 @@ let g:syntastic_always_populate_loc_list=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='!!'
 let g:toggle_list_no_mappings=1
-let g:syntastic_typescript_tsc_args = "-t ES6"
 let g:syntastic_mode_map = { "mode": "active",
 	\"active_filetypes" : [],
 	\"passive_filetypes": ["scala"]}
-
+nmap <leader>a :HLT<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => key binding
@@ -243,6 +259,9 @@ autocmd FileType html nn <buffer> <leader>f :call HtmlBeautify()<cr>
 autocmd FileType css nn <buffer> <leader>f :call CSSBeautify()<cr>
 " redraw
 nnoremap <C-S-l> <esc>:<c-u>redraw!
+
+autocmd FileType typescript nn <buffer> <leader>s :<C-u>TSSstart<space><c-r>%<space>-m<space>commonjs<CR>
+autocmd FileType typescript nn <buffer> K :<C-u>TSStype<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Moving Around!!
@@ -265,9 +284,6 @@ inoremap <c-k> <space><left><c-o>d$
 "Quick switch buffer"
 noremap [b :bn<CR>
 noremap ]b :bp<CR>
-"switch tab"
-nn <A-a> :tabp<CR>
-nn <A-d> :tabn<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Editing Mappings!!
@@ -282,16 +298,19 @@ nn <A-h> <lt><lt>
 nn <A-l> >>
 exe "vn <A-h> <lt>gv".tabsize."h"
 exe "vn <A-l> >gv".tabsize."l"
-nn cr <Plug>Coerce
-cmap w!! w !sudo tee >/dev/null %
 
+"switch tab"
+nn <A-a> :tabp<CR>
+nn <A-d> :tabn<CR>
 
-set <A-j>=∆
-set <A-k>=˚
-set <A-h>=˙
-set <A-l>=¬
-set <A-a>=å
-set <A-d>=∂
+set <A-j>=j
+set <A-k>=k
+set <A-h>=h
+set <A-l>=l
+set <A-f>=f
+set <A-b>=b
+set <A-d>=d
+set <A-a>=a
 
 " => File Browswing
 nn - :NERDTreeToggle<CR>
@@ -318,13 +337,14 @@ nn <leader>s :lcd %:p:h<CR>:VimShellPop<CR>
 "CtrlP MRU first"
 let g:ctrlp_cmd = 'CtrlPMRU'
 nnoremap <C-p> :<C-u>CtrlPMRU<CR>
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-      \ --ignore .git
-      \ --ignore .svn
-      \ --ignore .hg
-      \ --ignore .DS_Store
-      \ --ignore "**/*.pyc"
-      \ -g ""'
+" let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+"       \ --ignore .git
+"       \ --ignore .svn
+"       \ --ignore .hg
+"       \ --ignore .DS_Store
+"       \ --ignore "**/*.pyc"
+"       \ --max-count 10000
+"       \ -g ""'
 
 "undo list"
 nn <silent> <leader>u :GundoToggle<CR>
@@ -333,8 +353,6 @@ nn <silent> gb :GrepBuffer<CR>
 nn <silent> <leader>g :Grep<CR>
 nn <silent> <leader>ga :GrepArgs<CR>
 nn <silent> gr :Rgrep<CR><CR><CR>.<C-r>=expand("%:e")<CR><CR>
-
-nn gw :W3m<space>
 
 " Use current directory as vimshell prompt.
 let g:vimshell_prompt_expr =
@@ -354,11 +372,12 @@ aug END
 au FileType scss setlocal commentstring=//%s
 
 let g:syntastic_javascript_jshint_args='-c ~/.jshintrc'
-" "clang"
-" let g:clang_library_path = '/usr/lib/llvm-3.2/lib/'
-" let g:clang_snippets = 1
-" let g:clang_snippets_engine = 'ultisnips'
-" let g:clang_complete_auto = 0
+let g:syntastic_typescript_tsc_args='-t ES5'
+"clang"
+let g:clang_library_path = '/usr/lib/llvm-3.4/lib/'
+let g:clang_snippets = 1
+let g:clang_snippets_engine = 'ultisnips'
+let g:clang_complete_auto = 0
 
 
 "Unite"
@@ -384,7 +403,7 @@ endfunction
 
 filetype off                   " required!
 set rtp+=~/.vim/bundle/neobundle.vim/
-call neobundle#begin(expand('~/.vim/bundle/'))
+call neobundle#rc(expand('~/.vim/bundle/'))
 
 "Neo bundle
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -413,8 +432,9 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'gerw/vim-HiLinkTrace'
 
-NeoBundleLazy 'Shougo/vimshell',{
+NeoBundleLazy 'Shougo/vimshell.vim',{
             \ 'depends' : 'Shougo/vimproc.vim',
             \ 'autoload' : {
             \   'commands' : [{ 'name' : 'VimShell',
@@ -425,6 +445,7 @@ NeoBundleLazy 'Shougo/vimshell',{
             \ }}
 
 "Bundle 'Shougo/neocomplcache.vim'
+" NeoBundle 'Valloric/YouCompleteMe'
 "Bundle 'sheerun/vim-polyglot'
 "Bundle 'kien/rainbow_parentheses.vim'
 "Bundle 'fholgado/minibufexpl.vim'
@@ -449,10 +470,9 @@ NeoBundleLazy 'marijnh/tern_for_vim',
             \FiletypeLoad('javascript')
 NeoBundleLazy 'othree/yajs.vim',
             \FiletypeLoad('javascript')
-
-NeoBundleLazy 'clausreinke/typescript-tools',
+NeoBundleLazy 'HerringtonDarkholme/yats.vim',
 			\FiletypeLoad('typescript')
-NeoBundleLazy 'leafgarland/typescript-vim',
+NeoBundleLazy 'clausreinke/typescript-tools.vim',
 			\FiletypeLoad('typescript')
 NeoBundleLazy 'mattn/emmet-vim',
             \FiletypeLoad('html', 'xml')
@@ -474,8 +494,6 @@ NeoBundleLazy 'wavded/vim-stylus',
 			\FiletypeLoad('stylus')
 NeoBundleLazy 'HerringtonDarkholme/jedi-syntax',
 			\FiletypeLoad('jedi')
-NeoBundleLazy 'shawncplus/phpcomplete.vim',
-            \FiletypeLoad('php')
 
 NeoBundleLazy 'Yggdroot/indentLine',
             \CMDLoad('IndentLineToggle')
@@ -496,20 +514,18 @@ NeoBundleLazy 'HerringtonDarkholme/vim-worksheet',
 NeoBundleLazy 'sjl/gundo.vim',
             \CMDLoad('GundoToggle')
 NeoBundleLazy 'vim-scripts/grep.vim',
-            \CMDLoad('Grep', 'GrepArgs', 'GrepBuffer', 'Rgrep')
-NeoBundleLazy 'HerringtonDarkholme/w3m.vim',
-            \CMDLoad('W3m')
+            \CMDLoad('Grep', 'GrepArgs', 'GrepBuffer')
 
 " NeoBundle 'JazzCore/neocomplcache-ultisnips'
 " NeoBundle 'Shougo/neocomplete.vim'
 " NeoBundleLazy 'HerringtonDarkholme/neocomplcache-ultisnips',
 "             \{'autoload': {'insert': 1 }}
-NeoBundleLazy 'Shougo/neocomplete.vim',
-            \{'autoload': {'insert': 1 }}
+" NeoBundleLazy 'Shougo/neocomplete.vim',
+"             \{'autoload': {'insert': 1 }}
+NeoBundleLazy 'Shougo/deoplete.nvim',
+              \{'autoload': {'insert': 1}}
 NeoBundleLazy 'Shougo/echodoc.vim',
               \{'autoload': {'insert': 1}}
-" NeoBundleLazy 'Valloric/YouCompleteMe',
-"             \{'autoload': {'insert': 1 }}
 
 NeoBundleLazy 'milkypostman/vim-togglelist',{
             \ 'autoload': {'functions':
@@ -519,8 +535,6 @@ NeoBundleLazy 'othree/eregex.vim',{
             \ 'autoload': {'functions':
             \   'eregex#toggle'
             \}}
-
-call neobundle#end()
 
 filetype plugin indent on
 colorscheme solarized

@@ -87,6 +87,7 @@ let g:neocomplete#enable_auto_select=1
 let g:neocomplete#auto_completion_start_length=2
 let g:neocomplete#enable_at_startup=1
 let g:neocomplete#enable_smart_case=1
+let g:echodoc_enable_at_startup=1
 "cursor move for insert mode"
 let g:neocomplete#enable_insert_char_pre=1
 "let g:neocomplete#enable_cursor_hold_i=1
@@ -506,6 +507,8 @@ NeoBundleLazy 'HerringtonDarkholme/w3m.vim',
 " NeoBundleLazy 'HerringtonDarkholme/neocomplcache-ultisnips',
 "             \{'autoload': {'insert': 1 }}
 NeoBundleLazy 'Shougo/neocomplete.vim',
+            \{'autoload': {'insert': 1 }}
+NeoBundleLazy 'Shougo/echodoc.vim',
             \{'autoload': {'insert': 1 }}
 " NeoBundleLazy 'Valloric/YouCompleteMe',
 "             \{'autoload': {'insert': 1 }}

@@ -348,10 +348,10 @@ nnoremap <C-p> :<C-u>CtrlPMRU<CR>
 "undo list"
 nn <silent> <leader>u :GundoToggle<CR>
 "Grep"
-nn <silent> gb :GrepBuffer<CR>
-nn <silent> <leader>g :Grep<CR>
-nn <silent> <leader>ga :GrepArgs<CR>
-nn <silent> gr :Rgrep<CR><CR><CR>.<C-r>=expand("%:e")<CR><CR>
+nn <silent> gb :Unite grep:%<CR><C-r><C-w><CR>
+nn <silent> <leader>g :Unite grep:. -default-action=tabopen<CR>
+nn <silent> gl :Unite grep:$buffers -default-action=tabopen<CR><C-r><C-w>
+nn <silent> gr :Unite grep:. -default-action=tabopen<CR><C-r><C-w><CR>
 
 " Use current directory as vimshell prompt.
 let g:vimshell_prompt_expr =
@@ -514,8 +514,8 @@ NeoBundleLazy 'HerringtonDarkholme/vim-worksheet',
             \CMDLoad('WorksheetStart')
 NeoBundleLazy 'sjl/gundo.vim',
             \CMDLoad('GundoToggle')
-NeoBundleLazy 'vim-scripts/grep.vim',
-            \CMDLoad('Grep', 'GrepArgs', 'GrepBuffer')
+" NeoBundleLazy 'vim-scripts/grep.vim',
+"             \CMDLoad('Grep', 'GrepArgs', 'GrepBuffer')
 
 " NeoBundle 'JazzCore/neocomplcache-ultisnips'
 " NeoBundle 'Shougo/neocomplete.vim'

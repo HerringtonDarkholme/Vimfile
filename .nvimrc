@@ -351,7 +351,7 @@ nn <silent> <leader>u :GundoToggle<CR>
 nn <silent> gb :Unite grep:%<CR><C-r><C-w><CR>
 nn <silent> <leader>g :Unite grep:. -default-action=tabopen<CR>
 nn <silent> gl :Unite grep:$buffers -default-action=tabopen<CR><C-r><C-w>
-nn <silent> gr :Unite grep:. -default-action=tabopen<CR><C-r><C-w><CR>
+nn <silent> gr :Unite grep:.:--include='*.<C-r>=expand("%:e")<CR>' -default-action=tabopen<CR><C-r><C-w><CR>
 
 " Use current directory as vimshell prompt.
 let g:vimshell_prompt_expr =
@@ -384,6 +384,7 @@ nnoremap <leader><C-p> :<C-u>Unite -start-insert file_rec/async<CR>
 let g:unite_source_history_yank_enable=1
 let g:unite_winheight = 10
 let g:unite_split_rule = 'botright'
+let g:unite_prompt='> '
 
 "eclim
 let g:EclimCompletionMethod='omnifunc'

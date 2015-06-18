@@ -245,6 +245,8 @@ inoremap <c-k> <space><left><c-o>d$
 noremap [b :bn<CR>
 noremap ]b :bp<CR>
 
+tnoremap <esc> <C-\><C-n>
+
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Editing Mappings!!
 """"""""""""""""""""""""""""""""""""""""""""""""

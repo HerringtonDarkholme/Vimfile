@@ -327,10 +327,9 @@ autocmd FileType javascript nn <buffer> <leader>q :TernRename<cr>
 nnoremap <silent><F2> :call ToggleLocationList()<CR>
 
 "yank history yankring"
-nn <silent> <F12> :YRShow<CR>
+nn <silent> <F12> :Unite history/yank<CR>
 nn <silent> <F8> :TagbarToggle<CR>
-"disable c-p for ctrl-p"
-let g:yankring_replace_n_pkey = '<a-p>'
+let g:ctrlp_cmd = 'CtrlPMRU'
 
 "VimShell"
 nn <leader>s :lcd %:p:h<CR>:VimShellPop<CR>
@@ -382,7 +381,7 @@ let g:clang_complete_auto = 0
 
 "Unite"
 nnoremap <leader><C-p> :<C-u>Unite -start-insert file_rec/async<CR>
-let g:unite_enable_start_insert = 1
+let g:unite_source_history_yank_enable=1
 let g:unite_winheight = 10
 let g:unite_split_rule = 'botright'
 
@@ -409,8 +408,6 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'L9'
-" NeoBundle 'Lokaltog/vim-powerline'
-" NeoBundle 'stephenmckinney/vim-solarized-powerline'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'bling/vim-bufferline'
 NeoBundle 'Raimondi/delimitMate'
@@ -424,15 +421,18 @@ NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-rsi'
-NeoBundle 'zhuangya/YankRing.vim'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'gerw/vim-HiLinkTrace'
+
+NeoBundle 'kien/ctrlp.vim'
+NeoBundleLazy 'fisadev/vim-ctrlp-cmdpalette',
+            \CMDLoad('CtrlPCmdPalette')
+NeoBundleLazy 'sgur/ctrlp-extensions.vim',
+		\CMDLoad('CtrlPTag', 'CtrlPBufTag')
 
 NeoBundleLazy 'Shougo/vimshell.vim',{
             \ 'depends' : 'Shougo/vimproc.vim',
@@ -444,6 +444,11 @@ NeoBundleLazy 'Shougo/vimshell.vim',{
             \   'mappings' : ['<Plug>(vimshell_']
             \ }}
 
+" NeoBundle 'zhuangya/YankRing.vim'
+" NeoBundle 'scrooloose/nerdcommenter'
+" NeoBundle 'tpope/vim-abolish'
+" NeoBundle 'Lokaltog/vim-powerline'
+" NeoBundle 'stephenmckinney/vim-solarized-powerline'
 "Bundle 'Shougo/neocomplcache.vim'
 " NeoBundle 'Valloric/YouCompleteMe'
 "Bundle 'sheerun/vim-polyglot'
@@ -497,12 +502,8 @@ NeoBundleLazy 'HerringtonDarkholme/jedi-syntax',
 
 NeoBundleLazy 'Yggdroot/indentLine',
             \CMDLoad('IndentLineToggle')
-NeoBundleLazy 'fisadev/vim-ctrlp-cmdpalette',
-            \CMDLoad('CtrlPCmdPalette')
 NeoBundleLazy 'godlygeek/tabular',
             \CMDLoad('Tabularize')
-NeoBundleLazy 'kien/ctrlp.vim',
-            \CMDLoad('CtrlPMRU')
 NeoBundleLazy 'majutsushi/tagbar',
             \CMDLoad('TagbarToggle')
 NeoBundleLazy 'scrooloose/nerdtree',

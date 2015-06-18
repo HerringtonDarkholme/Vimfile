@@ -382,7 +382,6 @@ let g:clang_complete_auto = 0
 "Unite"
 nnoremap <leader><C-p> :<C-u>Unite -start-insert file_rec/async<CR>
 let g:unite_source_history_yank_enable=1
-let g:unite_winheight = 10
 let g:unite_split_rule = 'botright'
 let g:unite_prompt='> '
 

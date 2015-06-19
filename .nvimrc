@@ -76,29 +76,6 @@ au InsertLeave * call SetBlockCursor()
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 
-""""""""""""""""""""""""""""""""""""""""""""""""
-" => auto complete and snippet for DarkVimMaster
-" """"""""""""""""""""""""""""""""""""""""""""""""
-" let g:ycm_add_preview_to_completeopt = 1
-
-" function! g:UltiSnips_Complete()
-"     call UltiSnips#ExpandSnippet()
-"     if g:ulti_expand_res == 0
-"         if pumvisible()
-"             return "\<C-n>"
-"         else
-"             call UltiSnips#JumpForwards()
-"             if g:ulti_jump_forwards_res == 0
-"                return "\<TAB>"
-"             endif
-"         endif
-"     endif
-"     return ""
-" endfunction
-
-" au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsListSnippets="<c-e>"
 
 set splitbelow
 " set splitright
@@ -122,26 +99,17 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_completion_start_length = 1
 let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.c =
-\ '[^. *\t]\.\w*\|\h\w*->'
+\ '\w*\.\|\h\w*->'
 let g:deoplete#omni_patterns.javascript =
-\ '[^. *\t]\.\w*'
+\ '\w*\.'
 let g:deoplete#omni_patterns.typescript =
-\ '[^. *\t]\.\w*'
+\ '\w*\.'
 let g:deoplete#omni_patterns.python =
-\ '[^. *\t]\.\w*'
+\ '\w*\.'
 
-" let g:neocomplete#enable_auto_select=1
-" let g:neocomplete#enable_smart_case=1
-" "cursor move for insert mode"
-" let g:neocomplete#enable_insert_char_pre=1
-" "let g:neocomplete#enable_cursor_hold_i=1
-" let g:neocomplete#max_list=9
-" "don't auto close preview. makes it no ostentatious"
-" let g:neocomplete#enable_auto_close_preview=0
-" let g:neocomplete#enable_fuzzy_completion=0
-" let g:neocomplete#enable_refresh_always=1
 set previewheight=2
 set completeopt-=preview
+set completeopt+=noinsert
 
 "Disable faux syntax element"
 "if !exists('g:neocomplcache_keyword_patterns')
@@ -155,16 +123,6 @@ set completeopt-=preview
 " " Close popup by <Space>.
 " inoremap <expr><S-Space> pumvisible() ? neocomplete#smart_close_popup() : "\<Space>"
 
-" let g:neocomplete#force_overwrite_completefunc = 1
-" if !exists('g:neocomplete#sources#omni#input_patterns')
-"   let g:neocomplete#sources#omni#input_patterns = {}
-"   let g:neocomplete#sources#omni#functions = {}
-" endif
-
-" let g:neocomplete#sources#omni#functions.python = 'jedi#completions'
-" let g:neocomplete#sources#omni#functions.javascript = 'tern#Complete'
-" let g:neocomplete#sources#omni#functions.typescript = 'TSScompleteFunc'
-
 "neo-jedi compatibility"
 let g:jedi#popup_on_dot = 0
 let g:jedi#auto_vim_configuration = 0
@@ -176,9 +134,17 @@ let g:jedi#force_py_version = 3
 """"""""""""""""""""""""""""""""
 " => TextMate like Ultisnip"
 """"""""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Text, Tab and Indent Related
@@ -237,15 +203,9 @@ nnoremap <tab> :bn<cr>
 nnoremap <s-tab> :bp<cr>
 
 "lint"
-let g:syntastic_auto_loc_list=1
-let g:syntastic_check_on_open=1
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='!!'
-let g:toggle_list_no_mappings=1
-let g:syntastic_mode_map = { "mode": "active",
-	\"active_filetypes" : [],
-	\"passive_filetypes": ["scala"]}
+autocmd! BufWritePost * Neomake
+let g:neomake_warning_sign = {'text': '!!', 'texthl': 'Search'}
+let g:neomake_error_sign = {'text': '✗', 'texthl': 'ErrorMsg'}
 nmap <leader>a :HLT<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -284,6 +244,8 @@ inoremap <c-k> <space><left><c-o>d$
 "Quick switch buffer"
 noremap [b :bn<CR>
 noremap ]b :bp<CR>
+
+tnoremap <esc> <C-\><C-n>
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Editing Mappings!!
@@ -327,10 +289,9 @@ autocmd FileType javascript nn <buffer> <leader>q :TernRename<cr>
 nnoremap <silent><F2> :call ToggleLocationList()<CR>
 
 "yank history yankring"
-nn <silent> <F12> :YRShow<CR>
+nn <silent> <F12> :Unite history/yank<CR>
 nn <silent> <F8> :TagbarToggle<CR>
-"disable c-p for ctrl-p"
-let g:yankring_replace_n_pkey = '<a-p>'
+let g:ctrlp_cmd = 'CtrlPMRU'
 
 "VimShell"
 nn <leader>s :lcd %:p:h<CR>:VimShellPop<CR>
@@ -349,10 +310,10 @@ nnoremap <C-p> :<C-u>CtrlPMRU<CR>
 "undo list"
 nn <silent> <leader>u :GundoToggle<CR>
 "Grep"
-nn <silent> gb :GrepBuffer<CR>
-nn <silent> <leader>g :Grep<CR>
-nn <silent> <leader>ga :GrepArgs<CR>
-nn <silent> gr :Rgrep<CR><CR><CR>.<C-r>=expand("%:e")<CR><CR>
+nn <silent> gb :Unite grep:%<CR><C-r><C-w><CR>
+nn <silent> <leader>g :Unite grep:. -default-action=tabopen<CR>
+nn <silent> gl :Unite grep:$buffers -default-action=tabopen<CR><C-r><C-w>
+nn <silent> gr :Unite grep:.:--include='*.<C-r>=expand("%:e")<CR>' -default-action=tabopen<CR><C-r><C-w><CR>
 
 " Use current directory as vimshell prompt.
 let g:vimshell_prompt_expr =
@@ -382,9 +343,10 @@ let g:clang_complete_auto = 0
 
 "Unite"
 nnoremap <leader><C-p> :<C-u>Unite -start-insert file_rec/async<CR>
-let g:unite_enable_start_insert = 1
-let g:unite_winheight = 10
+let g:unite_source_history_yank_enable=1
 let g:unite_split_rule = 'botright'
+let g:unite_source_grep_default_opts='-RHn'
+let g:unite_prompt='> '
 
 "eclim
 let g:EclimCompletionMethod='omnifunc'
@@ -409,8 +371,6 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'L9'
-" NeoBundle 'Lokaltog/vim-powerline'
-" NeoBundle 'stephenmckinney/vim-solarized-powerline'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'bling/vim-bufferline'
 NeoBundle 'Raimondi/delimitMate'
@@ -419,20 +379,24 @@ NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'michaeljsmith/vim-indent-object'
-NeoBundle 'scrooloose/syntastic'
+" NeoBundle 'scrooloose/syntastic'
+NeoBundle 'benekastah/neomake'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-rsi'
-NeoBundle 'zhuangya/YankRing.vim'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tpope/vim-commentary'
-NeoBundle 'SirVer/ultisnips'
+" NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'gerw/vim-HiLinkTrace'
+
+NeoBundle 'kien/ctrlp.vim'
+NeoBundleLazy 'fisadev/vim-ctrlp-cmdpalette',
+            \CMDLoad('CtrlPCmdPalette')
+NeoBundleLazy 'sgur/ctrlp-extensions.vim',
+		\CMDLoad('CtrlPTag', 'CtrlPBufTag')
 
 NeoBundleLazy 'Shougo/vimshell.vim',{
             \ 'depends' : 'Shougo/vimproc.vim',
@@ -444,6 +408,9 @@ NeoBundleLazy 'Shougo/vimshell.vim',{
             \   'mappings' : ['<Plug>(vimshell_']
             \ }}
 
+" NeoBundle 'zhuangya/YankRing.vim'
+" NeoBundle 'scrooloose/nerdcommenter'
+" NeoBundle 'tpope/vim-abolish'
 "Bundle 'Shougo/neocomplcache.vim'
 " NeoBundle 'Valloric/YouCompleteMe'
 "Bundle 'sheerun/vim-polyglot'
@@ -497,12 +464,8 @@ NeoBundleLazy 'HerringtonDarkholme/jedi-syntax',
 
 NeoBundleLazy 'Yggdroot/indentLine',
             \CMDLoad('IndentLineToggle')
-NeoBundleLazy 'fisadev/vim-ctrlp-cmdpalette',
-            \CMDLoad('CtrlPCmdPalette')
 NeoBundleLazy 'godlygeek/tabular',
             \CMDLoad('Tabularize')
-NeoBundleLazy 'kien/ctrlp.vim',
-            \CMDLoad('CtrlPMRU')
 NeoBundleLazy 'majutsushi/tagbar',
             \CMDLoad('TagbarToggle')
 NeoBundleLazy 'scrooloose/nerdtree',
@@ -513,8 +476,8 @@ NeoBundleLazy 'HerringtonDarkholme/vim-worksheet',
             \CMDLoad('WorksheetStart')
 NeoBundleLazy 'sjl/gundo.vim',
             \CMDLoad('GundoToggle')
-NeoBundleLazy 'vim-scripts/grep.vim',
-            \CMDLoad('Grep', 'GrepArgs', 'GrepBuffer')
+" NeoBundleLazy 'vim-scripts/grep.vim',
+"             \CMDLoad('Grep', 'GrepArgs', 'GrepBuffer')
 
 " NeoBundle 'JazzCore/neocomplcache-ultisnips'
 " NeoBundle 'Shougo/neocomplete.vim'
@@ -525,6 +488,10 @@ NeoBundleLazy 'vim-scripts/grep.vim',
 NeoBundleLazy 'Shougo/deoplete.nvim',
               \{'autoload': {'insert': 1}}
 NeoBundleLazy 'Shougo/echodoc.vim',
+              \{'autoload': {'insert': 1}}
+NeoBundleLazy 'Shougo/neosnippet',
+              \{'autoload': {'insert': 1}}
+NeoBundleLazy 'Shougo/neosnippet-snippets',
               \{'autoload': {'insert': 1}}
 
 NeoBundleLazy 'milkypostman/vim-togglelist',{

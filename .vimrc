@@ -100,9 +100,10 @@ set previewheight=2
 set completeopt-=preview
 
 "Disable faux syntax element"
-"if !exists('g:neocomplcache_keyword_patterns')
-    "let g:neocomplcache_keyword_patterns = {}
-"endif
+" if !exists('g:neocomplete#keyword_patterns')
+"   let g:neocomplete#keyword_patterns = {}
+" endif
+" let g:neocomplete#keyword_patterns.php = '\h\w*'
 
 set splitbelow
 " set splitright
@@ -509,7 +510,7 @@ NeoBundleLazy 'HerringtonDarkholme/w3m.vim',
 NeoBundleLazy 'Shougo/neocomplete.vim',
             \{'autoload': {'insert': 1 }}
 NeoBundleLazy 'Shougo/echodoc.vim',
-              \{'autoload': {'insert': 1}}
+            \{'autoload': {'insert': 1 }}
 " NeoBundleLazy 'Valloric/YouCompleteMe',
 "             \{'autoload': {'insert': 1 }}
 

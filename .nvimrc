@@ -403,7 +403,7 @@ endfunction
 
 filetype off                   " required!
 set rtp+=~/.vim/bundle/neobundle.vim/
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 "Neo bundle
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -535,6 +535,8 @@ NeoBundleLazy 'othree/eregex.vim',{
             \ 'autoload': {'functions':
             \   'eregex#toggle'
             \}}
+
+call neobundle#end()
 
 filetype plugin indent on
 colorscheme solarized

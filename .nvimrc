@@ -175,6 +175,7 @@ set autoread
 "Allow  256 colors in Terminal
 set t_Co=256
 set t_ZH=[3m
+set t_ZR=[23m
 "Set colorscheme
 " colorscheme monoterm
 set background=light
@@ -350,7 +351,7 @@ endfunction
 
 filetype off                   " required!
 set rtp+=~/.vim/bundle/neobundle.vim/
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 "Neo bundle
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -482,6 +483,7 @@ NeoBundleLazy 'othree/eregex.vim',{
 
 " NeoBundleLazy 'Shougo/neocomplete.vim',
 "             \{'autoload': {'insert': 1 }}
+call neobundle#end()
 
 filetype plugin indent on
 colorscheme solarized

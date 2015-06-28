@@ -157,11 +157,6 @@ set smartindent
 "Remove trailing whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
 
-" indent line"
-let g:indentLine_color_term=238
-let g:indentLine_noConcealCursor = 1
-let g:indentLine_enabled = 0
-
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Files and Backup
 """""""""""""""""""""""""""""""""""""""""""""""""
@@ -324,8 +319,6 @@ aug END
 " comment plugin"
 au FileType scss setlocal commentstring=//%s
 
-let g:syntastic_javascript_jshint_args='-c ~/.jshintrc'
-let g:syntastic_typescript_tsc_args='-t ES5'
 "clang"
 let g:clang_library_path = '/usr/lib/llvm-3.4/lib/'
 let g:clang_snippets = 1
@@ -369,10 +362,7 @@ NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'gregsexton/gitv'
 NeoBundle 'michaeljsmith/vim-indent-object'
-" NeoBundle 'scrooloose/syntastic'
-NeoBundle 'benekastah/neomake'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
@@ -382,9 +372,8 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'gerw/vim-HiLinkTrace'
-
 NeoBundle 'kien/ctrlp.vim'
+
 NeoBundleLazy 'fisadev/vim-ctrlp-cmdpalette',
             \CMDLoad('CtrlPCmdPalette')
 NeoBundleLazy 'sgur/ctrlp-extensions.vim',
@@ -400,19 +389,7 @@ NeoBundleLazy 'Shougo/vimshell.vim',{
             \   'mappings' : ['<Plug>(vimshell_']
             \ }}
 
-" NeoBundle 'zhuangya/YankRing.vim'
-" NeoBundle 'scrooloose/nerdcommenter'
-" NeoBundle 'tpope/vim-abolish'
-"Bundle 'Shougo/neocomplcache.vim'
-" NeoBundle 'Valloric/YouCompleteMe'
-"Bundle 'sheerun/vim-polyglot'
-"Bundle 'kien/rainbow_parentheses.vim'
-"Bundle 'fholgado/minibufexpl.vim'
-
-
 "NeoBundleCheck
-NeoBundleLazy 'HerringtonDarkholme/vim-coffee-script',
-            \FiletypeLoad('coffee')
 NeoBundleLazy 'Rip-Rip/clang_complete',
             \FiletypeLoad('c', 'cpp')
 NeoBundleLazy 'cakebaker/scss-syntax.vim',
@@ -421,8 +398,6 @@ NeoBundleLazy 'davidhalter/jedi-vim',
             \FiletypeLoad('python')
 NeoBundleLazy 'digitaltoad/vim-jade',
             \FiletypeLoad('jade')
-NeoBundleLazy 'jon-jacky/PyModel',
-            \FiletypeLoad('python')
 NeoBundleLazy 'maksimr/vim-jsbeautify',
             \FiletypeLoad('javascript')
 NeoBundleLazy 'marijnh/tern_for_vim',
@@ -439,44 +414,25 @@ NeoBundleLazy 'moll/vim-node',
             \FiletypeLoad('javascript')
 NeoBundleLazy 'othree/html5.vim',
             \FiletypeLoad('html', 'slim', 'jade')
-NeoBundleLazy 'slim-template/vim-slim',
-            \FiletypeLoad('slim')
-NeoBundleLazy 'tpope/vim-haml',
-            \FiletypeLoad('slim', 'haml')
-NeoBundleLazy 'tpope/vim-rails',
-            \FiletypeLoad('ruby')
-NeoBundleLazy 'vim-ruby/vim-ruby',
-            \FiletypeLoad('ruby')
 NeoBundleLazy 'derekwyatt/vim-scala',
             \FiletypeLoad('scala')
 NeoBundleLazy 'wavded/vim-stylus',
 			\FiletypeLoad('stylus')
-NeoBundleLazy 'HerringtonDarkholme/jedi-syntax',
-			\FiletypeLoad('jedi')
 
-NeoBundleLazy 'Yggdroot/indentLine',
-            \CMDLoad('IndentLineToggle')
+
 NeoBundleLazy 'godlygeek/tabular',
             \CMDLoad('Tabularize')
 NeoBundleLazy 'majutsushi/tagbar',
             \CMDLoad('TagbarToggle')
 NeoBundleLazy 'scrooloose/nerdtree',
             \CMDLoad('NERDTreeToggle')
-" NeoBundleLazy 'Xuyuanp/nerdtree-git-plugin',
-"             \CMDLoad('NERDTreeToggle')
 NeoBundleLazy 'HerringtonDarkholme/vim-worksheet',
             \CMDLoad('WorksheetStart')
 NeoBundleLazy 'sjl/gundo.vim',
             \CMDLoad('GundoToggle')
-" NeoBundleLazy 'vim-scripts/grep.vim',
-"             \CMDLoad('Grep', 'GrepArgs', 'GrepBuffer')
+NeoBundleLazy 'benekastah/neomake',
+            \CMDLoad('Neomake')
 
-" NeoBundle 'JazzCore/neocomplcache-ultisnips'
-" NeoBundle 'Shougo/neocomplete.vim'
-" NeoBundleLazy 'HerringtonDarkholme/neocomplcache-ultisnips',
-"             \{'autoload': {'insert': 1 }}
-" NeoBundleLazy 'Shougo/neocomplete.vim',
-"             \{'autoload': {'insert': 1 }}
 NeoBundleLazy 'Shougo/deoplete.nvim',
               \{'autoload': {'insert': 1}}
 NeoBundleLazy 'Shougo/echodoc.vim',
@@ -490,6 +446,42 @@ NeoBundleLazy 'othree/eregex.vim',{
             \ 'autoload': {'functions':
             \   'eregex#toggle'
             \}}
+
+" NeoBundle 'gerw/vim-HiLinkTrace'
+" NeoBundle 'gregsexton/gitv'
+" NeoBundle 'scrooloose/syntastic'
+" NeoBundle 'zhuangya/YankRing.vim'
+" NeoBundle 'scrooloose/nerdcommenter'
+" NeoBundle 'tpope/vim-abolish'
+" NeoBundle 'Valloric/YouCompleteMe'
+" NeoBundle 'sheerun/vim-polyglot'
+" NeoBundle 'kien/rainbow_parentheses.vim'
+" NeoBundle 'fholgado/minibufexpl.vim'
+
+" NeoBundleLazy 'slim-template/vim-slim',
+"             \FiletypeLoad('slim')
+" NeoBundleLazy 'tpope/vim-haml',
+"             \FiletypeLoad('slim', 'haml')
+" NeoBundleLazy 'tpope/vim-rails',
+"             \FiletypeLoad('ruby')
+" NeoBundleLazy 'vim-ruby/vim-ruby',
+"             \FiletypeLoad('ruby')
+" NeoBundleLazy 'HerringtonDarkholme/jedi-syntax',
+" 			\FiletypeLoad('jedi')
+" NeoBundleLazy 'jon-jacky/PyModel',
+"             \FiletypeLoad('python')
+" NeoBundleLazy 'HerringtonDarkholme/vim-coffee-script',
+"             \FiletypeLoad('coffee')
+
+" NeoBundleLazy 'Xuyuanp/nerdtree-git-plugin',
+"             \CMDLoad('NERDTreeToggle')
+" NeoBundleLazy 'vim-scripts/grep.vim',
+"             \CMDLoad('Grep', 'GrepArgs', 'GrepBuffer')
+" NeoBundleLazy 'Yggdroot/indentLine',
+"             \CMDLoad('IndentLineToggle')
+
+" NeoBundleLazy 'Shougo/neocomplete.vim',
+"             \{'autoload': {'insert': 1 }}
 
 filetype plugin indent on
 colorscheme solarized

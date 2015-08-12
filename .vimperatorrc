@@ -1,0 +1,17 @@
+"3.9 (created: 2015/02/15 15:49:05)
+
+nnoremap d <C-d>
+nnoremap u <C-u>
+nnoremap J gT
+nnoremap K gt
+nnoremap x d
+nnoremap X u
+nnoremap w k
+nnoremap s k
+set hintchars=asdfghjkl;uiowertynmzxcvb
+set "hinttags=//input[not(@type='hidden' or @disabled)] | //xhtml:input[not(@type='hidden')] | //a[@href] | //xhtml:a | //textarea | //xhtml:textarea | //button | //xhtml:button | //select | //xhtml:select | //*[@onclick or @role='button']"
+set runtimepath=/home/face/.vimperator
+js hints.addMode('m', 'search image in Vimperator',(e)=> liberator.open('https://www.google.com/searchbyimage?image_url=' + e.src, liberator.NEW_TAB), () => '//img[@src]')
+source! /home/face/.vimperatorrc.local
+
+" vim: set ft=vimperator:

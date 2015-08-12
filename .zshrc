@@ -86,9 +86,8 @@ export PYTHONSTARUP="$HOME/.pythonrc"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-# alias v=/path/to/vim
 # alias ctags=/usr/local/bin/ctags
-alias scala="env JAVACMD=drip scala" #boost JVM startup
+alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim'
 alias cm="screen -d -m cmus"
 alias n="cmus-remote -n"
 alias r="cmus-remote -r"

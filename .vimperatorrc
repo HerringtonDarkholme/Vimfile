@@ -18,6 +18,6 @@ vnoremap s :js liberator.open(buffer.getCurrentWord(), liberator.NEW_TAB)<cr>
 
 set hintchars=asdfghjkl;uiowertynmzxcvb
 set "hinttags=//input[not(@type='hidden' or @disabled)] | //xhtml:input[not(@type='hidden')] | //a[@href] | //xhtml:a | //textarea | //xhtml:textarea | //button | //xhtml:button | //select | //xhtml:select | //*[@onclick or @role='button']"
-source! /home/face/.vimperatorrc.local
+colorscheme solarized_light
 
 " vim: set ft=vimperator:

@@ -448,7 +448,7 @@ NeoBundleLazy 'othree/eregex.vim',{
             \   'eregex#toggle'
             \}}
 
-" NeoBundle 'gerw/vim-HiLinkTrace'
+NeoBundle 'gerw/vim-HiLinkTrace'
 " NeoBundle 'gregsexton/gitv'
 " NeoBundle 'scrooloose/syntastic'
 " NeoBundle 'zhuangya/YankRing.vim'

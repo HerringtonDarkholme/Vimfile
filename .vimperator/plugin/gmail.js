@@ -2,7 +2,7 @@
 // Author: mattn <mattn.jp@gmail.com> - http://mattn.kaoriya.net
 // Maintainer: Herrington Darkholme
 (function(){
-  const ICON1 = 'data:image/png;base64,'+
+  const ICON = 'data:image/png;base64,'+
     'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAIAAADAAbR1AAAACXBIWXMAAABIAAAASABGyWs+AAAA'+
     'CXZwQWcAAAAQAAAAEABcxq3DAAAEXklEQVQ4y7WUXUxTdxyG33/bU6gIY5VSa8WkXSUu6hyDKMkM'+
     'S1TAuSUQl10sMtAsGnQKs64Vq5KAGWNxas1E/GJ1YHQJjMT4FdEZIqgJBkRnZA7mV0uFCuLgcNpz'+
@@ -26,27 +26,16 @@
     'jqBDzlGuKh2YYD7mA6AB+4/uRP+1HACDAD3ikEe/0iVYUIjCuOPxarxq6bGGrCH2umuqeX3ql/wN'+
     'QBozxfxKbAIAAAAASUVORK5CYII=';
 
-  const ICON2 = 'data:image/png;base64,'+
-    'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAAAAABqCHz+AAAACXBIWXMAAABIAAAASABGyWs+AAAA'+
-    'CXZwQWcAAAAQAAAAEABcxq3DAAABvUlEQVQoz2P4TwAw/J/13/x/9f87/6f/n4IErwHFTf73ARUc'+
-    't5zOskjjvtvPVT+Sfrj8cAVC359rXv5bPWGq9w7O79sZ1uam1aXeaFt26/n/zf83/s//P/X//+cc'+
-    'U5PSJ6Yc6yh4lsqwviXTo0axqKS65eyrv7eBlvbfOtMWlv+hRTTjUQfHk0aG9VXpvxZPPLWp8nQx'+
-    'x77qH+KnflVZlzgcWrVrVvrF9rgnC0AKji5T/G9xM6Blad7zSSHFDnUfL5z9/2zfzbSKttInixjW'+
-    'V6YfXsbxf/3//3f/d3Km7WyVv9H+//3/33vTUgxaNj5ZxbA+Ir136cu/rz8ueXnsCe+u/EcrX616'+
-    'v+lfyR7WhPNNdU+2MKx3TV+54Oersre7fn/4v+l/5v8Vf6a9F311bPOa2BMNa57sY1g3LW3K7Luf'+
-    'nf9s/PPyz+Q/LUC48k/V14DVz6KZ6k89Ocyw6lei65yMjz4f7T6afDT7aA6Elh95P85Y+z2iq+78'+
-    'k9UMW8vzxTtMN0ZvrATDio05GxM3hm/cMvFrhlvno2dxDF9Nbh+9Gn/19NUzUHj66kkgPH91y1WH'+
-    'O1e/yzEQjk0CAAARc29gwOvTnwAAAABJRU5ErkJggg==';
-
   var gmailBiffIntervals = 30 * 1000;
 
   var gmailBiffIcon = document.createElement('statusbarpanel');
   gmailBiffIcon.setAttribute('id','gmail-biff-icon');
   gmailBiffIcon.setAttribute('class','statusbarpanel-iconic');
-  gmailBiffIcon.setAttribute('src', ICON2);
+  gmailBiffIcon.setAttribute('src', ICON);
+  gmailBiffIcon.setAttribute('style', 'filter: grayscale(100%)');
   gmailBiffIcon.setAttribute('tooltip', 'gmail-biff-tip');
-  gmailBiffIcon.addEventListener("click",function(e){
-    liberator.open("https://mail.google.com/", liberator.NEW_TAB);
+  gmailBiffIcon.addEventListener('click',function(){
+    liberator.open('https://mail.google.com/', liberator.NEW_TAB);
   },false);
 
   var gmailBiffTip = document.createElement('tooltip');
@@ -59,21 +48,50 @@
   statusBar.insertBefore(gmailBiffIcon, statusBar.firstChild);
   statusBar.insertBefore(gmailBiffTip, statusBar.firstChild);
 
+  var styleSheets = document.styleSheets[0];
+  styleSheets.insertRule(`#gmail-biff-icon::after {
+    content: attr(count);
+    background: linear-gradient(#E80000, #B30000);
+    border-radius: 3px;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: -.5em;
+    transition: all 1s ease;
+    font-size: .5em;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 0 1px rgba(255, 255, 255, 0.2);
+    line-height: 1.5em;
+    width: 0;
+    visibility: hidden;
+    transform: rotateZ(720deg);
+  }`, styleSheets.cssRules.length);
+  styleSheets.insertRule(`#gmail-biff-icon.unread::after {
+    visibility: visible;
+    width: 1.5em;
+    height: 1.5em;
+    transform: rotateZ(0deg);
+  }
+  `, styleSheets.cssRules.length);
   setTimeout(function() {
     try {
-      const feed_url = 'https://mail.google.com/mail/feed/atom';
+      const FEED_URL = 'https://mail.google.com/mail/feed/atom';
       var xhr = new XMLHttpRequest();
       xhr.mozBackgroundRequest = true;
-      xhr.open("GET", feed_url, false);
+      xhr.open('GET', FEED_URL, false);
       xhr.send(null);
 
       var count = parseInt(xhr.responseXML.getElementsByTagName('fullcount')[0].childNodes[0].nodeValue);
-      gmailBiffIcon.setAttribute('src', count > 0 ? ICON1 : ICON2);
+      gmailBiffIcon.setAttribute('style', '');
+      gmailBiffIcon.setAttribute('count', count);
+      gmailBiffIcon.className = count > 0 ? 'unread statusbarpanel-iconic' : 'statusbarpanel-iconic';
       gmailBiffText.setAttribute('value', count > 0 ? 'You have new mail (' + count + ')' : 'No new mail');
       setTimeout(arguments.callee, gmailBiffIntervals);
     } catch(e) {
-        liberator.log(e);
-        liberator.echoerr("Gmail Biff: " + e);
+      gmailBiffIcon.setAttribute('style', 'filter: grayscale(100%)');
+      liberator.log(e);
+      liberator.echoerr("Gmail Biff: " + e);
     }
   }, 1000);
 })();

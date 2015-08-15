@@ -65,9 +65,9 @@ Set to 0 for unlimited.
     visibleTabRange(browsers) {
       let current = gBrowser.tabContainer.selectedIndex;
       let half = Math.floor(TAB_NUMS/2);
-      let startIndex = Math.max(current - half, 0);
-      let endIndex = Math.min(current + half, browsers.length);
-      return [startIndex, endIndex];
+      let start = Math.max(current - half, 0);
+      let end = Math.min(start + TAB_NUMS, browsers.length);
+      return [start, end];
     },
     fillBar() {
       var buftabsBar = document.getElementById("liberator-statusline-buftabs");

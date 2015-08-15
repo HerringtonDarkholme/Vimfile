@@ -38,7 +38,7 @@ Set to 0 for unlimited.
 
 (function () {
 
-  const TAB_NUMS = 12;
+  const TAB_NUMS = 10;
   Buftabs = {
     createBar() {
       var statusline = document.getElementById("liberator-statusline");
@@ -62,8 +62,7 @@ Set to 0 for unlimited.
         buftabsBar.removeChild(buftabsBar.lastChild);
       }
     },
-    visibleTabRange(browsers) {
-      let current = gBrowser.tabContainer.selectedIndex;
+    visibleTabRange(browsers, current) {
       let half = Math.floor(TAB_NUMS/2);
       let start = Math.max(current - half, 0);
       let end = Math.min(start + TAB_NUMS, browsers.length);
@@ -72,11 +71,12 @@ Set to 0 for unlimited.
     fillBar() {
       var buftabsBar = document.getElementById("liberator-statusline-buftabs");
       var browsers = window.getBrowser().browsers;
-      let [start, end] = Buftabs.visibleTabRange(browsers);
+      var selectedIndex = gBrowser.tabContainer.selectedIndex;
+      let [start, end] = Buftabs.visibleTabRange(browsers, selectedIndex);
       for (let i = start; i < end; i++) {
-        var selected = i === gBrowser.tabContainer.selectedIndex;
+        var selected = i === selectedIndex;
         var buftab = document.createElement("li");
-        var title = (i+1)+"."+browsers[i].contentTitle.substr(0, selected ? 12 : 6);
+        var title = (i+1)+"."+browsers[i].contentTitle.substr(0, selected ? 15 : 8);
         // buftab.setAttribute("value", title);
         buftab.textContent = title;
         (function(i) {

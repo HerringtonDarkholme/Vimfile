@@ -64,6 +64,7 @@
     text-shadow: 0 1px rgba(255, 255, 255, 0.2);
     line-height: 1.5em;
     width: 0;
+    height: 0;
     visibility: hidden;
     transform: rotateZ(720deg);
   }`, styleSheets.cssRules.length);

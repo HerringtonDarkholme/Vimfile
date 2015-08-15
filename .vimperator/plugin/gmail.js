@@ -75,7 +75,8 @@
     transform: rotateZ(0deg);
   }
   `, styleSheets.cssRules.length);
-  setTimeout(function() {
+
+  function check() {
     try {
       const FEED_URL = 'https://mail.google.com/mail/feed/atom';
       var xhr = new XMLHttpRequest();
@@ -88,12 +89,13 @@
       gmailBiffIcon.setAttribute('count', count);
       gmailBiffIcon.className = count > 0 ? 'unread statusbarpanel-iconic' : 'statusbarpanel-iconic';
       gmailBiffText.setAttribute('value', count > 0 ? 'You have new mail (' + count + ')' : 'No new mail');
-      setTimeout(arguments.callee, gmailBiffIntervals);
     } catch(e) {
       gmailBiffIcon.setAttribute('style', 'filter: grayscale(100%)');
-      liberator.log(e);
+      // liberator.log(e);
       liberator.echoerr("Gmail Biff: " + e);
     }
-  }, 1000);
+  }
+  setTimeout(check, 1000)
+  setInterval(check, gmailBiffIntervals);
 })();
 // vim:sw=2 ts=2 et:

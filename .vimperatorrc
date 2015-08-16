@@ -20,6 +20,7 @@ set hintchars=asdfghjkl;uiowertynmzxcvb
 set "hinttags=//input[not(@type='hidden' or @disabled)] | //xhtml:input[not(@type='hidden')] | //a[@href] | //xhtml:a | //textarea | //xhtml:textarea | //button | //xhtml:button | //select | //xhtml:select | //*[@onclick or @role='button']"
 
 js hints.addMode('m', 'search image in Vimperator',(e)=> liberator.open('https://www.google.com/searchbyimage?image_url=' + e.src, liberator.NEW_TAB), () => '//img[@src]')
+js hints.addMode('x', 'copy image location',(e)=> util.copyToClipboard e.src), () => '//img[@src]')
 
 colorscheme solarized_light
 

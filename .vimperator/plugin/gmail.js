@@ -76,26 +76,45 @@
   }
   `, styleSheets.cssRules.length);
 
-  function check() {
+  function handleResp(xhr) {
     try {
-      const FEED_URL = 'https://mail.google.com/mail/feed/atom';
-      var xhr = new XMLHttpRequest();
-      xhr.mozBackgroundRequest = true;
-      xhr.open('GET', FEED_URL, false);
-      xhr.send(null);
-
-      var count = parseInt(xhr.responseXML.getElementsByTagName('fullcount')[0].childNodes[0].nodeValue);
+      var count = parseInt(
+        xhr.responseXML.getElementsByTagName('fullcount')[0]
+        .childNodes[0].nodeValue);
       gmailBiffIcon.setAttribute('style', '');
       gmailBiffIcon.setAttribute('count', count);
-      gmailBiffIcon.className = count > 0 ? 'unread statusbarpanel-iconic' : 'statusbarpanel-iconic';
-      gmailBiffText.setAttribute('value', count > 0 ? 'You have new mail (' + count + ')' : 'No new mail');
+      gmailBiffIcon.className = count > 0 ?
+        'unread statusbarpanel-iconic' : 'statusbarpanel-iconic';
+      gmailBiffText.setAttribute('value',
+        count > 0 ? 'You have new mail (' + count + ')' : 'No new mail');
     } catch(e) {
       gmailBiffIcon.setAttribute('style', 'filter: grayscale(100%)');
+      gmailBiffText.setAttribute('value',
+        'GmailBiff Error! Change source code and see log');
       // liberator.log(e);
-      liberator.echoerr("Gmail Biff: " + e);
+      liberator.echoerr('Gmail Biff: Error');
     }
   }
-  setTimeout(check, 1000)
-  setInterval(check, gmailBiffIntervals);
+
+  function check() {
+      const FEED_URL = 'https://mail.google.com/mail/feed/atom';
+      var xhr = new XMLHttpRequest();
+      xhr.timeout = 10000;
+      xhr.open('GET', FEED_URL);
+      xhr.send(null);
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) handleResp(xhr);
+          setTimeout(check, gmailBiffIntervals);
+        }
+      };
+      xhr.ontimeout = function() {
+        xhr.abort();
+        gmailBiffIcon.setAttribute('style', 'filter: grayscale(100%)');
+        gmailBiffText.setAttribute('value', 'Cannot connect to Gmail');
+        setTimeout(check, gmailBiffIntervals);
+      };
+  }
+  setTimeout(check, 1000);
 })();
 // vim:sw=2 ts=2 et:

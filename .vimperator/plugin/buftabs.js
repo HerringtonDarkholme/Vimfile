@@ -39,14 +39,13 @@ Set to 0 for unlimited.
 (function () {
 
   const TAB_NUMS = 10;
-  Buftabs = {
+  var Buftabs = {
     createBar() {
       var statusline = document.getElementById("liberator-statusline");
       var buftabsBar = document.getElementById("liberator-statusline-buftabs");
       var insertIndex = document.getElementById("liberator-status");
       if (!buftabsBar) {
-        var buftabsBar = document.createElement("ul");
-        window.buftabs = buftabsBar
+        buftabsBar = document.createElement("ul");
         buftabsBar.setAttribute("id", "liberator-statusline-buftabs");
         buftabsBar.setAttribute("style", `
             background: transparent;
@@ -66,6 +65,7 @@ Set to 0 for unlimited.
       let half = Math.floor(TAB_NUMS/2);
       let start = Math.max(current - half, 0);
       let end = Math.min(start + TAB_NUMS, browsers.length);
+      start = Math.max(0, end - TAB_NUMS);
       return [start, end];
     },
     fillBar() {
@@ -76,7 +76,7 @@ Set to 0 for unlimited.
       for (let i = start; i < end; i++) {
         var selected = i === selectedIndex;
         var buftab = document.createElement("li");
-        var title = (i+1)+"."+browsers[i].contentTitle.substr(0, selected ? 15 : 8);
+        var title = (i+1)+"."+browsers[i].contentTitle.substr(0, selected ? 12 : 6);
         // buftab.setAttribute("value", title);
         buftab.textContent = title;
         (function(i) {
@@ -130,19 +130,19 @@ Set to 0 for unlimited.
   }, false);
   */
 
-  tabContainer.addEventListener("TabOpen", function (event) {
+  tabContainer.addEventListener("TabOpen", function () {
     Buftabs.updateUrl();
   }, false);
-  tabContainer.addEventListener("TabSelect", function (event) {
+  tabContainer.addEventListener("TabSelect", function () {
     Buftabs.updateUrl();
   }, false);
-  tabContainer.addEventListener("TabMove", function (event) {
+  tabContainer.addEventListener("TabMove", function () {
     Buftabs.updateUrl();
   }, false);
-  tabContainer.addEventListener("TabClose", function (event) {
+  tabContainer.addEventListener("TabClose", function () {
     setTimeout("Buftabs.updateUrl()", 200);
   }, false);
-  window.getBrowser().addEventListener("DOMTitleChanged", function (event) {
+  window.getBrowser().addEventListener("DOMTitleChanged", function () {
     Buftabs.updateUrl();
   }, false);
 

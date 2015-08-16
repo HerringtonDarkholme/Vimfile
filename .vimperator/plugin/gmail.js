@@ -112,7 +112,6 @@
         xhr.abort();
         gmailBiffIcon.setAttribute('style', 'filter: grayscale(100%)');
         gmailBiffText.setAttribute('value', 'Cannot connect to Gmail');
-        setTimeout(check, gmailBiffIntervals);
       };
   }
   setTimeout(check, 1000);

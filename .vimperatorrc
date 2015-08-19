@@ -32,6 +32,8 @@ function GooglePlusClickSend() {
 }
 EOM
 inoremap -urls=plus.google.com/* <c-enter> <esc>:js GooglePlusClickSend()<cr>
+nnoremap -urls=www.nicovideo.jp/watch/|youtube.com <leader><leader> :stplay<cr>
+nnoremap -urls=www.nicovideo.jp/watch/|youtube.com <leader><space> :stfull<cr>
 
 colorscheme solarized_light
 

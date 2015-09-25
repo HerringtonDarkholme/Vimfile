@@ -391,12 +391,12 @@ Thanks:
       return parseInt(code, 10);
     },
 
-    getElementById: function (id)
-      content.document.getElementById(id),
+    getElementById: (id) => content.document.getElementById(id),
 
-    getElementByIdEx: function (id)
+    getElementByIdEx: function (id) {
       let (p = content.document.getElementById(id))
-        (p && (p.wrappedJSObject || p)),
+      return (p && (p.wrappedJSObject || p))
+    },
 
     httpRequest: function (uri, data, onComplete) {
       var xhr = new XMLHttpRequest();

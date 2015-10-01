@@ -55,20 +55,20 @@ let g:Powerline_symbols_override.READONLY = ''
 let g:Powerline_symbols_override.LINENR = ''
 
 " GUIsh insert cursor"
-function! SetBeamCursor()
-    if &ft !~ 'vimshell'
-        silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-    endif
-endfunction
+" function! SetBeamCursor()
+"     if &ft !~ 'vimshell'
+"         silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+"     endif
+" endfunction
 
-function! SetBlockCursor()
-    if &ft !~ 'vimshell'
-        silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-    endif
-endfunction
+" function! SetBlockCursor()
+"     if &ft !~ 'vimshell'
+"         silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+"     endif
+" endfunction
 
-au InsertEnter * call SetBeamCursor()
-au InsertLeave * call SetBlockCursor()
+" au InsertEnter * call SetBeamCursor()
+" au InsertLeave * call SetBlockCursor()
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => plugin
@@ -321,7 +321,7 @@ aug END
 au FileType scss setlocal commentstring=//%s
 
 "clang"
-let g:clang_library_path = '/usr/lib/llvm-3.4/lib/'
+let g:clang_library_path = '/usr/lib/llvm-3.6/lib/'
 let g:clang_snippets = 1
 let g:clang_snippets_engine = 'ultisnips'
 let g:clang_complete_auto = 0

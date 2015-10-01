@@ -1,0 +1,42 @@
+"3.9 (created: 2015/02/15 15:49:05)
+
+nnoremap d <C-d>
+nnoremap u <C-u>
+nnoremap J gT
+nnoremap K gt
+nnoremap x d
+nnoremap X u
+nnoremap w k
+nnoremap s j
+
+" proxy
+nnoremap "\\u" :set!<Space>network.proxy.type=1<Return>
+nnoremap "\\d" :set!<Space>network.proxy.type=5<Return>
+
+"search
+vnoremap s :js liberator.open(buffer.getCurrentWord(), liberator.NEW_TAB)<cr>
+
+set hintchars=asdfghjkl;uiowertynmzxcvb
+set "hinttags=//input[not(@type='hidden' or @disabled)] | //xhtml:input[not(@type='hidden')] | //a[@href] | //xhtml:a | //textarea | //xhtml:textarea | //button | //xhtml:button | //select | //xhtml:select | //*[@onclick or @role='button']"
+set focuscontent
+set noscrollbars
+
+js hints.addMode('m', 'search image in Vimperator',(e)=> liberator.open('https://www.google.com/searchbyimage?image_url=' + e.src, liberator.NEW_TAB), () => '//img[@src]')
+js hints.addMode('x', 'copy image location',(e)=> util.copyToClipboard(e.src), () => '//img[@src]')
+
+js <<EOM
+function GooglePlusClickSend() {
+  let doc = content.window.document
+  let button = doc.querySelector('[role=button][aria-disabled=false]') ||
+    doc.querySelector('[id$=post]')
+  if (!button) return
+  button.click()
+}
+EOM
+inoremap -urls=plus.google.com/* <c-enter> <esc>:js GooglePlusClickSend()<cr>
+nnoremap -urls=www.nicovideo.jp/watch/|youtube.com <leader><leader> :stplay<cr>
+nnoremap -urls=www.nicovideo.jp/watch/|youtube.com <leader><space> :stfull<cr>
+
+colorscheme solarized_light
+
+" vim: set ft=vimperator:

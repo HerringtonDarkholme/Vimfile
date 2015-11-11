@@ -97,7 +97,7 @@
                 array.splice(k);
             }
             if (k > 0) {
-                this.handle = window.mozRequestAnimationFrame(this);
+                this.handle = window.requestAnimationFrame(this);
             } else {
                 this.handle = 0;
                 Cu.reportError("new");
@@ -105,7 +105,7 @@
         },
         update: function () {
             if (!this.handle) {
-                this.handle = window.mozRequestAnimationFrame(this);
+                this.handle = window.requestAnimationFrame(this);
             }
         },
         reset: function reset() {

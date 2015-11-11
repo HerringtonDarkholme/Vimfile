@@ -55,20 +55,20 @@ let g:Powerline_symbols_override.READONLY = ''
 let g:Powerline_symbols_override.LINENR = ''
 
 " GUIsh insert cursor"
-function! SetBeamCursor()
-    if &ft !~ 'vimshell'
-        silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-    endif
-endfunction
+" function! SetBeamCursor()
+"     if &ft !~ 'vimshell'
+"         silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+"     endif
+" endfunction
 
-function! SetBlockCursor()
-    if &ft !~ 'vimshell'
-        silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-    endif
-endfunction
+" function! SetBlockCursor()
+"     if &ft !~ 'vimshell'
+"         silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+"     endif
+" endfunction
 
-au InsertEnter * call SetBeamCursor()
-au InsertLeave * call SetBlockCursor()
+" au InsertEnter * call SetBeamCursor()
+" au InsertLeave * call SetBlockCursor()
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => plugin
@@ -320,13 +320,6 @@ aug END
 " comment plugin"
 au FileType scss setlocal commentstring=//%s
 
-"clang"
-let g:clang_library_path = '/usr/lib/llvm-3.4/lib/'
-let g:clang_snippets = 1
-let g:clang_snippets_engine = 'ultisnips'
-let g:clang_complete_auto = 0
-
-
 "Unite"
 nnoremap <leader><C-p> :<C-u>Unite -start-insert file_rec/async<CR>
 let g:unite_source_history_yank_enable=1
@@ -391,7 +384,7 @@ NeoBundleLazy 'Shougo/vimshell.vim',{
             \ }}
 
 "NeoBundleCheck
-NeoBundleLazy 'Rip-Rip/clang_complete',
+NeoBundleLazy 'justmao945/vim-clang',
             \FiletypeLoad('c', 'cpp')
 NeoBundleLazy 'cakebaker/scss-syntax.vim',
             \FiletypeLoad('scss', 'sass')
@@ -409,6 +402,8 @@ NeoBundleLazy 'HerringtonDarkholme/yats.vim',
 			\FiletypeLoad('typescript')
 NeoBundleLazy 'clausreinke/typescript-tools.vim',
 			\FiletypeLoad('typescript')
+NeoBundleLazy 'octol/vim-cpp-enhanced-highlight',
+      \FiletypeLoad('cpp')
 NeoBundleLazy 'mattn/emmet-vim',
             \FiletypeLoad('html', 'xml')
 NeoBundleLazy 'moll/vim-node',

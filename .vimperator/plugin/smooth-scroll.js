@@ -1,5 +1,14 @@
+
 // vim: set fdm=marker:
 (function () {
+    const prefix = "mozRequestAnimationFrame" in window;
+    const requestAnimationFrame =
+        prefix ? "mozRequestAnimationFrame" : "requestAnimationFrame";
+    const cancelRequestAnimationFrame =
+        prefix ? "mozCancelRequestAnimationFrame" : "CancelRequestAnimationFrame";
+
+    const now = prefix ? Date.now.bind(Date) : performance.now.bind(performance);
+
     function SmoothScroller(elem, dir) {
         this.elem = Cu.getWeakReference(elem);
         this.dir = dir || "x";
@@ -14,14 +23,14 @@
             x: ["scrollLeft", "scrollLeftMax"],
             y: ["scrollTop",  "scrollTopMax"],
         },
-        get duration() liberator.globalVariables.smooth_scroll_duration || 200,
+        get duration() liberator.globalVariables.smooth_scroll_duration || 300,
         get pos() this._end,
         set pos(value) {
             if (this._end === value) {
                 return;
             }
 
-            this.startTime = Date.now();
+            this.startTime = now();
             this.endTime = this.startTime + this.duration;
 
             this._start = this._pos;
@@ -97,7 +106,7 @@
                 array.splice(k);
             }
             if (k > 0) {
-                this.handle = window.requestAnimationFrame(this);
+                this.handle = window[requestAnimationFrame](this.sample.bind(this));
             } else {
                 this.handle = 0;
                 Cu.reportError("new");
@@ -105,7 +114,7 @@
         },
         update: function () {
             if (!this.handle) {
-                this.handle = window.requestAnimationFrame(this);
+                this.handle = window[requestAnimationFrame](this.sample.bind(this));
             }
         },
         reset: function reset() {
@@ -113,7 +122,7 @@
             this.x.clear();
             this.y.clear();
             if (this.handle) {
-                window.mozCancelRequestAnimationFrame(this.handle);
+                window[cancelRequestAnimationFrame](this.handle);
                 this.handle = 0;
             }
         },

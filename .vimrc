@@ -319,13 +319,6 @@ nn <leader>s :lcd %:p:h<CR>:VimShellPop<CR>
 "CtrlP MRU first"
 let g:ctrlp_cmd = 'CtrlPMRU'
 nnoremap <C-p> :<C-u>CtrlPMRU<CR>
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-      \ --ignore .git
-      \ --ignore .svn
-      \ --ignore .hg
-      \ --ignore .DS_Store
-      \ --ignore "**/*.pyc"
-      \ -g ""'
 
 "undo list"
 nn <silent> <leader>u :GundoToggle<CR>
@@ -486,8 +479,9 @@ NeoBundleLazy 'fisadev/vim-ctrlp-cmdpalette',
             \CMDLoad('CtrlPCmdPalette')
 NeoBundleLazy 'godlygeek/tabular',
             \CMDLoad('Tabularize')
-NeoBundleLazy 'kien/ctrlp.vim',
-            \CMDLoad('CtrlPMRU')
+" NeoBundleLazy 'kien/ctrlp.vim',
+"             \CMDLoad('CtrlPMRU')
+NeoBundle 'kien/ctrlp.vim'
 NeoBundleLazy 'majutsushi/tagbar',
             \CMDLoad('TagbarToggle')
 NeoBundleLazy 'scrooloose/nerdtree',

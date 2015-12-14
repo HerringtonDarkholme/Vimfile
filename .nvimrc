@@ -103,7 +103,7 @@ let g:deoplete#omni_patterns.c =
 let g:deoplete#omni_patterns.javascript =
 \ '\w+\.'
 let g:deoplete#omni_patterns.typescript =
-\ '\w+\.'
+\ '[^. *\t]\.\w*'
 let g:deoplete#omni_patterns.python =
 \ '\w+\.'
 

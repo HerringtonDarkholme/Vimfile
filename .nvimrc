@@ -208,8 +208,7 @@ autocmd FileType css nn <buffer> <leader>f :call CSSBeautify()<cr>
 " redraw
 nnoremap <C-S-l> <esc>:<c-u>redraw!
 
-autocmd FileType typescript nn <buffer> <leader>s :<C-u>TSSstart<space><c-r>%<space>-m<space>commonjs<CR>
-autocmd FileType typescript nn <buffer> K :<C-u>TSStype<CR>
+autocmd FileType typescript nn <buffer> K :<C-u>echo tsuquyomi#hint()<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Moving Around!!
@@ -405,7 +404,7 @@ NeoBundleLazy 'othree/yajs.vim',
             \FiletypeLoad('javascript')
 NeoBundleLazy 'HerringtonDarkholme/yats.vim',
 			\FiletypeLoad('typescript')
-NeoBundleLazy 'clausreinke/typescript-tools.vim',
+NeoBundleLazy 'Quramy/tsuquyomi',
 			\FiletypeLoad('typescript')
 NeoBundleLazy 'octol/vim-cpp-enhanced-highlight',
       \FiletypeLoad('cpp')

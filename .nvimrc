@@ -290,6 +290,7 @@ nn <leader>s :lcd %:p:h<CR>:VimShellPop<CR>
 "CtrlP MRU first"
 let g:ctrlp_cmd = 'CtrlPMRU'
 nnoremap <C-p> :<C-u>CtrlPMRU<CR>
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 " let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
 "       \ --ignore .git
 "       \ --ignore .svn
@@ -371,6 +372,7 @@ NeoBundle 'honza/vim-snippets'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'FelikZ/ctrlp-py-matcher'
 
 NeoBundleLazy 'fisadev/vim-ctrlp-cmdpalette',
             \CMDLoad('CtrlPCmdPalette')

@@ -370,7 +370,7 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'ctrlpvim/ctrlp.vim'
 
 NeoBundleLazy 'fisadev/vim-ctrlp-cmdpalette',
             \CMDLoad('CtrlPCmdPalette')

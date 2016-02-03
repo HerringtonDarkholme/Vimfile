@@ -257,14 +257,14 @@ autocmd FileType cpp nn <space>s :vert sf %:t:r.cc<cr>
 autocmd FileType c nn <space>h :vert sf %:t:r.h<cr>
 autocmd FileType cpp nn <space>h :vert sf %:t:r.h<cr>
 
-set <A-j>=j
-set <A-k>=k
-set <A-h>=h
-set <A-l>=l
-set <A-f>=f
-set <A-b>=b
-set <A-d>=d
-set <A-a>=a
+" set <A-j>=j
+" set <A-k>=k
+" set <A-h>=h
+" set <A-l>=l
+" set <A-f>=f
+" set <A-b>=b
+" set <A-d>=d
+" set <A-a>=a
 
 " => File Browswing
 nn - :NERDTreeToggle<CR>

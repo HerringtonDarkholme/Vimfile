@@ -24,16 +24,6 @@ set noscrollbars
 js hints.addMode('m', 'search image in Vimperator',(e)=> liberator.open('https://www.google.com/searchbyimage?image_url=' + e.src, liberator.NEW_TAB), () => '//img[@src]')
 js hints.addMode('x', 'copy image location',(e)=> util.copyToClipboard(e.src), () => '//img[@src]')
 
-js <<EOM
-function GooglePlusClickSend() {
-  let doc = content.window.document
-  let button = doc.querySelector('[role=button][aria-disabled=false]') ||
-    doc.querySelector('[id$=post]')
-  if (!button) return
-  button.click()
-}
-EOM
-inoremap -urls=plus.google.com/* <c-enter> <esc>:js GooglePlusClickSend()<cr>
 nnoremap -urls=www.nicovideo.jp/watch/|youtube.com <leader><leader> :stplay<cr>
 nnoremap -urls=www.nicovideo.jp/watch/|youtube.com <leader><space> :stfull<cr>
 

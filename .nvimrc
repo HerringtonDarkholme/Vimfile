@@ -253,7 +253,7 @@ nn <A-a> :tabp<CR>
 nn <A-d> :tabn<CR>
 
 autocmd FileType c nn <space>s :vert sf %:t:r.c<cr>
-autocmd FileType cpp nn <space>s :vert sf %:t:r.cc<cr>
+autocmd FileType cpp nn <space>s :vert sf %:t:r.cpp<cr>
 autocmd FileType c nn <space>h :vert sf %:t:r.h<cr>
 autocmd FileType cpp nn <space>h :vert sf %:t:r.h<cr>
 

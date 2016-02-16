@@ -6,7 +6,9 @@ set fileencoding=utf-8
 set hidden
 set foldlevel=99
 set foldmethod=indent
-let tabsize=2
+if !exists('g:tabsize')
+	let g:tabsize=2
+endif
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => highlight help
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -145,9 +147,9 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 set expandtab
 
 "Make tabs 4 spaces"
-exe "set tabstop=".tabsize
-exe "set shiftwidth=".tabsize
-exe "set softtabstop=".tabsize
+exe "set tabstop=".g:tabsize
+exe "set shiftwidth=".g:tabsize
+exe "set softtabstop=".g:tabsize
 
 autocmd FileType jade setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
@@ -245,8 +247,8 @@ vn <A-j> :m '>+1<CR>gv=gv
 vn <A-k> :m '<-2<CR>gv=gv
 nn <A-h> <lt><lt>
 nn <A-l> >>
-exe "vn <A-h> <lt>gv".tabsize."h"
-exe "vn <A-l> >gv".tabsize."l"
+exe "vn <A-h> <lt>gv".g:tabsize."h"
+exe "vn <A-l> >gv".g:tabsize."l"
 
 "switch tab"
 nn <A-a> :tabp<CR>
@@ -418,6 +420,8 @@ NeoBundleLazy 'othree/html5.vim',
             \FiletypeLoad('html', 'slim', 'jade')
 NeoBundleLazy 'derekwyatt/vim-scala',
             \FiletypeLoad('scala')
+NeoBundleLazy 'fatih/vim-go',
+            \FiletypeLoad('go')
 NeoBundleLazy 'wavded/vim-stylus',
 			\FiletypeLoad('stylus')
 

@@ -410,7 +410,7 @@ NeoBundle 'honza/vim-snippets'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'altercation/vim-colors-solarized'
 
-NeoBundleLazy 'Shougo/vimshell',{
+NeoBundleLazy 'Shougo/vimshell.vim',{
             \ 'depends' : 'Shougo/vimproc.vim',
             \ 'autoload' : {
             \   'commands' : [{ 'name' : 'VimShell',

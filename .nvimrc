@@ -109,7 +109,7 @@ let g:deoplete#omni_patterns.typescript =
 let g:deoplete#omni_patterns.python =
 \ '\w+\.'
 
-set previewheight=2
+set previewheight=10
 set completeopt-=preview
 set completeopt+=noinsert
 
@@ -234,7 +234,7 @@ inoremap <c-k> <space><left><c-o>d$
 noremap [b :bn<CR>
 noremap ]b :bp<CR>
 
-tnoremap <esc> <C-\><C-n>
+tnoremap <esc><esc> <C-\><C-n>
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Editing Mappings!!
@@ -288,7 +288,7 @@ nn <silent> <F8> :TagbarToggle<CR>
 let g:ctrlp_cmd = 'CtrlPMRU'
 
 "VimShell"
-nn <leader>s :lcd %:p:h<CR>:VimShellPop<CR>
+nn <leader>s :Topen<CR>
 "CtrlP MRU first"
 let g:ctrlp_cmd = 'CtrlPMRU'
 nnoremap <C-p> :<C-u>CtrlPMRU<CR>
@@ -380,6 +380,9 @@ NeoBundleLazy 'fisadev/vim-ctrlp-cmdpalette',
             \CMDLoad('CtrlPCmdPalette')
 NeoBundleLazy 'sgur/ctrlp-extensions.vim',
 		\CMDLoad('CtrlPTag', 'CtrlPBufTag')
+
+NeoBundleLazy 'kassio/neoterm',
+		\CMDLoad('Topen')
 
 NeoBundleLazy 'Shougo/vimshell.vim',{
             \ 'depends' : 'Shougo/vimproc.vim',

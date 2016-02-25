@@ -6,7 +6,9 @@ set fileencoding=utf-8
 set hidden
 set foldlevel=99
 set foldmethod=indent
-let tabsize=2
+if !exists('g:tabsize')
+	let g:tabsize=2
+endif
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => highlight help
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -145,9 +147,9 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 set expandtab
 
 "Make tabs 4 spaces"
-exe "set tabstop=".tabsize
-exe "set shiftwidth=".tabsize
-exe "set softtabstop=".tabsize
+exe "set tabstop=".g:tabsize
+exe "set shiftwidth=".g:tabsize
+exe "set softtabstop=".g:tabsize
 
 autocmd FileType jade setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
@@ -245,15 +247,15 @@ vn <A-j> :m '>+1<CR>gv=gv
 vn <A-k> :m '<-2<CR>gv=gv
 nn <A-h> <lt><lt>
 nn <A-l> >>
-exe "vn <A-h> <lt>gv".tabsize."h"
-exe "vn <A-l> >gv".tabsize."l"
+exe "vn <A-h> <lt>gv".g:tabsize."h"
+exe "vn <A-l> >gv".g:tabsize."l"
 
 "switch tab"
 nn <A-a> :tabp<CR>
 nn <A-d> :tabn<CR>
 
 autocmd FileType c nn <space>s :vert sf %:t:r.c<cr>
-autocmd FileType cpp nn <space>s :vert sf %:t:r.cc<cr>
+autocmd FileType cpp nn <space>s :vert sf %:t:r.cpp<cr>
 autocmd FileType c nn <space>h :vert sf %:t:r.h<cr>
 autocmd FileType cpp nn <space>h :vert sf %:t:r.h<cr>
 
@@ -364,11 +366,6 @@ call dein#add('altercation/vim-colors-solarized')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('FelikZ/ctrlp-py-matcher')
 
-call dein#add('fisadev/vim-ctrlp-cmdpalette',
-      \ {'on_cmd': ['CtrlPCmdPalette']})
-call dein#add('sgur/ctrlp-extensions.vim',
-      \ {'on_cmd': ['CtrlPTag', 'CtrlPBufTag']})
-
 call dein#add('justmao945/vim-clang',
       \{'on_ft': ['c', 'cpp']})
 call dein#add('octol/vim-cpp-enhanced-highlight',
@@ -423,8 +420,13 @@ call dein#add('othree/eregex.vim',
             \{'on_i': 'ToggleLocationList'})
 
 " call dein#add('gerw/vim-HiLinkTrace')
-
 " call dein#add('terryma/vim-multiple-cursors')
+"
+" call dein#add('fisadev/vim-ctrlp-cmdpalette',
+"       \ {'on_cmd': ['CtrlPCmdPalette']})
+" call dein#add('sgur/ctrlp-extensions.vim',
+"       \ {'on_cmd': ['CtrlPTag', 'CtrlPBufTag']})
+
 " NeoBundle 'gregsexton/gitv'
 " NeoBundle 'scrooloose/syntastic'
 " NeoBundle 'zhuangya/YankRing.vim'

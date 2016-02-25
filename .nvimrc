@@ -56,17 +56,13 @@ let g:Powerline_symbols_override.BRANCH = ''
 let g:Powerline_symbols_override.READONLY = ''
 let g:Powerline_symbols_override.LINENR = ''
 
-" GUIsh insert cursor"
+" " GUIsh insert cursor"
 " function! SetBeamCursor()
-"     if &ft !~ 'vimshell'
-"         silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-"     endif
+"     silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
 " endfunction
 
 " function! SetBlockCursor()
-"     if &ft !~ 'vimshell'
-"         silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-"     endif
+"     silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
 " endfunction
 
 " au InsertEnter * call SetBeamCursor()
@@ -288,7 +284,7 @@ nn <silent> <F8> :TagbarToggle<CR>
 let g:ctrlp_cmd = 'CtrlPMRU'
 
 "VimShell"
-nn <leader>s :lcd %:p:h<CR>:VimShellPop<CR>
+nn <leader>s :lcd %:p:h<CR>:Ttoggle<CR>
 "CtrlP MRU first"
 let g:ctrlp_cmd = 'CtrlPMRU'
 nnoremap <C-p> :<C-u>CtrlPMRU<CR>
@@ -310,19 +306,9 @@ nn <silent> <leader>g :Unite grep:. -default-action=tabopen<CR>
 nn <silent> gl :Unite grep:$buffers -default-action=tabopen<CR><C-r><C-w>
 nn <silent> gr :Unite grep:.:--include='*.<C-r>=expand("%:e")<CR>' -default-action=tabopen<CR><C-r><C-w><CR>
 
-" Use current directory as vimshell prompt.
-let g:vimshell_prompt_expr =
-\ '"λ ".escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
-let g:vimshell_prompt_pattern = '^λ \%(\f\|\\.\)\+> '
-let g:vimshell_editor_command = 'vim'
+" neoterm
+let g:neoterm_size = '10'
 
-aug vimshellOverride
-  au FileType vimshell nmap <buffer> <C-k> <C-w>k
-  au FileType vimshell imap <buffer> <C-l> <Plug>(vimshell_clear)
-  au FileType vimshell imap <buffer> <C-r> <Plug>(vimshell_history_unite)
-  au FileType vimshell inoremap <buffer> <C-x><C-r> <C-r>
-  au BufEnter * let g:neocomplete#enable_auto_select=&filetype != 'vimshell'
-aug END
 
 " comment plugin"
 au FileType scss setlocal commentstring=//%s
@@ -408,6 +394,8 @@ call dein#add('sjl/gundo.vim',
       \ {'on_cmd': 'GundoToggle'})
 call dein#add('benekastah/neomake',
       \ {'on_cmd': 'Neomake'})
+call dein#add('kassio/neoterm',
+      \ {'on_cmd': 'Ttoggle'})
 
 call dein#add('Shougo/deoplete.nvim',
               \{'on_i': 1})

@@ -403,9 +403,9 @@ call dein#add('Shougo/echodoc.vim',
               \{'on_i': 1})
 
 call dein#add('milkypostman/vim-togglelist',
-            \{'on_i': 'ToggleLocationList'})
+            \{'on_func': 'ToggleLocationList'})
 call dein#add('othree/eregex.vim',
-            \{'on_i': 'ToggleLocationList'})
+            \{'on_func': 'eregex#toggle'})
 
 " call dein#add('gerw/vim-HiLinkTrace')
 " call dein#add('terryma/vim-multiple-cursors')

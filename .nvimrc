@@ -380,8 +380,9 @@ call dein#add('moll/vim-node',
       \{'on_ft': 'javascript'})
 call dein#add('HerringtonDarkholme/yats.vim',
       \{'on_ft': 'typescript'})
-call dein#add('Quramy/tsuquyomi',
-      \{'on_ft': 'typescript'})
+call dein#add('Quramy/tsuquyomi')
+" call dein#add('Quramy/tsuquyomi',
+"       \{'on_ft': 'typescript'})
 
 
 call dein#add('godlygeek/tabular',
@@ -407,7 +408,7 @@ call dein#add('milkypostman/vim-togglelist',
 call dein#add('othree/eregex.vim',
             \{'on_func': 'eregex#toggle'})
 
-" call dein#add('gerw/vim-HiLinkTrace')
+call dein#add('gerw/vim-HiLinkTrace')
 " call dein#add('terryma/vim-multiple-cursors')
 "
 " call dein#add('fisadev/vim-ctrlp-cmdpalette',

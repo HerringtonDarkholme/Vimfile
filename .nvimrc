@@ -7,7 +7,7 @@ set hidden
 set foldlevel=99
 set foldmethod=indent
 if !exists('g:tabsize')
-	let g:tabsize=2
+  let g:tabsize=2
 endif
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => highlight help

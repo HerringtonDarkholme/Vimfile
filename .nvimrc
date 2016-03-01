@@ -7,7 +7,7 @@ set hidden
 set foldlevel=99
 set foldmethod=indent
 if !exists('g:tabsize')
-	let g:tabsize=2
+  let g:tabsize=2
 endif
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => highlight help
@@ -56,17 +56,13 @@ let g:Powerline_symbols_override.BRANCH = ''
 let g:Powerline_symbols_override.READONLY = ''
 let g:Powerline_symbols_override.LINENR = ''
 
-" GUIsh insert cursor"
+" " GUIsh insert cursor"
 " function! SetBeamCursor()
-"     if &ft !~ 'vimshell'
-"         silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-"     endif
+"     silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
 " endfunction
 
 " function! SetBlockCursor()
-"     if &ft !~ 'vimshell'
-"         silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-"     endif
+"     silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
 " endfunction
 
 " au InsertEnter * call SetBeamCursor()
@@ -288,7 +284,7 @@ nn <silent> <F8> :TagbarToggle<CR>
 let g:ctrlp_cmd = 'CtrlPMRU'
 
 "VimShell"
-nn <leader>s :Topen<CR>
+nn <leader>s :lcd %:p:h<CR>:Ttoggle<CR>
 "CtrlP MRU first"
 let g:ctrlp_cmd = 'CtrlPMRU'
 nnoremap <C-p> :<C-u>CtrlPMRU<CR>
@@ -310,19 +306,9 @@ nn <silent> <leader>g :Unite grep:. -default-action=tabopen<CR>
 nn <silent> gl :Unite grep:$buffers -default-action=tabopen<CR><C-r><C-w>
 nn <silent> gr :Unite grep:.:--include='*.<C-r>=expand("%:e")<CR>' -default-action=tabopen<CR><C-r><C-w><CR>
 
-" Use current directory as vimshell prompt.
-let g:vimshell_prompt_expr =
-\ '"λ ".escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
-let g:vimshell_prompt_pattern = '^λ \%(\f\|\\.\)\+> '
-let g:vimshell_editor_command = 'vim'
+" neoterm
+let g:neoterm_size = '10'
 
-aug vimshellOverride
-  au FileType vimshell nmap <buffer> <C-k> <C-w>k
-  au FileType vimshell imap <buffer> <C-l> <Plug>(vimshell_clear)
-  au FileType vimshell imap <buffer> <C-r> <Plug>(vimshell_history_unite)
-  au FileType vimshell inoremap <buffer> <C-x><C-r> <C-r>
-  au BufEnter * let g:neocomplete#enable_auto_select=&filetype != 'vimshell'
-aug END
 
 " comment plugin"
 au FileType scss setlocal commentstring=//%s
@@ -334,129 +320,103 @@ let g:unite_split_rule = 'botright'
 let g:unite_source_grep_default_opts='-RHn'
 let g:unite_prompt='> '
 
+let g:dein#install_process_timeout=1000
 "eclim
 let g:EclimCompletionMethod='omnifunc'
 let g:EclimFileTypeValidate = 0
 autocmd FileType scala nn <buffer> <leader>i :ScalaImport<cr>
 autocmd FileType java nn <buffer> <leader>i :JavaImport<cr>
 
-"vundle
-function FiletypeLoad(...)
-    return {'autoload': { 'filetypes' : a:000 }}
-endfunction
+set rtp+=~/.vim/dein/repos/github/Shougo/dein.vim/
+call dein#begin(expand('~/.vim/dein'))
 
-function CMDLoad(...)
-    return {'autoload': { 'commands' : a:000 }}
-endfunction
+call dein#add('Shougo/dein.vim')
 
-filetype off                   " required!
-set rtp+=~/.vim/bundle/neobundle.vim/
-call neobundle#begin(expand('~/.vim/bundle/'))
+call dein#add('L9')
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
+call dein#add('bling/vim-bufferline')
+call dein#add('Raimondi/delimitMate')
+call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+call dein#add('airblade/vim-gitgutter')
+call dein#add('michaeljsmith/vim-indent-object')
+call dein#add('tpope/vim-fugitive')
+call dein#add('tpope/vim-repeat')
+call dein#add('tpope/vim-rsi')
+call dein#add('tpope/vim-commentary')
+call dein#add('SirVer/ultisnips')
+call dein#add('honza/vim-snippets')
+call dein#add('tpope/vim-surround')
+call dein#add('altercation/vim-colors-solarized')
+call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('FelikZ/ctrlp-py-matcher')
+call dein#add('editorconfig/editorconfig-vim')
 
-"Neo bundle
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-NeoBundle 'L9'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'bling/vim-bufferline'
-NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc.vim'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'michaeljsmith/vim-indent-object'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-rsi'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'FelikZ/ctrlp-py-matcher'
-
-NeoBundleLazy 'fisadev/vim-ctrlp-cmdpalette',
-            \CMDLoad('CtrlPCmdPalette')
-NeoBundleLazy 'sgur/ctrlp-extensions.vim',
-		\CMDLoad('CtrlPTag', 'CtrlPBufTag')
-
-NeoBundleLazy 'kassio/neoterm',
-		\CMDLoad('Topen')
-
-NeoBundleLazy 'Shougo/vimshell.vim',{
-            \ 'depends' : 'Shougo/vimproc.vim',
-            \ 'autoload' : {
-            \   'commands' : [{ 'name' : 'VimShell',
-            \                   'complete' : 'customlist,vimshell#complete'},
-            \                 'VimShellExecute', 'VimShellInteractive',
-            \                 'VimShellTerminal', 'VimShellPop'],
-            \   'mappings' : ['<Plug>(vimshell_']
-            \ }}
-
-"NeoBundleCheck
-NeoBundleLazy 'justmao945/vim-clang',
-            \FiletypeLoad('c', 'cpp')
-NeoBundleLazy 'cakebaker/scss-syntax.vim',
-            \FiletypeLoad('scss', 'sass')
-NeoBundleLazy 'davidhalter/jedi-vim',
-            \FiletypeLoad('python')
-NeoBundleLazy 'digitaltoad/vim-jade',
-            \FiletypeLoad('jade')
-NeoBundleLazy 'maksimr/vim-jsbeautify',
-            \FiletypeLoad('javascript')
-NeoBundleLazy 'marijnh/tern_for_vim',
-            \FiletypeLoad('javascript')
-NeoBundleLazy 'othree/yajs.vim',
-            \FiletypeLoad('javascript')
-NeoBundleLazy 'HerringtonDarkholme/yats.vim',
-			\FiletypeLoad('typescript')
-NeoBundleLazy 'Quramy/tsuquyomi',
-			\FiletypeLoad('typescript')
-NeoBundleLazy 'octol/vim-cpp-enhanced-highlight',
-      \FiletypeLoad('cpp')
-NeoBundleLazy 'mattn/emmet-vim',
-            \FiletypeLoad('html', 'xml')
-NeoBundleLazy 'moll/vim-node',
-            \FiletypeLoad('javascript')
-NeoBundleLazy 'othree/html5.vim',
-            \FiletypeLoad('html', 'slim', 'jade')
-NeoBundleLazy 'derekwyatt/vim-scala',
-            \FiletypeLoad('scala')
-NeoBundleLazy 'fatih/vim-go',
-            \FiletypeLoad('go')
-NeoBundleLazy 'wavded/vim-stylus',
-			\FiletypeLoad('stylus')
+call dein#add('justmao945/vim-clang',
+      \{'on_ft': ['c', 'cpp']})
+call dein#add('octol/vim-cpp-enhanced-highlight',
+      \{'on_ft': 'cpp'})
+call dein#add('davidhalter/jedi-vim',
+      \{'on_ft': 'python'})
+call dein#add('derekwyatt/vim-scala',
+      \{'on_ft': 'scala'})
+call dein#add('digitaltoad/vim-jade',
+      \{'on_ft': 'jade'})
+call dein#add('mattn/emmet-vim',
+      \{'on_ft': ['html', 'xml']})
+call dein#add('othree/html5.vim',
+      \{'on_ft': ['html', 'jade']})
+call dein#add('wavded/vim-stylus',
+      \{'on_ft': 'stylus'})
+call dein#add('cakebaker/scss-syntax.vim',
+      \{'on_ft': ['scss', 'sass']})
+call dein#add('maksimr/vim-jsbeautify',
+      \{'on_ft': 'javascript'})
+call dein#add('marijnh/tern_for_vim',
+      \{'on_ft': 'javascript'})
+call dein#add('othree/yajs.vim',
+      \{'on_ft': 'javascript'})
+call dein#add('moll/vim-node',
+      \{'on_ft': 'javascript'})
+call dein#add('HerringtonDarkholme/yats.vim',
+      \{'on_ft': 'typescript'})
+call dein#add('Quramy/tsuquyomi')
+" call dein#add('Quramy/tsuquyomi',
+"       \{'on_ft': 'typescript'})
 
 
-NeoBundleLazy 'godlygeek/tabular',
-            \CMDLoad('Tabularize')
-NeoBundleLazy 'majutsushi/tagbar',
-            \CMDLoad('TagbarToggle')
-NeoBundleLazy 'scrooloose/nerdtree',
-            \CMDLoad('NERDTreeToggle')
-NeoBundleLazy 'HerringtonDarkholme/vim-worksheet',
-            \CMDLoad('WorksheetStart')
-NeoBundleLazy 'sjl/gundo.vim',
-            \CMDLoad('GundoToggle')
-NeoBundleLazy 'benekastah/neomake',
-            \CMDLoad('Neomake')
+call dein#add('godlygeek/tabular',
+      \ {'on_cmd': 'Tabularize'})
+call dein#add('majutsushi/tagbar',
+      \ {'on_cmd': 'TagbarToggle'})
+call dein#add('scrooloose/nerdtree',
+      \ {'on_cmd': 'NERDTreeToggle'})
+call dein#add('sjl/gundo.vim',
+      \ {'on_cmd': 'GundoToggle'})
+call dein#add('benekastah/neomake',
+      \ {'on_cmd': 'Neomake'})
+call dein#add('kassio/neoterm',
+      \ {'on_cmd': 'Ttoggle'})
 
-NeoBundleLazy 'Shougo/deoplete.nvim',
-              \{'autoload': {'insert': 1}}
-NeoBundleLazy 'Shougo/echodoc.vim',
-              \{'autoload': {'insert': 1}}
+call dein#add('Shougo/deoplete.nvim',
+              \{'on_i': 1})
+call dein#add('Shougo/echodoc.vim',
+              \{'on_i': 1})
 
-NeoBundleLazy 'milkypostman/vim-togglelist',{
-            \ 'autoload': {'functions':
-            \   'ToggleLocationList'
-            \}}
-NeoBundleLazy 'othree/eregex.vim',{
-            \ 'autoload': {'functions':
-            \   'eregex#toggle'
-            \}}
+call dein#add('milkypostman/vim-togglelist',
+            \{'on_func': 'ToggleLocationList'})
+call dein#add('othree/eregex.vim',
+            \{'on_func': 'eregex#toggle'})
 
-NeoBundle 'gerw/vim-HiLinkTrace'
+call dein#add('gerw/vim-HiLinkTrace')
+" call dein#add('terryma/vim-multiple-cursors')
+"
+" call dein#add('fisadev/vim-ctrlp-cmdpalette',
+"       \ {'on_cmd': ['CtrlPCmdPalette']})
+" call dein#add('sgur/ctrlp-extensions.vim',
+"       \ {'on_cmd': ['CtrlPTag', 'CtrlPBufTag']})
+
 " NeoBundle 'gregsexton/gitv'
 " NeoBundle 'scrooloose/syntastic'
 " NeoBundle 'zhuangya/YankRing.vim'
@@ -491,7 +451,7 @@ NeoBundle 'gerw/vim-HiLinkTrace'
 
 " NeoBundleLazy 'Shougo/neocomplete.vim',
 "             \{'autoload': {'insert': 1 }}
-call neobundle#end()
+call dein#end()
 
 filetype plugin indent on
 colorscheme solarized

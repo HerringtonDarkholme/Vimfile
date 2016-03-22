@@ -82,13 +82,6 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" <CR>: close popup and save indent.
-" ino <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"     "use silent mode to avoid bizzare char insertion"
-" function! s:my_cr_function()
-"     return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-" endfunction
-
 let g:echodoc_enable_at_startup=1
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_completion_start_length = 1
@@ -105,18 +98,6 @@ let g:deoplete#omni_patterns.python =
 set previewheight=10
 set completeopt-=preview
 set completeopt+=noinsert
-
-"Disable faux syntax element"
-"if !exists('g:neocomplcache_keyword_patterns')
-    "let g:neocomplcache_keyword_patterns = {}
-"endif
-
-
-" "" Plugin key-mappings.
-" "inoremap <expr><C-g> neocomplcache#undo_completion()
-" inoremap <expr><C-l> neocomplete#complete_common_string()
-" " Close popup by <Space>.
-" inoremap <expr><S-Space> pumvisible() ? neocomplete#smart_close_popup() : "\<Space>"
 
 "neo-jedi compatibility"
 let g:jedi#popup_on_dot = 0
@@ -447,8 +428,6 @@ call dein#add('gerw/vim-HiLinkTrace')
 " NeoBundleLazy 'Yggdroot/indentLine',
 "             \CMDLoad('IndentLineToggle')
 
-" NeoBundleLazy 'Shougo/neocomplete.vim',
-"             \{'autoload': {'insert': 1 }}
 call dein#end()
 
 filetype plugin indent on

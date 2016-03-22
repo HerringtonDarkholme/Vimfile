@@ -327,7 +327,7 @@ let g:EclimFileTypeValidate = 0
 autocmd FileType scala nn <buffer> <leader>i :ScalaImport<cr>
 autocmd FileType java nn <buffer> <leader>i :JavaImport<cr>
 
-set rtp+=~/.vim/dein/repos/github/Shougo/dein.vim/
+set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
 call dein#begin(expand('~/.vim/dein'))
 
 call dein#add('Shougo/dein.vim')
@@ -396,8 +396,8 @@ call dein#add('sjl/gundo.vim',
       \ {'on_cmd': 'GundoToggle'})
 call dein#add('benekastah/neomake',
       \ {'on_cmd': 'Neomake'})
-call dein#add('kassio/neoterm',
-      \ {'on_cmd': 'Ttoggle'})
+" call dein#add('kassio/neoterm',
+"       \ {'on_cmd': 'Ttoggle'})
 
 call dein#add('Shougo/deoplete.nvim',
               \{'on_i': 1})

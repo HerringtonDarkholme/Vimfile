@@ -147,7 +147,6 @@ exe "set tabstop=".g:tabsize
 exe "set shiftwidth=".g:tabsize
 exe "set softtabstop=".g:tabsize
 
-autocmd FileType jade setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 "auto indent"
 set autoindent
@@ -327,7 +326,7 @@ let g:EclimFileTypeValidate = 0
 autocmd FileType scala nn <buffer> <leader>i :ScalaImport<cr>
 autocmd FileType java nn <buffer> <leader>i :JavaImport<cr>
 
-set rtp+=~/.vim/dein/repos/github/Shougo/dein.vim/
+set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
 call dein#begin(expand('~/.vim/dein'))
 
 call dein#add('Shougo/dein.vim')
@@ -361,12 +360,14 @@ call dein#add('davidhalter/jedi-vim',
       \{'on_ft': 'python'})
 call dein#add('derekwyatt/vim-scala',
       \{'on_ft': 'scala'})
-call dein#add('digitaltoad/vim-jade',
-      \{'on_ft': 'jade'})
+call dein#add('digitaltoad/vim-pug',
+      \{'on_ft': 'pug'})
+call dein#add('HerringtonDarkholme/jedi-syntax',
+      \{'on_ft': 'jedi'})
 call dein#add('mattn/emmet-vim',
       \{'on_ft': ['html', 'xml']})
 call dein#add('othree/html5.vim',
-      \{'on_ft': ['html', 'jade']})
+      \{'on_ft': ['html', 'pug']})
 call dein#add('wavded/vim-stylus',
       \{'on_ft': 'stylus'})
 call dein#add('cakebaker/scss-syntax.vim',

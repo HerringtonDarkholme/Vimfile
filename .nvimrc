@@ -12,7 +12,6 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => highlight help
 """"""""""""""""""""""""""""""""""""""""""""""""
-syntax enable
 set number
 set title
 set foldmethod=indent
@@ -71,7 +70,6 @@ let g:Powerline_symbols_override.LINENR = ''
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => plugin
 """"""""""""""""""""""""""""""""""""""""""""""""
-filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 
 
@@ -91,7 +89,6 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 "     return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 " endfunction
 
-set noshowmode
 let g:echodoc_enable_at_startup=1
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_completion_start_length = 1
@@ -350,7 +347,6 @@ call dein#add('tpope/vim-surround')
 call dein#add('altercation/vim-colors-solarized')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('FelikZ/ctrlp-py-matcher')
-call dein#add('editorconfig/editorconfig-vim')
 
 call dein#add('justmao945/vim-clang',
       \{'on_ft': ['c', 'cpp']})
@@ -382,9 +378,9 @@ call dein#add('moll/vim-node',
       \{'on_ft': 'javascript'})
 call dein#add('HerringtonDarkholme/yats.vim',
       \{'on_ft': 'typescript'})
-call dein#add('Quramy/tsuquyomi')
-" call dein#add('Quramy/tsuquyomi',
-"       \{'on_ft': 'typescript'})
+" call dein#add('Quramy/tsuquyomi')
+call dein#add('Quramy/tsuquyomi',
+      \{'on_ft': 'typescript'})
 
 
 call dein#add('godlygeek/tabular',
@@ -412,6 +408,7 @@ call dein#add('othree/eregex.vim',
 
 call dein#add('gerw/vim-HiLinkTrace')
 " call dein#add('terryma/vim-multiple-cursors')
+" call dein#add('editorconfig/editorconfig-vim')
 "
 " call dein#add('fisadev/vim-ctrlp-cmdpalette',
 "       \ {'on_cmd': ['CtrlPCmdPalette']})
@@ -456,3 +453,4 @@ call dein#end()
 
 filetype plugin indent on
 colorscheme solarized
+syntax enable

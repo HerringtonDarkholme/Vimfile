@@ -147,7 +147,6 @@ exe "set tabstop=".g:tabsize
 exe "set shiftwidth=".g:tabsize
 exe "set softtabstop=".g:tabsize
 
-autocmd FileType jade setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 "auto indent"
 set autoindent
@@ -361,12 +360,14 @@ call dein#add('davidhalter/jedi-vim',
       \{'on_ft': 'python'})
 call dein#add('derekwyatt/vim-scala',
       \{'on_ft': 'scala'})
-call dein#add('digitaltoad/vim-jade',
-      \{'on_ft': 'jade'})
+call dein#add('digitaltoad/vim-pug',
+      \{'on_ft': 'pug'})
+call dein#add('HerringtonDarkholme/jedi-syntax',
+      \{'on_ft': 'jedi'})
 call dein#add('mattn/emmet-vim',
       \{'on_ft': ['html', 'xml']})
 call dein#add('othree/html5.vim',
-      \{'on_ft': ['html', 'jade']})
+      \{'on_ft': ['html', 'pug']})
 call dein#add('wavded/vim-stylus',
       \{'on_ft': 'stylus'})
 call dein#add('cakebaker/scss-syntax.vim',

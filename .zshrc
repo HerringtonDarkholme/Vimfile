@@ -105,6 +105,10 @@ zstyle ':auto-fu:highlight' completion/one fg=14
 
 . <(npm completion) # search npm tab completion
 
+export NVM_DIR="$HOME/.nvm"
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
 # disable auto-stuff inside single and also double quotes.
 # And less than 2 chars before the cursor.
 # zstyle ':auto-fu:var' autoable-function/skiplines \

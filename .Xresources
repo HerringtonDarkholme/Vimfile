@@ -3,7 +3,7 @@ XTerm*faceNameDoublesize:   xft:Microsoft YaHei
 
 !XTerm*vt100.utf8Fonts.font: Ubuntu Mono derivative Powerline
 xterm*faceSize: 14
-xterm*vt100*geometry: 80x60
+xterm*vt100*geometry: 80x25
 xterm*saveLines: 4096
 xterm*loginShell: true
 xterm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
@@ -16,7 +16,7 @@ xterm*cursorBlink: true
 xterm*cursorOffTime: 900
 xterm*cursorOnTime: 900
 xterm*vt100*underLine: true
-xterm*reverseVideo: true
+
 Xft.hinting: true
 Xft.antialias: true
 Xft.hintstyle: hintslight
@@ -40,26 +40,26 @@ Xft.hintstyle: hintslight
 
 ! Dark
 
-! #define S_base03        #002b36
-! #define S_base02        #073642
-! #define S_base01        #586e75
-! #define S_base00        #657b83
-! #define S_base0         #839496
-! #define S_base1         #93a1a1
-! #define S_base2         #eee8d5
-! #define S_base3         #fdf6e3
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
 
 
 ! Light
 
-#define S_base03        #fdf6e3
-#define S_base02        #eee8d5
-#define S_base01        #93a1a1
-#define S_base00        #839496
-#define S_base0         #657b83
-#define S_base1         #586e75
-#define S_base2         #073642
-#define S_base3         #002b36
+! #define S_base03        #fdf6e3
+! #define S_base02        #eee8d5
+! #define S_base01        #93a1a1
+! #define S_base00        #839496
+! #define S_base0         #657b83
+! #define S_base1         #586e75
+! #define S_base2         #073642
+! #define S_base3         #002b36
 
 
 ! To only apply colors to your terminal, for example, prefix
@@ -67,8 +67,8 @@ Xft.hintstyle: hintslight
 !
 ! URxvt*background:            S_base03
 
-XTerm*background:              S_base0
-XTerm*foreground:              S_base03
+XTerm*background:              S_base3
+XTerm*foreground:              S_base00
 XTerm*fading:                  40
 XTerm*fadeColor:               S_base03
 XTerm*cursorColor:             S_base1

@@ -71,7 +71,7 @@ XTerm*background:              S_base3
 XTerm*foreground:              S_base00
 XTerm*fading:                  40
 XTerm*fadeColor:               S_base03
-XTerm*cursorColor:             S_base1
+XTerm*cursorColor:             S_base01
 XTerm*pointerColorBackground:  S_base01
 XTerm*pointerColorForeground:  S_base1
 
@@ -91,3 +91,8 @@ XTerm*color12:                 S_base0
 XTerm*color13:                 S_violet
 XTerm*color14:                 S_base1
 XTerm*color15:                 S_base3
+
+
+xterm*VT100.Translations: #override \
+                 Ctrl Shift <Key>V:    insert-selection(CLIPBOARD) \n\
+                 Ctrl Shift <Key>C:    copy-selection(CLIPBOARD)

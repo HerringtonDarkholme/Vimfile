@@ -29,4 +29,16 @@ nnoremap -urls=www.nicovideo.jp/watch/|youtube.com <leader><space> :stfull<cr>
 
 colorscheme solarized_light
 
-" vim: set ft=vimperator:
+js <<EOM
+function GooglePlusClickSend() {
+  let doc = content.window.document
+  let button = doc.querySelector('[role=button][aria-disabled=false]') ||
+    doc.querySelector('[id$=post]')
+  if (!button) return
+  button.click()
+}
+EOM
+inoremap -urls=plus.google.com/* <c-enter> <esc>:js GooglePlusClickSend()<cr>
+
+" vim: set ft=vim:
+

@@ -12,7 +12,6 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => highlight help
 """"""""""""""""""""""""""""""""""""""""""""""""
-syntax enable
 set number
 set title
 set foldmethod=indent
@@ -433,3 +432,4 @@ call dein#end()
 
 filetype plugin indent on
 colorscheme solarized
+syntax enable

@@ -12,7 +12,7 @@
     function SmoothScroller(elem, dir) {
         this.elem = Cu.getWeakReference(elem);
         this.dir = dir || "x";
-        var [cur, max] = this.res[this.dir];
+        let [cur, max] = this.res[this.dir];
         this._start = this._pos = this._end = elem[cur];
         this.max = elem[max];
     }
@@ -303,7 +303,7 @@
                 "radio",
                 "reset",
                 "submit",
-              ].map(t => `input[type="${t}"]`).join(",")
+              ].map(t => `input[type="${t}"]`)
             ].join(",");
         config.ignoreKeys["<Space>"] &= ~modes.NORMAL;
         mappings.addUserMap([modes.NORMAL], ["<Space>"], "scroll page(override space map)", function (count) {

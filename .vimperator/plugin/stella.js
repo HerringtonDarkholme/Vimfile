@@ -954,6 +954,10 @@ Thanks:
     get pageinfo () {
       let doc = content.document;
       let desc = doc.querySelector('#eow-description');
+      let tags = [];
+      for (let v of doc.querySelectorAll('#eow-tags > li > a')) {
+        tags.push(xml`<span>[<a href=${v.href}>${v.textContent}</a>]</span>`)
+      }
       return [
         [
           'comment',
@@ -961,9 +965,7 @@ Thanks:
         ],
         [
           'tags',
-          XMLList(Iterator(doc.querySelectorAll('#eow-tags > li > a')).map(v =>
-              xml`<span>[<a href=${v.href}>${v.textContent}</a>]</span>`)
-          .join(''))
+          XMLList(tags.join(''))
         ],
         [
           'quality',
@@ -1110,6 +1112,10 @@ Thanks:
     get pageinfo () {
       let doc = content.document;
       let desc = doc.querySelector('#eow-description');
+      let tags = [];
+      for (let v of doc.querySelectorAll('#eow-tags > li > a')) {
+        tags.push(xml`<span>[<a href=${v.href}>${v.textContent}</a>]</span>`)
+      }
       return [
         [
           'comment',
@@ -1117,10 +1123,7 @@ Thanks:
         ],
         [
           'tags',
-          XMLList(Iterator(doc.querySelectorAll('#eow-tags > li > a')).map(v =>
-            xml`<span>[<a href=${v.href}>${v.textContent}</a>]</span>`
-            ).join('')
-          )
+          XMLList(tags.join(''))
         ],
         [
           'quality',
@@ -1350,9 +1353,7 @@ Thanks:
         ['comment', U.toXML(v.description)],
         [
           'tag',
-          Array.slice(v.tags).map(t =>
-            xml`<span>[<a href=${this.makeURL(t, Player.URL_TAG)}>${t}</a>]</span>`
-          ).join('')
+          Array.slice(v.tags).map(t => xml`<span>[<a href=${this.makeURL(t, Player.URL_TAG)}>${t}</a>]</span>`).join('')
         ]
       ];
     },
@@ -1440,9 +1441,7 @@ Thanks:
 
       function tagsFromPage () {
         let nodes = content.document.getElementsByClassName('nicopedia');
-        return nodes
-          .filter(it => it.rel == 'tag')
-          .map(it => new RelatedTag(it.textContent))
+        return nodes.filter(it => it.rel == 'tag').map(it => new RelatedTag(it.textContent))
       }
 
       return [].concat(IDsFromComment(), IDsFromAPI(), tagsFromPage());
@@ -1886,8 +1885,7 @@ Thanks:
     },
 
     createGUI: function () {
-      if (this.noGUI)
-        return;
+      if (this.noGUI) return;
       this.createStatusPanel();
       this.onLocationChange();
       this.hidden = true;
@@ -2001,7 +1999,11 @@ Thanks:
             if (!self.player.has('qualities', 'r'))
               return;
             context.title = ['Quality', 'Description'];
-            context.completion = self.player.qualities.map(([,q]) => [q, q])
+            let completions = [];
+            self.player.qualities.forEach(
+              (q) => completions.push([q,q])
+            );
+            context.completions = completions;
           }
         },
         true
@@ -2060,7 +2062,7 @@ Thanks:
         function (verbose)
           (self.isValid && self.player.has('pageinfo', 'r')
             ? self.player.pageinfo.map(
-              ([n, v]) => [n, xml`<div style="white-space: normal">${modules.template.maybeXML(v)}</div>`]
+                ([n, v]) => [n, xml`<div style="white-space: normal">${modules.template.maybeXML(v)}</div>`]
               )
             : [])
       );
@@ -2111,7 +2113,7 @@ Thanks:
       let toggles = this.toggles = {};
       createLabel(labels, 'main', 2, 2);
       createLabel(labels, 'volume', 0, 2);
-      for (let player of this.players) {
+      for (let [, player] of Iterator(this.players)) {
         for (let func in player.functions) {
           if (player.has(func, 't'))
             (func in labels) || createLabel(toggles, func);
@@ -2120,8 +2122,8 @@ Thanks:
 
       panel.appendChild(hbox);
       hbox.appendChild(icon);
-      for (let label of labels) hbox.appendChild(label);
-      for (let toggle of toggles) hbox.appendChild(toggle);
+      for (let k in labels) hbox.appendChild(labels[k]);
+      for (let k in toggles) hbox.appendChild(toggles[k]);
 
       let menu = this.mainMenu = buildContextMenu({
         id: Stella.MAIN_MENU_ID,

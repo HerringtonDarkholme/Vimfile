@@ -1662,6 +1662,7 @@ Thanks:
 
   function BiliPlayer () {
     Player.apply(this, arguments);
+    this._fullscreen = false;
   }
 
   BiliPlayer.getIDfromURL = function (url) {let [_, r] = url.match(/[?;&]v=([-\w]+)/); return r;};
@@ -1672,6 +1673,8 @@ Thanks:
     functions: {
       currentTime: 'w',
       fetch: 'x',
+      comment: 'rwt',
+      fullscreen: 'rwt',
       makeURL: 'x',
       muted: 'rw',
       pause: 'x',
@@ -1687,6 +1690,12 @@ Thanks:
 
     get muted () this.player.jwGetMute(),
     set muted (value) (this.player.jwSetMute(value ? false : true)),
+
+    get comment () this.player.showComments(),
+    set comment (value) (this.player.showComments(value), value),
+
+    set fullscreen (value) (content.window.wrappedJSObject.player_fullwin(this._fullscreen = value), value),
+    get fullscreen () this._fullscreen,
 
     get player () {
       let kk = U.getElementByIdEx('player_placeholder')

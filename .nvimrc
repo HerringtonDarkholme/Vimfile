@@ -337,6 +337,10 @@ call dein#add('davidhalter/jedi-vim',
       \{'on_ft': 'python'})
 call dein#add('derekwyatt/vim-scala',
       \{'on_ft': 'scala'})
+call dein#add('fatih/vim-go',
+      \{'on_ft': 'go'})
+call dein#add('zchee/deoplete-go',
+      \{'on_ft': 'go'})
 call dein#add('digitaltoad/vim-pug',
       \{'on_ft': 'pug'})
 call dein#add('HerringtonDarkholme/jedi-syntax',
@@ -389,7 +393,7 @@ call dein#add('othree/eregex.vim',
 
 call dein#add('gerw/vim-HiLinkTrace')
 " call dein#add('terryma/vim-multiple-cursors')
-" call dein#add('editorconfig/editorconfig-vim')
+call dein#add('editorconfig/editorconfig-vim')
 "
 " call dein#add('fisadev/vim-ctrlp-cmdpalette',
 "       \ {'on_cmd': ['CtrlPCmdPalette']})

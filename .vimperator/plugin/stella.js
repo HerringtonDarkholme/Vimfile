@@ -1657,6 +1657,93 @@ Thanks:
   // }}}
 
   /*********************************************************************************
+  * BiliPlayer                                                                  {{{
+  *********************************************************************************/
+
+  function BiliPlayer () {
+    Player.apply(this, arguments);
+  }
+
+  BiliPlayer.getIDfromURL = function (url) {let [_, r] = url.match(/[?;&]v=([-\w]+)/); return r;};
+
+  BiliPlayer.prototype = {
+    __proto__: Player.prototype,
+
+    functions: {
+      currentTime: 'w',
+      fetch: 'x',
+      makeURL: 'x',
+      muted: 'rw',
+      pause: 'x',
+      play: 'x',
+      playEx: 'x',
+      playOrPause: 'x',
+      title: 'r'
+    },
+
+    icon: 'http://static.hdslb.com/images/favicon.ico',
+
+    set currentTime (value) (this.player.api_seekTo(U.fromTimeCode(value)), value),
+
+    get muted () this.player.jwGetMute(),
+    set muted (value) (this.player.jwSetMute(value ? false : true)),
+
+    get player () {
+      let kk = U.getElementByIdEx('player_placeholder')
+      return kk
+    },
+
+    get ready () !!this.player.jwPlay,
+
+    get state () {
+      let state = this.player.jwGetState();
+      if (state === 'PLAYING')
+        return Player.ST_PLAYING
+      if (state === 'PAUSED')
+        return Player.ST_PAUSED;
+      return Player.ST_OTHER;
+    },
+
+    get title ()
+      U.xpathGet('//h1[@title]').textContent,
+
+    get isValid () U.currentURL.match(/^http:\/\/(www\.)?bilibili\.com\/video\/av\d+\/?$/),
+
+    get volume () parseInt(this.player.jwGetVolume()),
+    set volume (value) this.player.jwSetVolume(value),
+
+    fetch: function(filepath) {
+      let self = this;
+      let scripts = content.document.getElementsByTagName('script')
+      let cid = Array.prototype.slice.call(scripts)
+        .filter(s => !s.src)
+        .map(s => s.textContent)
+        .filter(t => /cid=(\d+)/.test(t))
+        .map(t => /cid=(\d+)/.exec(t)[1])[0]
+      U.httpRequest(
+        `http://interface.bilibili.com/playurl?platform=bilihelper&otype=json&appkey=95acd7f6cc3392f3&cid=${cid}&quality=4&type=mp4`, null, function(xhr) {
+          let json = JSON.parse(xhr.responseText)
+          U.download(json.durl[0].url, filepath, 'mp4', self.title)
+        }
+      )
+    },
+
+    makeURL: function (value, type) {
+      switch (type) {
+        case Player.URL_ID:
+          return 'http://www.bilibili.com/video/av' + value;
+      }
+      return value;
+    },
+
+    play: function () this.player.jwPlay(),
+
+    pause: function () this.player.jwPause()
+  };
+
+  // }}}
+
+  /*********************************************************************************
   * VimeoPlayer                                                                  {{{
   *********************************************************************************/
 
@@ -1872,6 +1959,7 @@ Thanks:
 
       this.players = {
         niconico: new NicoPlayer(this.stella),
+        bilibili: new BiliPlayer(this.stella),
         youtube: new YouTubePlayer(this.stella),
         youtube5: new YouTubePlayer5(this.stella),
         youtubeuc: new YouTubeUserChannelPlayer(this.stella),

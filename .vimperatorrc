@@ -33,8 +33,10 @@ colorscheme solarized_light
 js <<EOM
 function GooglePlusClickSend() {
   let doc = content.window.document
-  let button = doc.querySelector('[role=button][aria-disabled=false]') ||
-    doc.querySelector('[id$=post]')
+  let button =
+    doc.querySelector('iframe[src]').contentDocument.querySelector('[role=button][jsaction][id][style]') ||
+    doc.querySelector('[role=button][jsaction][id][style]') ||
+    doc.querySelector('[role=button][guidedhelpid="sharebutton"][tabindex]')
   if (!button) return
   button.click()
 }

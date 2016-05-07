@@ -1716,7 +1716,7 @@ Thanks:
     get title ()
       U.xpathGet('//h1[@title]').textContent,
 
-    get isValid () U.currentURL.match(/^http:\/\/(www\.)?bilibili\.com\/video\/av\d+\/?$/),
+    get isValid () U.currentURL.match(/^http:\/\/(www\.)?bilibili\.com\/video\/av\d+\/?/),
 
     get volume () parseInt(this.player.jwGetVolume()),
     set volume (value) this.player.jwSetVolume(value),

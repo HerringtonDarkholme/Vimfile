@@ -85,6 +85,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 let g:echodoc_enable_at_startup=1
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_completion_start_length = 1
+let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.c =
 \ '\w+\.\|\h\w*->'

@@ -1699,7 +1699,10 @@ Thanks:
 
     get player () {
       let kk = U.getElementByIdEx('player_placeholder')
-      return kk
+      if (kk) return kk
+        // wow vimperator does not respect same-origin
+      let p = content.document.querySelector('.player').contentDocument.querySelector('#bofqi_embed')
+      return (p && (p.wrappedJSObject || p))
     },
 
     get ready () !!this.player.jwPlay,

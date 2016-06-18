@@ -91,8 +91,8 @@ let g:deoplete#omni_patterns.c =
 \ '\w+\.\|\h\w*->'
 let g:deoplete#omni_patterns.javascript =
 \ '\w+\.'
-let g:deoplete#omni_patterns.typescript =
-\ '[^. *\t]\.\w*'
+" let g:deoplete#omni_patterns.typescript =
+" \ '[^. *\t]\.\w*'
 let g:deoplete#omni_patterns.python =
 \ '\w+\.'
 
@@ -367,6 +367,8 @@ call dein#add('HerringtonDarkholme/yats.vim',
 " call dein#add('Quramy/tsuquyomi')
 call dein#add('Quramy/tsuquyomi',
       \{'on_ft': 'typescript'})
+call dein#add('mhartington/deoplete-typescript',
+      \{'on_ft': 'typescript'})
 
 
 call dein#add('godlygeek/tabular',
@@ -434,6 +436,7 @@ call dein#add('editorconfig/editorconfig-vim')
 "             \CMDLoad('IndentLineToggle')
 
 call dein#end()
+
 
 filetype plugin indent on
 colorscheme solarized

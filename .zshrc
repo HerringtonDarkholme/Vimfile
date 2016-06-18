@@ -47,7 +47,7 @@ ZSH_THEME="lambda"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump zsh-syntax-highlighting)
+plugins=(git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,8 +104,8 @@ zstyle ':auto-fu:highlight' completion/one fg=14
 
 . <(npm completion) # search npm tab completion
 
-zstyle ':auto-fu:var' autoable-function/skiplines \
-        "('|$'|\")*" "^(??)##" "npm##*"
+# zstyle ':auto-fu:var' autoable-function/skiplines \
+#         "('|$'|\")*" "^(??)##" "npm##*"
 
 export NVM_DIR="$HOME/.nvm"
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist

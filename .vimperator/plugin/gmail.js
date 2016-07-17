@@ -26,43 +26,48 @@
   statusBar.insertBefore(gmailBiffIcon, statusBar.firstChild);
   statusBar.insertBefore(gmailBiffTip, statusBar.firstChild);
 
-  var styleSheets = document.styleSheets[0];
-  styleSheets.insertRule(`#gmail-biff-icon {
-    position: relative;
-    transform-origin: 30% 50%;
-    padding: 0;
-    margin: 0 .5em;
-    transition: transform 1s ease;
-  }`, styleSheets.cssRules.length);
-  styleSheets.insertRule(`#gmail-biff-icon.unread {
-      transform: rotate(720deg);
-      margin: 0;
-  }`, styleSheets.cssRules.length);
-  styleSheets.insertRule(`#gmail-biff-icon::after {
-    content: attr(count);
-    background: linear-gradient(#B30000, #E80000);
-    border-radius: 3px;
-    color: white;
-    position: absolute;
-    margin-bottom: -1em;
-    margin-left: -1em;
-    transition: all 1s ease;
-    transition-delay: 1s;
-    font-size: .75em;
-    text-align: center;
-    font-weight: bold;
-    text-shadow: 0 1px rgba(255, 255, 255, 0.2);
-    line-height: 1.4em;
-    width: 0;
-    height: 0;
-    visibility: hidden;
-  }`, styleSheets.cssRules.length);
-  styleSheets.insertRule(`#gmail-biff-icon.unread::after {
-    visibility: visible;
-    width: 1.4em;
-    height: 1.4em;
+
+  function insertStyles() {
+    var styleSheets = document.styleSheets[0];
+    styleSheets.insertRule(`#gmail-biff-icon {
+      position: relative;
+      transform-origin: 30% 50%;
+      padding: 0;
+      margin: 0 .5em;
+      transition: transform 1s ease;
+    }`, styleSheets.cssRules.length);
+    styleSheets.insertRule(`#gmail-biff-icon.unread {
+        transform: rotate(720deg);
+        margin: 0;
+    }`, styleSheets.cssRules.length);
+    styleSheets.insertRule(`#gmail-biff-icon::after {
+      content: attr(count);
+      background: linear-gradient(#B30000, #E80000);
+      border-radius: 3px;
+      color: white;
+      position: absolute;
+      margin-bottom: -1em;
+      margin-left: -1em;
+      transition: all 1s ease;
+      transition-delay: 1s;
+      font-size: .75em;
+      text-align: center;
+      font-weight: bold;
+      text-shadow: 0 1px rgba(255, 255, 255, 0.2);
+      line-height: 1.4em;
+      width: 0;
+      height: 0;
+      visibility: hidden;
+    }`, styleSheets.cssRules.length);
+    styleSheets.insertRule(`#gmail-biff-icon.unread::after {
+      visibility: visible;
+      width: 1.4em;
+      height: 1.4em;
+    }
+    `, styleSheets.cssRules.length);
   }
-  `, styleSheets.cssRules.length);
+  setTimeout(insertStyles, 1000)
+
 
   function handleResp(xhr) {
     try {

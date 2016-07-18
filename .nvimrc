@@ -91,8 +91,8 @@ let g:deoplete#omni_patterns.c =
 \ '\w+\.\|\h\w*->'
 let g:deoplete#omni_patterns.javascript =
 \ '\w+\.'
-let g:deoplete#omni_patterns.typescript =
-\ '[^. *\t]\.\w*'
+" let g:deoplete#omni_patterns.typescript =
+" \ '[^. *\t]\.\w*'
 let g:deoplete#omni_patterns.python =
 \ '\w+\.'
 
@@ -150,8 +150,8 @@ set autoread
 
 "Allow  256 colors in Terminal
 set t_Co=256
-set t_ZH=[3m
-set t_ZR=[23m
+" set t_ZH=[3m
+" set t_ZR=[23m
 "Set colorscheme
 " colorscheme monoterm
 set background=light
@@ -192,7 +192,7 @@ autocmd FileType typescript nn <buffer> K :<C-u>echo tsuquyomi#hint()<CR>
 "move between windows
 nn <C-j> <C-W>j
 nn <C-k> <C-W>k
-nn <C-h> <C-W>h
+nn <bs> <C-W>h
 nn <C-l> <C-W>l
 
 "make j,k moves between visual line, and gj,gk moves between real lines
@@ -287,6 +287,11 @@ nn <silent> gr :Unite grep:.:--include='*.<C-r>=expand("%:e")<CR>' -default-acti
 " neoterm
 let g:neoterm_size = '10'
 
+"emmet
+" autocmd BufEnter *.xml imap <buffer><expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+" autocmd BufEnter *.html imap <buffer><expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+let g:gitgutter_async = 0
+
 
 " comment plugin"
 au FileType scss setlocal commentstring=//%s
@@ -349,7 +354,7 @@ call dein#add('HerringtonDarkholme/jedi-syntax',
 call dein#add('mattn/emmet-vim',
       \{'on_ft': ['html', 'xml']})
 call dein#add('othree/html5.vim',
-      \{'on_ft': ['html', 'pug']})
+      \{'on_ft': ['html', 'pug', 'jedi']})
 call dein#add('wavded/vim-stylus',
       \{'on_ft': 'stylus'})
 call dein#add('cakebaker/scss-syntax.vim',
@@ -367,7 +372,8 @@ call dein#add('HerringtonDarkholme/yats.vim',
 " call dein#add('Quramy/tsuquyomi')
 call dein#add('Quramy/tsuquyomi',
       \{'on_ft': 'typescript'})
-
+call dein#add('mhartington/deoplete-typescript',
+      \{'on_ft': 'typescript'})
 
 call dein#add('godlygeek/tabular',
       \ {'on_cmd': 'Tabularize'})
@@ -382,8 +388,8 @@ call dein#add('benekastah/neomake',
 " call dein#add('kassio/neoterm',
 "       \ {'on_cmd': 'Ttoggle'})
 
-call dein#add('Shougo/deoplete.nvim',
-              \{'on_i': 1})
+call dein#add('posva/vim-vue')
+call dein#add('Shougo/deoplete.nvim')
 call dein#add('Shougo/echodoc.vim',
               \{'on_i': 1})
 

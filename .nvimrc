@@ -441,6 +441,7 @@ call dein#add('editorconfig/editorconfig-vim')
 
 call dein#end()
 
+
 filetype plugin indent on
 colorscheme solarized
 syntax enable

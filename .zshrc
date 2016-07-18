@@ -1,6 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-export TERM=screen-256color-bce
+export TERM=xterm-256color
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -47,18 +47,16 @@ ZSH_THEME="lambda"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump zsh-syntax-highlighting)
+plugins=(git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
-source ~/.func/git.sh
-source ~/.func/eclim.sh
 
 # User configuration
 
 # export PATH=""
 # export ANDROID_HOME=''
 export LC_CTYPE="en_US.UTF-8"
-export PYTHONSTARUP="$HOME/.pythonrc"
+# export PYTHONSTARUP="$HOME/.pythonrc"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -87,7 +85,8 @@ export PYTHONSTARUP="$HOME/.pythonrc"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # alias ctags=/usr/local/bin/ctags
-alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim'
+# alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim'
+alias v='TERM=gnome-256color nvim'
 alias cm="screen -d -m cmus"
 alias n="cmus-remote -n"
 alias r="cmus-remote -r"
@@ -105,15 +104,13 @@ zstyle ':auto-fu:highlight' completion/one fg=14
 
 . <(npm completion) # search npm tab completion
 
-export NVM_DIR="$HOME/.nvm"
-export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-export GOPATH="$HOME/gocode"
-
-# disable auto-stuff inside single and also double quotes.
-# And less than 2 chars before the cursor.
 # zstyle ':auto-fu:var' autoable-function/skiplines \
 #         "('|$'|\")*" "^(??)##" "npm##*"
-# source ~/.zsh/antigen.zsh
-# antigen bundle RobSis/zsh-completion-generator
-# antigen apply
+
+export NVM_DIR="$HOME/.nvm"
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
+alias npm='npm --registry=https://registry.npm.taobao.org'
+
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export GOPATH="$HOME/gocode"
+export PATH=$PATH:$GOPATH/bin

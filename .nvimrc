@@ -334,7 +334,7 @@ call dein#add('justmao945/vim-clang',
       \{'on_ft': ['c', 'cpp']})
 call dein#add('octol/vim-cpp-enhanced-highlight',
       \{'on_ft': 'cpp'})
-call dein#add('davidhalter/jedi-vim',
+call dein#add('zchee/deoplete-jedi',
       \{'on_ft': 'python'})
 call dein#add('derekwyatt/vim-scala',
       \{'on_ft': 'scala'})

@@ -101,12 +101,13 @@ set completeopt-=preview
 set completeopt+=noinsert
 
 "neo-jedi compatibility"
-let g:jedi#popup_on_dot = 0
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#completions_command = ''
-let g:jedi#goto_definitions_command='<c-]>'
-autocmd  FileType python let b:did_ftplugin = 1
-let g:jedi#force_py_version = 3
+" let g:jedi#popup_on_dot = 0
+" let g:jedi#auto_vim_configuration = 0
+" let g:jedi#completions_command = ''
+" let g:jedi#goto_definitions_command='<c-]>'
+" autocmd  FileType python let b:did_ftplugin = 1
+" let g:jedi#force_py_version = 3
+let g:deoplete#sources#jedi#python_path='python3'
 
 """"""""""""""""""""""""""""""""
 " => TextMate like Ultisnip"
@@ -339,6 +340,8 @@ call dein#add('justmao945/vim-clang',
       \{'on_ft': ['c', 'cpp']})
 call dein#add('octol/vim-cpp-enhanced-highlight',
       \{'on_ft': 'cpp'})
+" call dein#add('davidhalter/jedi-vim',
+"       \{'on_ft': 'python'})
 call dein#add('zchee/deoplete-jedi',
       \{'on_ft': 'python'})
 call dein#add('derekwyatt/vim-scala',

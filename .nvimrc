@@ -193,7 +193,7 @@ autocmd FileType typescript nn <buffer> K :<C-u>echo tsuquyomi#hint()<CR>
 "move between windows
 nn <C-j> <C-W>j
 nn <C-k> <C-W>k
-nn <bs> <C-W>h
+nn <C-h> <C-W>h
 nn <C-l> <C-W>l
 
 "make j,k moves between visual line, and gj,gk moves between real lines

@@ -101,12 +101,13 @@ set completeopt-=preview
 set completeopt+=noinsert
 
 "neo-jedi compatibility"
-let g:jedi#popup_on_dot = 0
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#completions_command = ''
-let g:jedi#goto_definitions_command='<c-]>'
-autocmd  FileType python let b:did_ftplugin = 1
-let g:jedi#force_py_version = 3
+" let g:jedi#popup_on_dot = 0
+" let g:jedi#auto_vim_configuration = 0
+" let g:jedi#completions_command = ''
+" let g:jedi#goto_definitions_command='<c-]>'
+" autocmd  FileType python let b:did_ftplugin = 1
+" let g:jedi#force_py_version = 3
+let g:deoplete#sources#jedi#python_path='python3'
 
 """"""""""""""""""""""""""""""""
 " => TextMate like Ultisnip"
@@ -192,7 +193,7 @@ autocmd FileType typescript nn <buffer> K :<C-u>echo tsuquyomi#hint()<CR>
 "move between windows
 nn <C-j> <C-W>j
 nn <C-k> <C-W>k
-nn <bs> <C-W>h
+nn <C-h> <C-W>h
 nn <C-l> <C-W>l
 
 "make j,k moves between visual line, and gj,gk moves between real lines
@@ -339,7 +340,9 @@ call dein#add('justmao945/vim-clang',
       \{'on_ft': ['c', 'cpp']})
 call dein#add('octol/vim-cpp-enhanced-highlight',
       \{'on_ft': 'cpp'})
-call dein#add('davidhalter/jedi-vim',
+" call dein#add('davidhalter/jedi-vim',
+"       \{'on_ft': 'python'})
+call dein#add('zchee/deoplete-jedi',
       \{'on_ft': 'python'})
 call dein#add('derekwyatt/vim-scala',
       \{'on_ft': 'scala'})

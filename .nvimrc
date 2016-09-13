@@ -23,7 +23,7 @@ set wildmode=list:longest,full "list possible commands"
 set showmatch "match parens"
 set nojoinspaces "no space between J"
 set pastetoggle=<f10> "toggle paste"
-set wildignore=*.o,*.pyc
+set wildignore=*.o,*.pyc,node_modules
 set nojoinspaces
 
 "highlight search result"
@@ -348,7 +348,7 @@ call dein#add('fatih/vim-go',
 call dein#add('zchee/deoplete-go',
       \{'on_ft': 'go'})
 call dein#add('digitaltoad/vim-pug',
-      \{'on_ft': 'pug'})
+      \{'on_ft': ['pug', 'vue']})
 call dein#add('HerringtonDarkholme/jedi-syntax',
       \{'on_ft': 'jedi'})
 call dein#add('mattn/emmet-vim',
@@ -356,7 +356,7 @@ call dein#add('mattn/emmet-vim',
 call dein#add('othree/html5.vim',
       \{'on_ft': ['html', 'pug', 'jedi']})
 call dein#add('wavded/vim-stylus',
-      \{'on_ft': 'stylus'})
+      \{'on_ft': ['stylus', 'vue']})
 call dein#add('cakebaker/scss-syntax.vim',
       \{'on_ft': ['scss', 'sass']})
 call dein#add('maksimr/vim-jsbeautify',

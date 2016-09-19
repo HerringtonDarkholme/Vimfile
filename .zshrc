@@ -102,10 +102,10 @@ zstyle ':auto-fu:highlight' input bold
 zstyle ':auto-fu:highlight' completion fg=14
 zstyle ':auto-fu:highlight' completion/one fg=14
 
-. <(npm completion) # search npm tab completion
+# . <(npm completion) # search npm tab completion
 
-# zstyle ':auto-fu:var' autoable-function/skiplines \
-#         "('|$'|\")*" "^(??)##" "npm##*"
+zstyle ':auto-fu:var' autoable-function/skiplines \
+        "('|$'|\")*" "^(??)##" "npm##*"
 
 export NVM_DIR="$HOME/.nvm"
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist

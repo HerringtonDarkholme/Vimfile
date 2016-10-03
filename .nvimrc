@@ -371,7 +371,7 @@ call dein#add('othree/yajs.vim',
 call dein#add('moll/vim-node',
       \{'on_ft': 'javascript'})
 call dein#add('HerringtonDarkholme/yats.vim',
-      \{'on_ft': 'typescript'})
+      \{'on_ft': ['typescript', 'vue']})
 " call dein#add('Quramy/tsuquyomi')
 call dein#add('Quramy/tsuquyomi',
       \{'on_ft': 'typescript'})
@@ -391,7 +391,8 @@ call dein#add('benekastah/neomake',
 " call dein#add('kassio/neoterm',
 "       \ {'on_cmd': 'Ttoggle'})
 
-call dein#add('posva/vim-vue')
+call dein#add('posva/vim-vue',
+      \{'on_ft': ['vue']})
 call dein#add('Shougo/deoplete.nvim')
 call dein#add('Shougo/echodoc.vim',
               \{'on_i': 1})

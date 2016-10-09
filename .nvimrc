@@ -268,14 +268,7 @@ nn <leader>s :lcd %:p:h<CR>:Ttoggle<CR>
 let g:ctrlp_cmd = 'CtrlPMRU'
 nnoremap <C-p> :<C-u>CtrlPMRU<CR>
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-" let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-"       \ --ignore .git
-"       \ --ignore .svn
-"       \ --ignore .hg
-"       \ --ignore .DS_Store
-"       \ --ignore "**/*.pyc"
-"       \ --max-count 10000
-"       \ -g ""'
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 "undo list"
 nn <silent> <leader>u :GundoToggle<CR>
@@ -301,7 +294,7 @@ au FileType scss setlocal commentstring=//%s
 nnoremap <leader><C-p> :<C-u>Unite -start-insert file_rec/async<CR>
 let g:unite_source_history_yank_enable=1
 let g:unite_split_rule = 'botright'
-let g:unite_source_grep_default_opts='-RHn'
+let g:unite_source_grep_default_opts='-RHn --exclude-dir=node_modules --exclude="*.min.*"'
 let g:unite_prompt='> '
 
 let g:dein#install_process_timeout=1000
@@ -364,12 +357,13 @@ call dein#add('cakebaker/scss-syntax.vim',
       \{'on_ft': ['scss', 'sass']})
 call dein#add('maksimr/vim-jsbeautify',
       \{'on_ft': 'javascript'})
+call dein#add('nikvdp/ejs-syntax',
+      \{'on_ft': 'ejs'})
 call dein#add('marijnh/tern_for_vim',
       \{'on_ft': 'javascript'})
 call dein#add('othree/yajs.vim',
       \{'on_ft': 'javascript'})
-call dein#add('moll/vim-node',
-      \{'on_ft': 'javascript'})
+call dein#add('moll/vim-node')
 call dein#add('HerringtonDarkholme/yats.vim',
       \{'on_ft': 'typescript'})
 " call dein#add('Quramy/tsuquyomi')
@@ -412,10 +406,6 @@ call dein#add('editorconfig/editorconfig-vim')
 
 " NeoBundle 'gregsexton/gitv'
 " NeoBundle 'scrooloose/syntastic'
-" NeoBundle 'zhuangya/YankRing.vim'
-" NeoBundle 'scrooloose/nerdcommenter'
-" NeoBundle 'tpope/vim-abolish'
-" NeoBundle 'Valloric/YouCompleteMe'
 " NeoBundle 'sheerun/vim-polyglot'
 " NeoBundle 'kien/rainbow_parentheses.vim'
 " NeoBundle 'fholgado/minibufexpl.vim'
@@ -426,10 +416,6 @@ call dein#add('editorconfig/editorconfig-vim')
 "             \FiletypeLoad('slim', 'haml')
 " NeoBundleLazy 'tpope/vim-rails',
 "             \FiletypeLoad('ruby')
-" NeoBundleLazy 'vim-ruby/vim-ruby',
-"             \FiletypeLoad('ruby')
-" NeoBundleLazy 'HerringtonDarkholme/jedi-syntax',
-" 			\FiletypeLoad('jedi')
 " NeoBundleLazy 'jon-jacky/PyModel',
 "             \FiletypeLoad('python')
 " NeoBundleLazy 'HerringtonDarkholme/vim-coffee-script',

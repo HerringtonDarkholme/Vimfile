@@ -89,8 +89,7 @@ let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.c =
 \ '\w+\.\|\h\w*->'
-let g:deoplete#omni_patterns.javascript =
-\ '\w+\.'
+let g:deoplete#omni_patterns.javascript = '[^. *\t]\.\w*'
 " let g:deoplete#omni_patterns.typescript =
 " \ '[^. *\t]\.\w*'
 let g:deoplete#omni_patterns.python =
@@ -108,6 +107,7 @@ set completeopt+=noinsert
 " autocmd  FileType python let b:did_ftplugin = 1
 " let g:jedi#force_py_version = 3
 let g:deoplete#sources#jedi#python_path='python3'
+let g:flow#autoclose = 1
 
 """"""""""""""""""""""""""""""""
 " => TextMate like Ultisnip"
@@ -359,7 +359,7 @@ call dein#add('maksimr/vim-jsbeautify',
       \{'on_ft': 'javascript'})
 call dein#add('nikvdp/ejs-syntax',
       \{'on_ft': 'ejs'})
-call dein#add('marijnh/tern_for_vim',
+call dein#add('flowtype/vim-flow',
       \{'on_ft': 'javascript'})
 call dein#add('othree/yajs.vim',
       \{'on_ft': 'javascript'})

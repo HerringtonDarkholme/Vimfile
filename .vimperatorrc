@@ -10,8 +10,8 @@ nnoremap w k
 nnoremap s j
 
 " proxy
-nnoremap "\\u" :set!<Space>network.proxy.type=1<Return>
-nnoremap "\\d" :set!<Space>network.proxy.type=5<Return>
+nnoremap "\\u" :set!<Space>network.proxy.type=1<Return>:echo 'proxy ON '<Return>
+nnoremap "\\d" :set!<Space>network.proxy.type=5<Return>:echo 'proxy OFF '<Return>
 
 "search
 vnoremap s :js liberator.open(buffer.getCurrentWord(), liberator.NEW_TAB)<cr>

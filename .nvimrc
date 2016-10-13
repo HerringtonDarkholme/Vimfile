@@ -300,7 +300,7 @@ let g:unite_source_grep_default_opts =
 \ '--ignore ''.min.js'''
 let g:unite_source_grep_recursive_opt = ''
 
-nn <silent> gr :Unite grep:.:--<C-r>=expand("%:e")<CR> -default-action=tabopen<CR><C-r><C-w><CR>
+nn <silent> gr :Unite grep:.:'-G\.<C-r>=expand("%:e")<CR>$' -default-action=tabopen<CR><C-r><C-w><CR>
 
 let g:dein#install_process_timeout=1000
 "eclim

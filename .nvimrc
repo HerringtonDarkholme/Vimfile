@@ -292,10 +292,15 @@ au FileType scss setlocal commentstring=//%s
 
 "Unite"
 nnoremap <leader><C-p> :<C-u>Unite -start-insert file_rec/async<CR>
-let g:unite_source_history_yank_enable=1
 let g:unite_split_rule = 'botright'
-let g:unite_source_grep_default_opts='-IRHn --exclude-dir=node_modules --exclude="*.min.*"'
 let g:unite_prompt='> '
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts =
+\ '--vimgrep --hidden --ignore ''.git'' ' .
+\ '--ignore ''.min.js'''
+let g:unite_source_grep_recursive_opt = ''
+
+nn <silent> gr :Unite grep:.:--<C-r>=expand("%:e")<CR> -default-action=tabopen<CR><C-r><C-w><CR>
 
 let g:dein#install_process_timeout=1000
 "eclim

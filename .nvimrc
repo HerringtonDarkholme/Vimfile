@@ -260,13 +260,10 @@ nnoremap <silent><F2> :call ToggleLocationList()<CR>
 "yank history yankring"
 nn <silent> <F12> :Unite history/yank<CR>
 nn <silent> <F8> :TagbarToggle<CR>
-let g:ctrlp_cmd = 'CtrlPMRU'
 
 "VimShell"
 nn <leader>s :lcd %:p:h<CR>:Ttoggle<CR>
 "CtrlP MRU first"
-let g:ctrlp_cmd = 'CtrlPMRU'
-nnoremap <C-p> :<C-u>CtrlPMRU<CR>
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 

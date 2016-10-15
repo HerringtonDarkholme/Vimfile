@@ -258,28 +258,24 @@ autocmd FileType javascript nn <buffer> <leader>q :TernRename<cr>
 nnoremap <silent><F2> :call ToggleLocationList()<CR>
 
 "yank history yankring"
-nn <silent> <F12> :Unite history/yank<CR>
 nn <silent> <F8> :TagbarToggle<CR>
 let g:ctrlp_cmd = 'CtrlPMRU'
 
 "VimShell"
 nn <leader>s :lcd %:p:h<CR>:Ttoggle<CR>
 "CtrlP MRU first"
-let g:ctrlp_cmd = 'CtrlPMRU'
-nnoremap <C-p> :<C-u>CtrlPMRU<CR>
+nnoremap <space>m :<C-u>CtrlPMRU<CR>
+nnoremap <space>f :<C-u>Denite file_rec<CR>
+nnoremap <space>b :<C-u>CtrlPBuffer<CR>
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 "undo list"
 nn <silent> <leader>u :GundoToggle<CR>
 "Grep"
-nn <silent> gb :Unite grep:%<CR><C-r><C-w><CR>
-nn <silent> <leader>g :Unite grep:. -default-action=tabopen<CR>
-nn <silent> gl :Unite grep:$buffers -default-action=tabopen<CR><C-r><C-w>
-nn <silent> gr :Unite grep:.:--include='*.<C-r>=expand("%:e")<CR>' -default-action=tabopen<CR><C-r><C-w><CR>
-
-" neoterm
-let g:neoterm_size = '10'
+nn <silent> gb :Denite grep:%<CR><C-r><C-w><CR>
+nn <silent> <leader>g :Denite grep:.<CR>
+nn <silent> gr :Denite grep:.:-G.<C-r>=expand("%:e")<CR>$<CR><C-r><C-w><CR>
 
 "emmet
 " autocmd BufEnter *.xml imap <buffer><expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
@@ -291,16 +287,6 @@ let g:gitgutter_async = 0
 au FileType scss setlocal commentstring=//%s
 
 "Unite"
-nnoremap <leader><C-p> :<C-u>Unite -start-insert file_rec/async<CR>
-let g:unite_split_rule = 'botright'
-let g:unite_prompt='> '
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts =
-\ '--vimgrep --hidden --ignore ''.git'' ' .
-\ '--ignore ''.min.js'''
-let g:unite_source_grep_recursive_opt = ''
-
-nn <silent> gr :Unite grep:.:'-G\.<C-r>=expand("%:e")<CR>$' -default-action=tabopen<CR><C-r><C-w><CR>
 
 let g:dein#install_process_timeout=1000
 "eclim
@@ -319,7 +305,8 @@ call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('bling/vim-bufferline')
 call dein#add('Raimondi/delimitMate')
-call dein#add('Shougo/unite.vim')
+" call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/denite.nvim')
 call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 call dein#add('airblade/vim-gitgutter')
 call dein#add('michaeljsmith/vim-indent-object')
@@ -435,7 +422,16 @@ call dein#add('editorconfig/editorconfig-vim')
 "             \CMDLoad('IndentLineToggle')
 
 call dein#end()
-
+call denite#custom#var('file_rec', 'command',
+  \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+call denite#custom#map('_', "\<C-j>", 'move_to_next_line')
+call denite#custom#map('_', "\<C-k>", 'move_to_prev_line')
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'separator', [])
+call denite#custom#var('grep', 'final_opts', [])
+call denite#custom#var('grep', 'default_opts',
+\ ['--vimgrep', '--hidden', '--ignore', "'.git'", '--ignore', "'.min.js'"])
 
 filetype plugin indent on
 colorscheme solarized

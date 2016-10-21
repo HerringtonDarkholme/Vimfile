@@ -49,12 +49,6 @@ if ! has('gui_running')
      augroup END
 endif
 
-let g:Powerline_dividers_override = ['', '', '', '']
-let g:Powerline_symbols_override = {}
-let g:Powerline_symbols_override.BRANCH = ''
-let g:Powerline_symbols_override.READONLY = ''
-let g:Powerline_symbols_override.LINENR = ''
-
 " " GUIsh insert cursor"
 " function! SetBeamCursor()
 "     silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
@@ -161,9 +155,16 @@ set background=light
 let g:solarized_bold=1
 let g:solarized_italic=1
 let g:solarized_underline=1
+
 let g:airline_powerline_fonts=1
-"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#tab_min_count = 2
+" let g:airline#extensions#tabline#switch_buffers_and_tabs = 1
+" let g:airline#extensions#tabline#show_tabs = 0
+let g:WebDevIconsUnicodeGlyphDoubleWidth = 0
 let g:bufferline_echo=0
+
 nnoremap <tab> :bn<cr>
 nnoremap <s-tab> :bp<cr>
 
@@ -317,6 +318,9 @@ call dein#add('vim-airline/vim-airline-themes')
 call dein#add('bling/vim-bufferline')
 call dein#add('Raimondi/delimitMate')
 call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/denite.nvim')
+call dein#add('ryanoasis/vim-devicons')
+call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
 call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 call dein#add('airblade/vim-gitgutter')
 call dein#add('michaeljsmith/vim-indent-object')
@@ -432,7 +436,6 @@ call dein#add('editorconfig/editorconfig-vim')
 "             \CMDLoad('IndentLineToggle')
 
 call dein#end()
-
 
 filetype plugin indent on
 colorscheme solarized

@@ -50,16 +50,7 @@ if ! has('gui_running')
 endif
 
 " " GUIsh insert cursor"
-" function! SetBeamCursor()
-"     silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-" endfunction
-
-" function! SetBlockCursor()
-"     silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-" endfunction
-
-" au InsertEnter * call SetBeamCursor()
-" au InsertLeave * call SetBlockCursor()
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => plugin
@@ -68,12 +59,9 @@ set omnifunc=syntaxcomplete#Complete
 
 
 set splitbelow
-" set splitright
 " Enable omni completion."
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 let g:echodoc_enable_at_startup=1
@@ -94,12 +82,6 @@ set completeopt-=preview
 set completeopt+=noinsert
 
 "neo-jedi compatibility"
-" let g:jedi#popup_on_dot = 0
-" let g:jedi#auto_vim_configuration = 0
-" let g:jedi#completions_command = ''
-" let g:jedi#goto_definitions_command='<c-]>'
-" autocmd  FileType python let b:did_ftplugin = 1
-" let g:jedi#force_py_version = 3
 let g:deoplete#sources#jedi#python_path='python3'
 let g:flow#autoclose = 1
 
@@ -432,10 +414,6 @@ call dein#add('editorconfig/editorconfig-vim')
 "             \FiletypeLoad('coffee')
 
 " NeoBundleLazy 'Xuyuanp/nerdtree-git-plugin',
-"             \CMDLoad('NERDTreeToggle')
-" NeoBundleLazy 'vim-scripts/grep.vim',
-"             \CMDLoad('Grep', 'GrepArgs', 'GrepBuffer')
-" NeoBundleLazy 'Yggdroot/indentLine',
 "             \CMDLoad('IndentLineToggle')
 
 call dein#end()

@@ -266,7 +266,7 @@ nn <silent> <F8> :TagbarToggle<CR>
 nn <leader>s :lcd %:p:h<CR>:Ttoggle<CR>
 "CtrlP MRU first"
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files --exclude-standard']
  let g:ctrlp_tilde_homedir = 1
 
 "undo list"

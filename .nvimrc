@@ -305,7 +305,6 @@ call dein#add('Raimondi/delimitMate')
 call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/denite.nvim')
 call dein#add('ryanoasis/vim-devicons')
-call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
 call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 call dein#add('airblade/vim-gitgutter')
 call dein#add('michaeljsmith/vim-indent-object')
@@ -367,6 +366,8 @@ call dein#add('godlygeek/tabular',
       \ {'on_cmd': 'Tabularize'})
 call dein#add('majutsushi/tagbar',
       \ {'on_cmd': 'TagbarToggle'})
+call dein#add('tiagofumo/vim-nerdtree-syntax-highlight',
+      \ {'on_cmd': 'NERDTreeToggle'})
 call dein#add('scrooloose/nerdtree',
       \ {'on_cmd': 'NERDTreeToggle'})
 call dein#add('sjl/gundo.vim',

@@ -291,6 +291,7 @@ let g:EclimFileTypeValidate = 0
 autocmd FileType scala nn <buffer> <leader>i :ScalaImport<cr>
 autocmd FileType java nn <buffer> <leader>i :JavaImport<cr>
 
+
 set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
 call dein#begin(expand('~/.vim/dein'))
 
@@ -302,7 +303,6 @@ call dein#add('vim-airline/vim-airline-themes')
 call dein#add('bling/vim-bufferline')
 call dein#add('Raimondi/delimitMate')
 call dein#add('Shougo/unite.vim')
-call dein#add('Shougo/denite.nvim')
 call dein#add('ryanoasis/vim-devicons')
 call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
 call dein#add('Shougo/vimproc.vim', {'build': 'make'})
@@ -312,8 +312,6 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-repeat')
 call dein#add('tpope/vim-rsi')
 call dein#add('tpope/vim-commentary')
-call dein#add('SirVer/ultisnips')
-call dein#add('honza/vim-snippets')
 call dein#add('tpope/vim-surround')
 call dein#add('altercation/vim-colors-solarized')
 call dein#add('ctrlpvim/ctrlp.vim')
@@ -372,13 +370,20 @@ call dein#add('sjl/gundo.vim',
       \ {'on_cmd': 'GundoToggle'})
 call dein#add('benekastah/neomake',
       \ {'on_cmd': 'Neomake'})
+call dein#add('Shougo/denite.nvim',
+      \ {'on_cmd': 'Denite'})
 " call dein#add('kassio/neoterm',
 "       \ {'on_cmd': 'Ttoggle'})
 
 call dein#add('posva/vim-vue',
       \{'on_ft': ['vue']})
-call dein#add('Shougo/deoplete.nvim')
+call dein#add('honza/vim-snippets',
+              \{'on_i': 1})
+call dein#add('Shougo/deoplete.nvim',
+              \{'on_i': 1})
 call dein#add('Shougo/echodoc.vim',
+              \{'on_i': 1})
+call dein#add('SirVer/ultisnips',
               \{'on_i': 1})
 
 call dein#add('milkypostman/vim-togglelist',
@@ -388,18 +393,7 @@ call dein#add('othree/eregex.vim',
 
 call dein#add('gerw/vim-HiLinkTrace')
 " call dein#add('terryma/vim-multiple-cursors')
-call dein#add('editorconfig/editorconfig-vim')
-"
-" call dein#add('fisadev/vim-ctrlp-cmdpalette',
-"       \ {'on_cmd': ['CtrlPCmdPalette']})
-" call dein#add('sgur/ctrlp-extensions.vim',
-"       \ {'on_cmd': ['CtrlPTag', 'CtrlPBufTag']})
-
-" NeoBundle 'gregsexton/gitv'
-" NeoBundle 'scrooloose/syntastic'
-" NeoBundle 'sheerun/vim-polyglot'
-" NeoBundle 'kien/rainbow_parentheses.vim'
-" NeoBundle 'fholgado/minibufexpl.vim'
+" call dein#add('editorconfig/editorconfig-vim')
 
 " NeoBundleLazy 'slim-template/vim-slim',
 "             \FiletypeLoad('slim')
@@ -417,19 +411,22 @@ call dein#add('editorconfig/editorconfig-vim')
 
 call dein#end()
 
-call denite#custom#var('file_rec', 'command',
-\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-call denite#custom#map('_', "\<C-g>", 'input_command_line')
-call denite#custom#map('_', "\<C-j>", 'move_to_next_line')
-call denite#custom#map('_', "\<C-k>", 'move_to_prev_line')
+function DeniteCustomize()
+  call denite#custom#var('file_rec', 'command',
+  \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+  call denite#custom#map('_', "\<C-g>", 'input_command_line')
+  call denite#custom#map('_', "\<C-j>", 'move_to_next_line')
+  call denite#custom#map('_', "\<C-k>", 'move_to_prev_line')
 
-call denite#custom#var('grep', 'command', ['ag'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'final_opts', [])
-call denite#custom#var('grep', 'separator', [])
-call denite#custom#var('grep', 'default_opts',
-    \ ['--vimgrep', '--hidden', '--ignore', '.git', '--ignore', '.min.js'])
-" nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$<CR><C-r><C-w><CR>
+  call denite#custom#var('grep', 'command', ['ag'])
+  call denite#custom#var('grep', 'recursive_opts', [])
+  call denite#custom#var('grep', 'final_opts', [])
+  call denite#custom#var('grep', 'separator', [])
+  call denite#custom#var('grep', 'default_opts',
+      \ ['--vimgrep', '--hidden', '--ignore', '.git', '--ignore', '.min.js'])
+  " nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$<CR><C-r><C-w><CR>
+endfunction
+call dein#set_hook('denite.nvim', 'hook_source', function('DeniteCustomize'))
 
 filetype plugin indent on
 colorscheme solarized

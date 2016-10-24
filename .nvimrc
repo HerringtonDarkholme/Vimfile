@@ -127,10 +127,6 @@ set autoread
 
 "Allow  256 colors in Terminal
 set t_Co=256
-" set t_ZH=[3m
-" set t_ZR=[23m
-"Set colorscheme
-" colorscheme monoterm
 set background=light
 
 "theme
@@ -385,15 +381,15 @@ call dein#add('Shougo/echodoc.vim',
               \{'on_i': 1})
 call dein#add('SirVer/ultisnips',
               \{'on_i': 1})
+call dein#add('editorconfig/editorconfig-vim')
 
 call dein#add('milkypostman/vim-togglelist',
             \{'on_func': 'ToggleLocationList'})
 call dein#add('othree/eregex.vim',
             \{'on_func': 'eregex#toggle'})
 
-call dein#add('gerw/vim-HiLinkTrace')
+" call dein#add('gerw/vim-HiLinkTrace')
 " call dein#add('terryma/vim-multiple-cursors')
-" call dein#add('editorconfig/editorconfig-vim')
 
 " NeoBundleLazy 'slim-template/vim-slim',
 "             \FiletypeLoad('slim')

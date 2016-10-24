@@ -259,7 +259,6 @@ nn <silent> <leader>u :GundoToggle<CR>
 nn <silent> gb :Unite grep:%<CR><C-r><C-w><CR>
 nn <silent> <leader>g :Unite grep:. -default-action=tabopen<CR>
 nn <silent> gl :Unite grep:$buffers -default-action=tabopen<CR><C-r><C-w>
-nn <silent> gr :Unite grep:.:--include='*.<C-r>=expand("%:e")<CR>' -default-action=tabopen<CR><C-r><C-w><CR>
 
 " neoterm
 let g:neoterm_size = '10'
@@ -283,7 +282,7 @@ let g:unite_source_grep_default_opts =
 \ '--ignore ''.min.js'''
 let g:unite_source_grep_recursive_opt = ''
 
-" nn <silent> gr :Unite grep:.:'-G\.<C-r>=expand("%:e")<CR>$' -default-action=tabopen<CR><C-r><C-w><CR>
+nn <silent> gr :Unite grep:.:'-G\.<C-r>=expand("%:e")<CR>$' -default-action=tabopen<CR><C-r><C-w><CR>
 
 let g:dein#install_process_timeout=1000
 "eclim
@@ -430,7 +429,7 @@ call denite#custom#var('grep', 'final_opts', [])
 call denite#custom#var('grep', 'separator', [])
 call denite#custom#var('grep', 'default_opts',
     \ ['--vimgrep', '--hidden', '--ignore', '.git', '--ignore', '.min.js'])
-nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$<CR><C-r><C-w><CR>
+" nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$<CR><C-r><C-w><CR>
 
 filetype plugin indent on
 colorscheme solarized

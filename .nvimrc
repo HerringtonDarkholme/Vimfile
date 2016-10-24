@@ -283,7 +283,7 @@ let g:unite_source_grep_default_opts =
 \ '--ignore ''.min.js'''
 let g:unite_source_grep_recursive_opt = ''
 
-nn <silent> gr :Unite grep:.:'-G\.<C-r>=expand("%:e")<CR>$' -default-action=tabopen<CR><C-r><C-w><CR>
+" nn <silent> gr :Unite grep:.:'-G\.<C-r>=expand("%:e")<CR>$' -default-action=tabopen<CR><C-r><C-w><CR>
 
 let g:dein#install_process_timeout=1000
 "eclim
@@ -417,6 +417,20 @@ call dein#add('editorconfig/editorconfig-vim')
 "             \CMDLoad('IndentLineToggle')
 
 call dein#end()
+
+call denite#custom#var('file_rec', 'command',
+\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+call denite#custom#map('_', "\<C-g>", 'input_command_line')
+call denite#custom#map('_', "\<C-j>", 'move_to_next_line')
+call denite#custom#map('_', "\<C-k>", 'move_to_prev_line')
+
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'final_opts', [])
+call denite#custom#var('grep', 'separator', [])
+call denite#custom#var('grep', 'default_opts',
+    \ ['--vimgrep', '--hidden', '--ignore', '.git', '--ignore', '.min.js'])
+nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$<CR><C-r><C-w><CR>
 
 filetype plugin indent on
 colorscheme solarized

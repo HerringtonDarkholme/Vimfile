@@ -263,6 +263,7 @@ let g:neoterm_size = '10'
 " autocmd BufEnter *.xml imap <buffer><expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " autocmd BufEnter *.html imap <buffer><expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 let g:gitgutter_async = 0
+let g:EditorConfig_core_mode = 'python_external'
 
 
 " comment plugin"

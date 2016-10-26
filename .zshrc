@@ -87,11 +87,12 @@ export LC_CTYPE="en_US.UTF-8"
 # alias ctags=/usr/local/bin/ctags
 # alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim'
 alias v='TERM=gnome-256color nvim'
-alias cm="screen -d -m cmus"
-alias n="cmus-remote -n"
-alias r="cmus-remote -r"
-alias u="cmus-remote -u"
-alias R="cmus-remote -R"
+alias r='ranger'
+# alias cm="screen -d -m cmus"
+# alias n="cmus-remote -n"
+# alias r="cmus-remote -r"
+# alias u="cmus-remote -u"
+# alias R="cmus-remote -R"
 
 # require auto-fu
 source ~/.zsh/auto-fu; auto-fu-install

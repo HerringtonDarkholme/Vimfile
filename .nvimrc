@@ -409,9 +409,15 @@ call dein#end()
 function DeniteCustomize()
   call denite#custom#var('file_rec', 'command',
   \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+  call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+  call denite#custom#var('file_rec/git', 'command',
+  \ ['git', 'ls-files', '-co', '--exclude-standard'])
+  nnoremap <silent> <leader>p :<C-u>Denite
+    \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
   call denite#custom#map('input', "<C-g>", 'input_command_line')
   call denite#custom#map('insert', "<C-j>", 'move_to_next_line')
   call denite#custom#map('insert', "<C-k>", 'move_to_prev_line')
+  call denite#custom#map('insert', "<C-t>", 'do_action:tabopen')
 
   call denite#custom#var('grep', 'command', ['ag'])
   call denite#custom#var('grep', 'recursive_opts', [])

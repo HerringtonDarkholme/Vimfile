@@ -72,10 +72,7 @@ let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.c =
 \ '\w+\.\|\h\w*->'
 let g:deoplete#omni_patterns.javascript = '[^. *\t]\.\w*'
-" let g:deoplete#omni_patterns.typescript =
-" \ '[^. *\t]\.\w*'
-let g:deoplete#omni_patterns.python =
-\ '\w+\.'
+let g:deoplete#omni_patterns.scala='[^. *\t]\.\w*'
 
 set previewheight=10
 set completeopt-=preview
@@ -300,8 +297,7 @@ call dein#add('vim-airline/vim-airline-themes')
 call dein#add('bling/vim-bufferline')
 call dein#add('Raimondi/delimitMate')
 call dein#add('Shougo/unite.vim')
-call dein#add('ryanoasis/vim-devicons')
-call dein#add('tiagofumo/vim-nerdtree-syntax-highlight')
+call dein#add('HerringtonDarkholme/vim-nerdtree-syntax-highlight')
 call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 call dein#add('airblade/vim-gitgutter')
 call dein#add('michaeljsmith/vim-indent-object')
@@ -311,6 +307,7 @@ call dein#add('tpope/vim-rsi')
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-surround')
 call dein#add('altercation/vim-colors-solarized')
+call dein#add('ryanoasis/vim-devicons')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('FelikZ/ctrlp-py-matcher')
 
@@ -324,6 +321,8 @@ call dein#add('zchee/deoplete-jedi',
       \{'on_ft': 'python'})
 call dein#add('derekwyatt/vim-scala',
       \{'on_ft': 'scala'})
+" call dein#add('ensime/ensime-vim',
+"       \{'on_ft': 'scala'})
 call dein#add('fatih/vim-go',
       \{'on_ft': 'go'})
 call dein#add('zchee/deoplete-go',
@@ -351,7 +350,6 @@ call dein#add('othree/yajs.vim',
 call dein#add('moll/vim-node')
 call dein#add('HerringtonDarkholme/yats.vim',
       \{'on_ft': ['typescript', 'vue']})
-" call dein#add('Quramy/tsuquyomi')
 call dein#add('Quramy/tsuquyomi',
       \{'on_ft': 'typescript'})
 call dein#add('mhartington/deoplete-typescript',
@@ -365,7 +363,7 @@ call dein#add('scrooloose/nerdtree',
       \ {'on_cmd': 'NERDTreeToggle'})
 call dein#add('sjl/gundo.vim',
       \ {'on_cmd': 'GundoToggle'})
-call dein#add('benekastah/neomake',
+call dein#add('neomake/neomake',
       \ {'on_cmd': 'Neomake'})
 call dein#add('Shougo/denite.nvim',
       \ {'on_cmd': 'Denite'})
@@ -411,9 +409,15 @@ call dein#end()
 function DeniteCustomize()
   call denite#custom#var('file_rec', 'command',
   \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-  call denite#custom#map('_', "\<C-g>", 'input_command_line')
-  call denite#custom#map('_', "\<C-j>", 'move_to_next_line')
-  call denite#custom#map('_', "\<C-k>", 'move_to_prev_line')
+  call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+  call denite#custom#var('file_rec/git', 'command',
+  \ ['git', 'ls-files', '-co', '--exclude-standard'])
+  nnoremap <silent> <leader>p :<C-u>Denite
+    \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+  call denite#custom#map('input', "<C-g>", 'input_command_line')
+  call denite#custom#map('insert', "<C-j>", 'move_to_next_line')
+  call denite#custom#map('insert', "<C-k>", 'move_to_prev_line')
+  call denite#custom#map('insert', "<C-t>", 'do_action:tabopen')
 
   call denite#custom#var('grep', 'command', ['ag'])
   call denite#custom#var('grep', 'recursive_opts', [])

@@ -276,7 +276,8 @@ let g:unite_source_grep_default_opts =
 \ '--ignore ''.min.js'''
 let g:unite_source_grep_recursive_opt = ''
 
-nn <silent> gr :Unite grep:.:'-G\.<C-r>=expand("%:e")<CR>$' -default-action=tabopen<CR><C-r><C-w><CR>
+" nn <silent> gr :Unite grep:.:'-G\.<C-r>=expand("%:e")<CR>$' -default-action=tabopen<CR><C-r><C-w><CR>
+nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$<CR><C-r><C-w><CR>
 
 let g:dein#install_process_timeout=1000
 "eclim
@@ -352,8 +353,8 @@ call dein#add('HerringtonDarkholme/yats.vim',
       \{'on_ft': ['typescript', 'vue']})
 call dein#add('Quramy/tsuquyomi',
       \{'on_ft': 'typescript'})
-call dein#add('mhartington/deoplete-typescript',
-      \{'on_ft': 'typescript'})
+" call dein#add('mhartington/deoplete-typescript',
+"       \{'on_ft': 'typescript'})
 
 call dein#add('godlygeek/tabular',
       \ {'on_cmd': 'Tabularize'})
@@ -425,7 +426,6 @@ function DeniteCustomize()
   call denite#custom#var('grep', 'separator', [])
   call denite#custom#var('grep', 'default_opts',
       \ ['--vimgrep', '--hidden', '--ignore', '.git', '--ignore', '.min.js'])
-  " nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$<CR><C-r><C-w><CR>
 endfunction
 call dein#set_hook('denite.nvim', 'hook_source', function('DeniteCustomize'))
 

@@ -248,20 +248,12 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files --exclude-s
 
 "undo list"
 nn <silent> <leader>u :GundoToggle<CR>
-"Grep"
-" nn <silent> gb :Unite grep:%<CR><C-r><C-w><CR>
-" nn <silent> <leader>g :Unite grep:. -default-action=tabopen<CR>
-" nn <silent> gl :Unite grep:$buffers -default-action=tabopen<CR><C-r><C-w>
-
-" neoterm
-let g:neoterm_size = '10'
 
 "emmet
 " autocmd BufEnter *.xml imap <buffer><expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " autocmd BufEnter *.html imap <buffer><expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 let g:gitgutter_async = 0
 let g:EditorConfig_core_mode = 'python_external'
-
 
 " comment plugin"
 au FileType scss setlocal commentstring=//%s
@@ -276,7 +268,11 @@ au FileType scss setlocal commentstring=//%s
 " \ '--ignore ''.min.js'''
 " let g:unite_source_grep_recursive_opt = ''
 
+"Grep"
+" nn <silent> gb :Unite grep:%<CR><C-r><C-w><CR>
+" nn <silent> gl :Unite grep:$buffers -default-action=tabopen<CR><C-r><C-w>
 " nn <silent> gr :Unite grep:.:'-G\.<C-r>=expand("%:e")<CR>$' -default-action=tabopen<CR><C-r><C-w><CR>
+nn <silent> <leader>g :Denite grep -default-action=tabopen<CR>
 nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$<CR><C-r><C-w><CR>
 
 let g:dein#install_process_timeout=1000

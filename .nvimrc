@@ -236,7 +236,7 @@ autocmd FileType javascript nn <buffer> <leader>q :TernRename<cr>
 nnoremap <silent><F2> :call ToggleLocationList()<CR>
 
 "yank history yankring"
-nn <silent> <F12> :Unite history/yank<CR>
+" nn <silent> <F12> :Unite history/yank<CR>
 nn <silent> <F8> :TagbarToggle<CR>
 
 "VimShell"
@@ -248,13 +248,6 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files --exclude-s
 
 "undo list"
 nn <silent> <leader>u :GundoToggle<CR>
-"Grep"
-nn <silent> gb :Unite grep:%<CR><C-r><C-w><CR>
-nn <silent> <leader>g :Unite grep:. -default-action=tabopen<CR>
-nn <silent> gl :Unite grep:$buffers -default-action=tabopen<CR><C-r><C-w>
-
-" neoterm
-let g:neoterm_size = '10'
 
 "emmet
 " autocmd BufEnter *.xml imap <buffer><expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
@@ -262,21 +255,25 @@ let g:neoterm_size = '10'
 let g:gitgutter_async = 0
 let g:EditorConfig_core_mode = 'python_external'
 
-
 " comment plugin"
 au FileType scss setlocal commentstring=//%s
 
 "Unite"
-nnoremap <leader><C-p> :<C-u>Unite -start-insert file_rec/async<CR>
-let g:unite_split_rule = 'botright'
-let g:unite_prompt='> '
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts =
-\ '--vimgrep --hidden --ignore ''.git'' ' .
-\ '--ignore ''.min.js'''
-let g:unite_source_grep_recursive_opt = ''
+" nnoremap <leader><C-p> :<C-u>Unite -start-insert file_rec/async<CR>
+" let g:unite_split_rule = 'botright'
+" let g:unite_prompt='> '
+" let g:unite_source_grep_command = 'ag'
+" let g:unite_source_grep_default_opts =
+" \ '--vimgrep --hidden --ignore ''.git'' ' .
+" \ '--ignore ''.min.js'''
+" let g:unite_source_grep_recursive_opt = ''
 
-nn <silent> gr :Unite grep:.:'-G\.<C-r>=expand("%:e")<CR>$' -default-action=tabopen<CR><C-r><C-w><CR>
+"Grep"
+" nn <silent> gb :Unite grep:%<CR><C-r><C-w><CR>
+" nn <silent> gl :Unite grep:$buffers -default-action=tabopen<CR><C-r><C-w>
+" nn <silent> gr :Unite grep:.:'-G\.<C-r>=expand("%:e")<CR>$' -default-action=tabopen<CR><C-r><C-w><CR>
+nn <silent> <leader>g :Denite grep -default-action=tabopen<CR>
+nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$<CR><C-r><C-w><CR>
 
 let g:dein#install_process_timeout=1000
 "eclim
@@ -296,7 +293,7 @@ call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('bling/vim-bufferline')
 call dein#add('Raimondi/delimitMate')
-call dein#add('Shougo/unite.vim')
+" call dein#add('Shougo/unite.vim')
 call dein#add('HerringtonDarkholme/vim-nerdtree-syntax-highlight')
 call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 call dein#add('airblade/vim-gitgutter')
@@ -352,8 +349,8 @@ call dein#add('HerringtonDarkholme/yats.vim',
       \{'on_ft': ['typescript', 'vue']})
 call dein#add('Quramy/tsuquyomi',
       \{'on_ft': 'typescript'})
-call dein#add('mhartington/deoplete-typescript',
-      \{'on_ft': 'typescript'})
+" call dein#add('mhartington/deoplete-typescript',
+"       \{'on_ft': 'typescript'})
 
 call dein#add('godlygeek/tabular',
       \ {'on_cmd': 'Tabularize'})
@@ -425,7 +422,6 @@ function DeniteCustomize()
   call denite#custom#var('grep', 'separator', [])
   call denite#custom#var('grep', 'default_opts',
       \ ['--vimgrep', '--hidden', '--ignore', '.git', '--ignore', '.min.js'])
-  " nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$<CR><C-r><C-w><CR>
 endfunction
 call dein#set_hook('denite.nvim', 'hook_source', function('DeniteCustomize'))
 

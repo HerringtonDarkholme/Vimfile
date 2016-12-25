@@ -411,10 +411,10 @@ function DeniteCustomize()
   \ ['git', 'ls-files', '-co', '--exclude-standard'])
   nnoremap <silent> <leader>p :<C-u>Denite
     \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
-  call denite#custom#map('input', "<C-g>", 'input_command_line')
-  call denite#custom#map('insert', "<C-j>", 'move_to_next_line')
-  call denite#custom#map('insert', "<C-k>", 'move_to_prev_line')
-  call denite#custom#map('insert', "<C-t>", 'do_action:tabopen')
+  " call denite#custom#map('input', "<C-g>", 'input_command_line')
+  call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
+  call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
+  call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
 
   call denite#custom#var('grep', 'command', ['ag'])
   call denite#custom#var('grep', 'recursive_opts', [])

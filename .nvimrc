@@ -322,8 +322,8 @@ call dein#add('derekwyatt/vim-scala',
 "       \{'on_ft': 'scala'})
 call dein#add('fatih/vim-go',
       \{'on_ft': 'go'})
-call dein#add('zchee/deoplete-go',
-      \{'on_ft': 'go'})
+" call dein#add('zchee/deoplete-go',
+"       \{'on_ft': 'go'})
 call dein#add('digitaltoad/vim-pug',
       \{'on_ft': ['pug', 'vue']})
 call dein#add('HerringtonDarkholme/jedi-syntax',
@@ -344,13 +344,15 @@ call dein#add('flowtype/vim-flow',
       \{'on_ft': 'javascript'})
 call dein#add('othree/yajs.vim',
       \{'on_ft': 'javascript'})
+call dein#add('othree/es.next.syntax.vim',
+      \{'on_ft': 'javascript'})
 call dein#add('moll/vim-node')
 call dein#add('HerringtonDarkholme/yats.vim',
       \{'on_ft': ['typescript', 'vue']})
 call dein#add('Quramy/tsuquyomi',
       \{'on_ft': 'typescript'})
-" call dein#add('mhartington/deoplete-typescript',
-"       \{'on_ft': 'typescript'})
+call dein#add('mhartington/deoplete-typescript',
+      \{'on_ft': 'typescript'})
 
 call dein#add('godlygeek/tabular',
       \ {'on_cmd': 'Tabularize'})
@@ -384,7 +386,7 @@ call dein#add('milkypostman/vim-togglelist',
 call dein#add('othree/eregex.vim',
             \{'on_func': 'eregex#toggle'})
 
-" call dein#add('gerw/vim-HiLinkTrace')
+call dein#add('gerw/vim-HiLinkTrace')
 " call dein#add('terryma/vim-multiple-cursors')
 
 " NeoBundleLazy 'slim-template/vim-slim',

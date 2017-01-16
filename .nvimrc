@@ -322,8 +322,8 @@ call dein#add('ensime/ensime-vim',
       \{'on_ft': 'scala'})
 call dein#add('fatih/vim-go',
       \{'on_ft': 'go'})
-call dein#add('zchee/deoplete-go',
-      \{'on_ft': 'go'})
+" call dein#add('zchee/deoplete-go',
+"       \{'on_ft': 'go'})
 call dein#add('digitaltoad/vim-pug',
       \{'on_ft': ['pug', 'vue']})
 call dein#add('HerringtonDarkholme/jedi-syntax',
@@ -343,6 +343,8 @@ call dein#add('nikvdp/ejs-syntax',
 call dein#add('flowtype/vim-flow',
       \{'on_ft': 'javascript'})
 call dein#add('othree/yajs.vim',
+      \{'on_ft': 'javascript'})
+call dein#add('othree/es.next.syntax.vim',
       \{'on_ft': 'javascript'})
 call dein#add('moll/vim-node')
 call dein#add('HerringtonDarkholme/yats.vim',
@@ -384,7 +386,7 @@ call dein#add('milkypostman/vim-togglelist',
 call dein#add('othree/eregex.vim',
             \{'on_func': 'eregex#toggle'})
 
-" call dein#add('gerw/vim-HiLinkTrace')
+call dein#add('gerw/vim-HiLinkTrace')
 " call dein#add('terryma/vim-multiple-cursors')
 
 " NeoBundleLazy 'slim-template/vim-slim',
@@ -419,6 +421,7 @@ function DeniteCustomize()
   call denite#custom#var('grep', 'command', ['ag'])
   call denite#custom#var('grep', 'recursive_opts', [])
   call denite#custom#var('grep', 'final_opts', [])
+  call denite#custom#var('grep', 'pattern_opt', [])
   call denite#custom#var('grep', 'separator', [])
   call denite#custom#var('grep', 'default_opts',
       \ ['--vimgrep', '--hidden', '--ignore', '.git', '--ignore', '.min.js'])

@@ -307,6 +307,7 @@ call dein#add('altercation/vim-colors-solarized')
 call dein#add('ryanoasis/vim-devicons')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('FelikZ/ctrlp-py-matcher')
+call dein#add('itchyny/vim-cursorword')
 
 call dein#add('justmao945/vim-clang',
       \{'on_ft': ['c', 'cpp']})

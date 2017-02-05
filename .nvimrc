@@ -318,8 +318,8 @@ call dein#add('zchee/deoplete-jedi',
       \{'on_ft': 'python'})
 call dein#add('derekwyatt/vim-scala',
       \{'on_ft': 'scala'})
-" call dein#add('ensime/ensime-vim',
-"       \{'on_ft': 'scala'})
+call dein#add('ensime/ensime-vim',
+      \{'on_ft': 'scala'})
 call dein#add('fatih/vim-go',
       \{'on_ft': 'go'})
 " call dein#add('zchee/deoplete-go',

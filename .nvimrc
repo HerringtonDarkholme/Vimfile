@@ -322,8 +322,8 @@ call dein#add('ensime/ensime-vim',
       \{'on_ft': 'scala'})
 call dein#add('fatih/vim-go',
       \{'on_ft': 'go'})
-" call dein#add('zchee/deoplete-go',
-"       \{'on_ft': 'go'})
+call dein#add('zchee/deoplete-go',
+      \{'on_ft': 'go'})
 call dein#add('digitaltoad/vim-pug',
       \{'on_ft': ['pug', 'vue']})
 call dein#add('HerringtonDarkholme/jedi-syntax',

@@ -273,7 +273,7 @@ au FileType scss setlocal commentstring=//%s
 " nn <silent> gl :Unite grep:$buffers -default-action=tabopen<CR><C-r><C-w>
 " nn <silent> gr :Unite grep:.:'-G\.<C-r>=expand("%:e")<CR>$' -default-action=tabopen<CR><C-r><C-w><CR>
 nn <silent> <leader>g :Denite grep -default-action=tabopen<CR>
-nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$<CR><C-r><C-w><CR>
+nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$:<C-r><C-w><CR>
 
 let g:dein#install_process_timeout=1000
 "eclim
@@ -281,6 +281,10 @@ let g:EclimCompletionMethod='omnifunc'
 let g:EclimFileTypeValidate = 0
 autocmd FileType scala nn <buffer> <leader>i :ScalaImport<cr>
 autocmd FileType java nn <buffer> <leader>i :JavaImport<cr>
+
+let g:LanguageClient_serverCommands = {
+    \ 'vue': ['node', '/home/face/Desktop/vetur/server/dist/htmlServerMain.js', '--stdio'],
+    \ }
 
 
 set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
@@ -318,8 +322,8 @@ call dein#add('zchee/deoplete-jedi',
       \{'on_ft': 'python'})
 call dein#add('derekwyatt/vim-scala',
       \{'on_ft': 'scala'})
-call dein#add('ensime/ensime-vim',
-      \{'on_ft': 'scala'})
+" call dein#add('ensime/ensime-vim',
+"       \{'on_ft': 'scala'})
 call dein#add('fatih/vim-go',
       \{'on_ft': 'go'})
 call dein#add('zchee/deoplete-go',
@@ -387,6 +391,7 @@ call dein#add('othree/eregex.vim',
             \{'on_func': 'eregex#toggle'})
 
 call dein#add('gerw/vim-HiLinkTrace')
+call dein#add('autozimu/LanguageClient-neovim')
 " call dein#add('terryma/vim-multiple-cursors')
 
 " NeoBundleLazy 'slim-template/vim-slim',

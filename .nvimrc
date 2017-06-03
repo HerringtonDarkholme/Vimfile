@@ -285,6 +285,15 @@ autocmd FileType java nn <buffer> <leader>i :JavaImport<cr>
 let g:LanguageClient_serverCommands = {
     \ 'vue': ['node', '/home/face/Desktop/vetur/server/dist/htmlServerMain.js', '--stdio'],
     \ }
+let g:LanguageClient_signColumnAlwaysOn = 0
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_diagnosticsList = 'location'
+
+augroup vueautocmd
+  autocmd FileType vue nn <buffer> K :call LanguageClient_textDocument_hover()<CR>
+  autocmd FileType vue nn <buffer> <C-]> :call LanguageClient_textDocument_definition()<CR>
+  autocmd FileType vue nn <buffer> <C-r> :call LanguageClient_textDocument_references()<CR>
+augroup end
 
 
 set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
@@ -311,6 +320,11 @@ call dein#add('altercation/vim-colors-solarized')
 call dein#add('ryanoasis/vim-devicons')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('FelikZ/ctrlp-py-matcher')
+call dein#add('autozimu/LanguageClient-neovim')
+
+let g:LanguageClient_serverCommands = {
+    \ 'vue': ['vls'],
+    \ }
 
 call dein#add('justmao945/vim-clang',
       \{'on_ft': ['c', 'cpp']})
@@ -370,8 +384,6 @@ call dein#add('neomake/neomake',
       \ {'on_cmd': 'Neomake'})
 call dein#add('Shougo/denite.nvim',
       \ {'on_cmd': 'Denite'})
-" call dein#add('kassio/neoterm',
-"       \ {'on_cmd': 'Ttoggle'})
 
 call dein#add('posva/vim-vue',
       \{'on_ft': ['vue']})

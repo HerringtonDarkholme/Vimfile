@@ -284,7 +284,7 @@ autocmd FileType scala nn <buffer> <leader>i :ScalaImport<cr>
 autocmd FileType java nn <buffer> <leader>i :JavaImport<cr>
 
 let g:LanguageClient_serverCommands = {
-    \ 'vue': ['node', '/home/face/Desktop/vetur/server/dist/htmlServerMain.js', '--stdio'],
+    \ 'vue': ['vls'],
     \ }
 let g:LanguageClient_signColumnAlwaysOn = 0
 let g:LanguageClient_autoStart = 1
@@ -385,6 +385,8 @@ call dein#add('neomake/neomake',
       \ {'on_cmd': 'Neomake'})
 call dein#add('Shougo/denite.nvim',
       \ {'on_cmd': 'Denite'})
+call dein#add('Shougo/vinarise.vim',
+      \ {'on_cmd': 'Vinarise'})
 
 call dein#add('posva/vim-vue',
       \{'on_ft': ['vue']})

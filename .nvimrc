@@ -39,15 +39,15 @@ let g:eregex_default_enable = 0
 set laststatus=2
 "skip mode info in cmd
 set noshowmode
-"quick leave insert mode
-if ! has('gui_running')
-     set ttimeoutlen=10
-     augroup FastEscape
-         autocmd!
-         au InsertEnter * set timeoutlen=0
-         au InsertLeave * set timeoutlen=1000
-     augroup END
-endif
+" "quick leave insert mode
+" if ! has('gui_running')
+"      set ttimeoutlen=10
+"      augroup FastEscape
+"          autocmd!
+"          au InsertEnter * set timeoutlen=0
+"          au InsertLeave * set timeoutlen=1000
+"      augroup END
+" endif
 
 " " GUIsh insert cursor"
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -252,6 +252,7 @@ nn <silent> <leader>u :GundoToggle<CR>
 "emmet
 " autocmd BufEnter *.xml imap <buffer><expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " autocmd BufEnter *.html imap <buffer><expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+ imap <C-y><C-y> <plug>(emmet-expand-abbr)
 let g:gitgutter_async = 0
 let g:EditorConfig_core_mode = 'python_external'
 
@@ -292,7 +293,7 @@ let g:LanguageClient_diagnosticsList = 'location'
 augroup vueautocmd
   autocmd FileType vue nn <buffer> K :call LanguageClient_textDocument_hover()<CR>
   autocmd FileType vue nn <buffer> <C-]> :call LanguageClient_textDocument_definition()<CR>
-  autocmd FileType vue nn <buffer> <C-r> :call LanguageClient_textDocument_references()<CR>
+  autocmd FileType vue nn <buffer> <c-l> :call LanguageClient_textDocument_references()<CR>
 augroup end
 
 

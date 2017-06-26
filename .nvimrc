@@ -293,7 +293,7 @@ let g:LanguageClient_diagnosticsList = 'location'
 augroup vueautocmd
   autocmd FileType vue nn <buffer> K :call LanguageClient_textDocument_hover()<CR>
   autocmd FileType vue nn <buffer> <C-]> :call LanguageClient_textDocument_definition()<CR>
-  autocmd FileType vue nn <buffer> <c-l> :call LanguageClient_textDocument_references()<CR>
+  autocmd FileType vue nn <buffer> <c-^> :call LanguageClient_textDocument_references()<CR>
 augroup end
 
 

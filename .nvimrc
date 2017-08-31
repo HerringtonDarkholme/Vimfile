@@ -298,11 +298,6 @@ augroup vueautocmd
   autocmd FileType vue nn <buffer> <c-^> :call LanguageClient_textDocument_references()<CR>
 augroup end
 
-let g:LanguageClient_serverCommands = {
-    \ 'vue': ['vls'],
-    \ }
-
-
 set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
 call dein#begin(expand('~/.vim/dein'))
 

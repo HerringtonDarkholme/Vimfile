@@ -348,7 +348,7 @@ call dein#add('digitaltoad/vim-pug',
 call dein#add('HerringtonDarkholme/jedi-syntax',
       \{'on_ft': 'jedi'})
 call dein#add('mattn/emmet-vim',
-      \{'on_ft': ['html', 'xml']})
+      \{'on_ft': ['html', 'xml', 'vue']})
 call dein#add('othree/html5.vim',
       \{'on_ft': ['html', 'pug', 'jedi']})
 call dein#add('wavded/vim-stylus',

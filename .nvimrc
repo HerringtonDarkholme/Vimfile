@@ -163,7 +163,9 @@ autocmd FileType css nn <buffer> <leader>f :call CSSBeautify()<cr>
 " redraw
 nnoremap <C-S-l> <esc>:<c-u>redraw!
 
-autocmd FileType typescript nn <buffer> K :<C-u>echo tsuquyomi#hint()<CR>
+" autocmd FileType typescript nn <buffer> K :<C-u>echo tsuquyomi#hint()<CR>
+autocmd FileType typescript nn <buffer> K :<C-u>TSType<CR>
+autocmd FileType typescript nn <buffer> <ctrl-]> :<C-u>TSDef<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Moving Around!!
@@ -296,6 +298,10 @@ augroup vueautocmd
   autocmd FileType vue nn <buffer> <c-^> :call LanguageClient_textDocument_references()<CR>
 augroup end
 
+let g:LanguageClient_serverCommands = {
+    \ 'vue': ['vls'],
+    \ }
+
 
 set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
 call dein#begin(expand('~/.vim/dein'))
@@ -321,11 +327,7 @@ call dein#add('altercation/vim-colors-solarized')
 call dein#add('ryanoasis/vim-devicons')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('FelikZ/ctrlp-py-matcher')
-call dein#add('autozimu/LanguageClient-neovim')
-
-let g:LanguageClient_serverCommands = {
-    \ 'vue': ['vls'],
-    \ }
+call dein#add('HerringtonDarkholme/LanguageClient-neovim')
 
 call dein#add('justmao945/vim-clang',
       \{'on_ft': ['c', 'cpp']})
@@ -368,8 +370,8 @@ call dein#add('othree/es.next.syntax.vim',
 call dein#add('moll/vim-node')
 call dein#add('HerringtonDarkholme/yats.vim',
       \{'on_ft': ['typescript', 'vue']})
-call dein#add('Quramy/tsuquyomi',
-      \{'on_ft': 'typescript'})
+" call dein#add('Quramy/tsuquyomi',
+"       \{'on_ft': 'typescript'})
 call dein#add('mhartington/deoplete-typescript',
       \{'on_ft': 'typescript'})
 

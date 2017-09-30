@@ -115,3 +115,5 @@ alias npm='npm --registry=https://registry.npm.taobao.org'
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 export GOPATH="$HOME/gocode"
 export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
+source $HOME/.cargo/env
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"

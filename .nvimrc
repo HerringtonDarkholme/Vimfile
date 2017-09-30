@@ -288,15 +288,16 @@ autocmd FileType java nn <buffer> <leader>i :JavaImport<cr>
 
 let g:LanguageClient_serverCommands = {
     \ 'vue': ['vls'],
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ }
 let g:LanguageClient_signColumnAlwaysOn = 0
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_diagnosticsList = 'location'
 
 augroup vueautocmd
-  autocmd FileType vue nn <buffer> K :call LanguageClient_textDocument_hover()<CR>
-  autocmd FileType vue nn <buffer> <C-]> :call LanguageClient_textDocument_definition()<CR>
-  autocmd FileType vue nn <buffer> <c-^> :call LanguageClient_textDocument_references()<CR>
+  autocmd FileType vue,rust nn <buffer> K :call LanguageClient_textDocument_hover()<CR>
+  autocmd FileType vue,rust nn <buffer> <C-]> :call LanguageClient_textDocument_definition()<CR>
+  autocmd FileType vue,rust nn <buffer> <c-^> :call LanguageClient_textDocument_references()<CR>
 augroup end
 
 set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
@@ -335,6 +336,8 @@ call dein#add('zchee/deoplete-jedi',
       \{'on_ft': 'python'})
 call dein#add('derekwyatt/vim-scala',
       \{'on_ft': 'scala'})
+call dein#add('rust-lang/rust.vim',
+      \{'on_ft': 'rust'})
 " call dein#add('ensime/ensime-vim',
 "       \{'on_ft': 'scala'})
 call dein#add('fatih/vim-go',

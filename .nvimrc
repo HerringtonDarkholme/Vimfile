@@ -305,7 +305,7 @@ call dein#begin(expand('~/.vim/dein'))
 
 call dein#add('Shougo/dein.vim')
 
-call dein#add('L9')
+call dein#add('vim-scripts/L9')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('bling/vim-bufferline')

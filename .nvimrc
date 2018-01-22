@@ -72,7 +72,7 @@ let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.c =
 \ '\w+\.\|\h\w*->'
-let g:deoplete#omni_patterns.javascript = '[^. *\t]\.\w*'
+" let g:deoplete#omni_patterns.javascript = '[^. *\t]\.\w*'
 let g:deoplete#omni_patterns.scala='[^. *\t]\.\w*'
 
 set previewheight=10
@@ -228,6 +228,7 @@ autocmd FileType cpp nn <space>h :vert sf %:t:r.h<cr>
 nn - :NERDTreeToggle<CR>
 let NERDTreeMapOpenSplit = 's'
 let NERDTreeMapOpenVSplit = 'v'
+let NERDTreeIgnore = ['\.pyc$']
 
 " => TernJs shortcut
 autocmd FileType javascript nn <buffer> <leader>. :TernDef<cr>
@@ -287,12 +288,12 @@ autocmd FileType scala nn <buffer> <leader>i :ScalaImport<cr>
 autocmd FileType java nn <buffer> <leader>i :JavaImport<cr>
 
 let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rls'],
     \ 'vue': ['vls'],
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ }
 let g:LanguageClient_signColumnAlwaysOn = 0
 let g:LanguageClient_autoStart = 1
-let g:LanguageClient_diagnosticsList = 'location'
+let g:LanguageClient_diagnosticsList = 'Location'
 
 augroup vueautocmd
   autocmd FileType vue,rust nn <buffer> K :call LanguageClient_textDocument_hover()<CR>
@@ -300,12 +301,17 @@ augroup vueautocmd
   autocmd FileType vue,rust nn <buffer> <c-^> :call LanguageClient_textDocument_references()<CR>
 augroup end
 
+augroup CSSSyntax
+  autocmd!
+  autocmd FileType css,scss,stylus setlocal iskeyword+=-
+augroup END
+
 set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
 call dein#begin(expand('~/.vim/dein'))
 
 call dein#add('Shougo/dein.vim')
 
-call dein#add('L9')
+call dein#add('vim-scripts/L9')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('bling/vim-bufferline')
@@ -358,8 +364,6 @@ call dein#add('cakebaker/scss-syntax.vim',
       \{'on_ft': ['scss', 'sass']})
 call dein#add('maksimr/vim-jsbeautify',
       \{'on_ft': 'javascript'})
-call dein#add('nikvdp/ejs-syntax',
-      \{'on_ft': 'ejs'})
 call dein#add('flowtype/vim-flow',
       \{'on_ft': 'javascript'})
 call dein#add('othree/yajs.vim',

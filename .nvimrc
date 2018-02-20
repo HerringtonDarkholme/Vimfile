@@ -306,6 +306,7 @@ augroup CSSSyntax
   autocmd FileType css,scss,stylus setlocal iskeyword+=-
 augroup END
 
+
 set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
 call dein#begin(expand('~/.vim/dein'))
 
@@ -458,3 +459,4 @@ call dein#set_hook('denite.nvim', 'hook_source', function('DeniteCustomize'))
 filetype plugin indent on
 colorscheme solarized
 syntax enable
+hi Normal ctermbg=None

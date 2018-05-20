@@ -373,9 +373,9 @@ call dein#add('othree/es.next.syntax.vim',
       \{'on_ft': 'javascript'})
 call dein#add('moll/vim-node')
 call dein#add('HerringtonDarkholme/yats.vim',
-      \{'on_ft': ['typescript']})
-call dein#add('HerringtonDarkholme/typescript-vim',
-      \{'on_ft': ['vue']})
+      \{'on_ft': ['typescript', 'typescriptreact']})
+" call dein#add('HerringtonDarkholme/typescript-vim',
+"       \{'on_ft': ['vue']})
 " call dein#add('Quramy/tsuquyomi',
 "       \{'on_ft': 'typescript'})
 call dein#add('mhartington/deoplete-typescript',

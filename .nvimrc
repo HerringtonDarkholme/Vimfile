@@ -79,11 +79,11 @@ set previewheight=10
 set completeopt-=preview
 set completeopt+=noinsert
 
-"neo-jedi compatibility"
 let g:deoplete#sources#jedi#python_path='python3'
 let g:flow#autoclose = 1
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#goto_assignments_command = "<C-]>"
+let g:jedi#completions_enabled = 0
 
 """"""""""""""""""""""""""""""""
 " => TextMate like Ultisnip"

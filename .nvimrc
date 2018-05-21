@@ -82,6 +82,8 @@ set completeopt+=noinsert
 "neo-jedi compatibility"
 let g:deoplete#sources#jedi#python_path='python3'
 let g:flow#autoclose = 1
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#goto_assignments_command = "<C-]>"
 
 """"""""""""""""""""""""""""""""
 " => TextMate like Ultisnip"
@@ -337,8 +339,8 @@ call dein#add('justmao945/vim-clang',
       \{'on_ft': ['c', 'cpp']})
 call dein#add('octol/vim-cpp-enhanced-highlight',
       \{'on_ft': 'cpp'})
-" call dein#add('davidhalter/jedi-vim',
-"       \{'on_ft': 'python'})
+call dein#add('davidhalter/jedi-vim',
+      \{'on_ft': 'python'})
 call dein#add('zchee/deoplete-jedi',
       \{'on_ft': 'python'})
 call dein#add('derekwyatt/vim-scala',

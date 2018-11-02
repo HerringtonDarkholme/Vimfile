@@ -380,7 +380,7 @@ call dein#add('HerringtonDarkholme/yats.vim',
 "       \{'on_ft': ['vue']})
 " call dein#add('Quramy/tsuquyomi',
 "       \{'on_ft': 'typescript'})
-call dein#add('mhartington/deoplete-typescript',
+call dein#add('mhartington/nvim-typescript',
       \{'on_ft': 'typescript'})
 
 call dein#add('godlygeek/tabular',

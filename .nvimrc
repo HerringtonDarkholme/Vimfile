@@ -167,8 +167,7 @@ autocmd FileType css nn <buffer> <leader>f :call CSSBeautify()<cr>
 nnoremap <C-S-l> <esc>:<c-u>redraw!
 
 " autocmd FileType typescript nn <buffer> K :<C-u>echo tsuquyomi#hint()<CR>
-autocmd FileType typescript nn <buffer> K :<C-u>TSType<CR>
-autocmd FileType typescript nn <buffer> <ctrl-]> :<C-u>TSDef<CR>
+let g:nvim_typescript#default_mappings = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Moving Around!!
@@ -282,26 +281,47 @@ au FileType scss setlocal commentstring=//%s
 nn <silent> <leader>g :Denite grep -default-action=tabopen<CR>
 nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$:<C-r><C-w><CR>
 
-let g:dein#install_process_timeout=1000
-"eclim
-let g:EclimCompletionMethod='omnifunc'
-let g:EclimFileTypeValidate = 0
-autocmd FileType scala nn <buffer> <leader>i :ScalaImport<cr>
-autocmd FileType java nn <buffer> <leader>i :JavaImport<cr>
+"let g:dein#install_process_timeout=1000
+""eclim
+"let g:EclimCompletionMethod='omnifunc'
+"let g:EclimFileTypeValidate = 0
+"autocmd FileType scala nn <buffer> <leader>i :ScalaImport<cr>
+"autocmd FileType java nn <buffer> <leader>i :JavaImport<cr>
 
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rls'],
-    \ 'vue': ['vls'],
-    \ }
-let g:LanguageClient_signColumnAlwaysOn = 0
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_diagnosticsList = 'Location'
+" let g:LanguageClient_serverCommands = {
+"     \ 'rust': ['rls'],
+"     \ 'vue': ['vls'],
+"     \ }
+" let g:LanguageClient_signColumnAlwaysOn = 0
+" let g:LanguageClient_autoStart = 1
+" let g:LanguageClient_diagnosticsList = 'Location'
 
-augroup vueautocmd
-  autocmd FileType vue,rust nn <buffer> K :call LanguageClient_textDocument_hover()<CR>
-  autocmd FileType vue,rust nn <buffer> <C-]> :call LanguageClient_textDocument_definition()<CR>
-  autocmd FileType vue,rust nn <buffer> <c-^> :call LanguageClient_textDocument_references()<CR>
-augroup end
+" augroup vueautocmd
+"   autocmd FileType vue,rust nn <buffer> K :call LanguageClient_textDocument_hover()<CR>
+"   autocmd FileType vue,rust nn <buffer> <C-]> :call LanguageClient_textDocument_definition()<CR>
+"   autocmd FileType vue,rust nn <buffer> <c-^> :call LanguageClient_textDocument_references()<CR>
+" augroup end
+
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 augroup CSSSyntax
   autocmd!
@@ -380,8 +400,8 @@ call dein#add('HerringtonDarkholme/yats.vim',
 "       \{'on_ft': ['vue']})
 " call dein#add('Quramy/tsuquyomi',
 "       \{'on_ft': 'typescript'})
-call dein#add('mhartington/nvim-typescript',
-      \{'on_ft': 'typescript'})
+" call dein#add('mhartington/nvim-typescript',
+"       \{'on_ft': 'typescript'})
 
 call dein#add('godlygeek/tabular',
       \ {'on_cmd': 'Tabularize'})
@@ -402,8 +422,10 @@ call dein#add('posva/vim-vue',
       \{'on_ft': ['vue']})
 call dein#add('honza/vim-snippets',
               \{'on_i': 1})
-call dein#add('Shougo/deoplete.nvim',
-              \{'on_i': 1})
+" call dein#add('Shougo/deoplete.nvim',
+"               \{'on_i': 1})
+call dein#add('neoclide/coc.nvim',
+              \{'on_i': 1, 'build': 'yarn install'})
 call dein#add('Shougo/echodoc.vim',
               \{'on_i': 1})
 call dein#add('SirVer/ultisnips',
@@ -416,7 +438,7 @@ call dein#add('othree/eregex.vim',
             \{'on_func': 'eregex#toggle'})
 
 call dein#add('gerw/vim-HiLinkTrace')
-call dein#add('autozimu/LanguageClient-neovim')
+" call dein#add('autozimu/LanguageClient-neovim')
 " call dein#add('terryma/vim-multiple-cursors')
 
 " NeoBundleLazy 'slim-template/vim-slim',

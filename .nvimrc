@@ -79,11 +79,11 @@ set previewheight=10
 set completeopt-=preview
 set completeopt+=noinsert
 
-let g:deoplete#sources#jedi#python_path='python3'
-let g:flow#autoclose = 1
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#goto_assignments_command = "<C-]>"
-let g:jedi#completions_enabled = 0
+" let g:deoplete#sources#jedi#python_path='python3'
+" let g:flow#autoclose = 1
+" let g:jedi#auto_vim_configuration = 0
+" let g:jedi#goto_assignments_command = "<C-]>"
+" let g:jedi#completions_enabled = 0
 
 """"""""""""""""""""""""""""""""
 " => TextMate like Ultisnip"
@@ -307,10 +307,10 @@ nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> <c-]> <Plug>(coc-definition)
+nmap <silent> gd <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" nmap <silent> gr <Plug>(coc-references)
 
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -359,10 +359,10 @@ call dein#add('justmao945/vim-clang',
       \{'on_ft': ['c', 'cpp']})
 call dein#add('octol/vim-cpp-enhanced-highlight',
       \{'on_ft': 'cpp'})
-call dein#add('davidhalter/jedi-vim',
-      \{'on_ft': 'python'})
-call dein#add('zchee/deoplete-jedi',
-      \{'on_ft': 'python'})
+" call dein#add('davidhalter/jedi-vim',
+"       \{'on_ft': 'python'})
+" call dein#add('zchee/deoplete-jedi',
+"       \{'on_ft': 'python'})
 call dein#add('derekwyatt/vim-scala',
       \{'on_ft': 'scala'})
 call dein#add('rust-lang/rust.vim',
@@ -375,8 +375,8 @@ call dein#add('zchee/deoplete-go',
       \{'on_ft': 'go'})
 call dein#add('digitaltoad/vim-pug',
       \{'on_ft': ['pug', 'vue']})
-call dein#add('HerringtonDarkholme/jedi-syntax',
-      \{'on_ft': 'jedi'})
+" call dein#add('HerringtonDarkholme/jedi-syntax',
+"       \{'on_ft': 'jedi'})
 call dein#add('mattn/emmet-vim',
       \{'on_ft': ['html', 'xml', 'vue']})
 call dein#add('othree/html5.vim',
@@ -477,6 +477,9 @@ function DeniteCustomize()
   call denite#custom#var('grep', 'separator', [])
   call denite#custom#var('grep', 'default_opts',
       \ ['--vimgrep', '--hidden', '--ignore', '.git', '--ignore', '.min.js'])
+
+
+  call coc#add_extension('coc-json', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-vetur', 'coc-pyls', 'coc-rls')
 endfunction
 call dein#set_hook('denite.nvim', 'hook_source', function('DeniteCustomize'))
 

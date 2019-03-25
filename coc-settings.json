@@ -1,0 +1,9 @@
+{
+    "suggest.noselect": false,
+    "suggest.echodocSupport": true,
+    "suggest.enablePreview": true,
+    "coc.preferences.hoverTarget": "echo",
+    "diagnostic.errorSign": "✗",
+    "diagnostic.infoSign": "ℹ",
+    "suggest.snippetIndicator": " "
+}

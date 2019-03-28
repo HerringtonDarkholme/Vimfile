@@ -149,7 +149,7 @@ nnoremap <tab> :bn<cr>
 nnoremap <s-tab> :bp<cr>
 
 "lint"
-autocmd! BufWritePost * Neomake
+" autocmd! BufWritePost * Neomake
 let g:neomake_warning_sign = {'text': '!!', 'texthl': 'Search'}
 let g:neomake_error_sign = {'text': '✗', 'texthl': 'ErrorMsg'}
 nmap <leader>a :HLT<cr>
@@ -411,8 +411,8 @@ call dein#add('scrooloose/nerdtree',
       \ {'on_cmd': 'NERDTreeToggle'})
 call dein#add('sjl/gundo.vim',
       \ {'on_cmd': 'GundoToggle'})
-call dein#add('neomake/neomake',
-      \ {'on_cmd': 'Neomake'})
+" call dein#add('neomake/neomake',
+"       \ {'on_cmd': 'Neomake'})
 call dein#add('Shougo/denite.nvim',
       \ {'on_cmd': 'Denite'})
 call dein#add('Shougo/vinarise.vim',

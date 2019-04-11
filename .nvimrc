@@ -58,6 +58,8 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 """"""""""""""""""""""""""""""""""""""""""""""""
 set omnifunc=syntaxcomplete#Complete
 
+let mapleader = "\<space>"
+
 
 set splitbelow
 " Enable omni completion."
@@ -479,7 +481,7 @@ function DeniteCustomize()
       \ ['--vimgrep', '--hidden', '--ignore', '.git', '--ignore', '.min.js'])
 
 
-  call coc#add_extension('coc-json', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-vetur', 'coc-pyls', 'coc-rls')
+  " call coc#add_extension('coc-json', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-vetur', 'coc-pyls', 'coc-rls')
 endfunction
 call dein#set_hook('denite.nvim', 'hook_source', function('DeniteCustomize'))
 

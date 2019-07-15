@@ -112,10 +112,7 @@ export NVM_DIR="$HOME/.nvm"
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
 alias npm='npm --registry=https://registry.npm.taobao.org'
 
-lazy_source () {
-    eval "$1 () { [ -f $2 ] && source $2 && $1 \$@ }"
-}
-lazy_source nvm $NVM_DIR/nvm.sh
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
 
 export GOPATH="$HOME/gocode"
 export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin

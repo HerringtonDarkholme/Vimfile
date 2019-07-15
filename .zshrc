@@ -95,8 +95,8 @@ alias r='ranger'
 # alias R="cmus-remote -R"
 
 # require auto-fu
-source ~/.zsh/auto-fu; auto-fu-install
-zle-line-init () {auto-fu-init;}; zle -N zle-line-init
+# source ~/.zsh/auto-fu; auto-fu-install
+# zle-line-init () {auto-fu-init;}; zle -N zle-line-init
 zstyle ':completion:*' completer _oldlist _complete
 # zle -N zle-keymap-select auto-fu-zle-keymap-select
 zstyle ':auto-fu:highlight' input bold
@@ -112,7 +112,11 @@ export NVM_DIR="$HOME/.nvm"
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
 alias npm='npm --registry=https://registry.npm.taobao.org'
 
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+lazy_source () {
+    eval "$1 () { [ -f $2 ] && source $2 && $1 \$@ }"
+}
+lazy_source nvm $NVM_DIR/nvm.sh
+
 export GOPATH="$HOME/gocode"
 export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
 source $HOME/.cargo/env

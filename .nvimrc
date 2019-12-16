@@ -460,13 +460,13 @@ call dein#add('gerw/vim-HiLinkTrace')
 call dein#end()
 
 function DeniteCustomize()
-  call denite#custom#var('file_rec', 'command',
+  call denite#custom#var('file/rec', 'command',
   \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-  call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-  call denite#custom#var('file_rec/git', 'command',
+  call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+  call denite#custom#var('file/rec/git', 'command',
   \ ['git', 'ls-files', '-co', '--exclude-standard'])
   nnoremap <silent> <leader>p :<C-u>Denite
-    \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+    \ `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<CR>
   " call denite#custom#map('input', "<C-g>", 'input_command_line')
   call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
   call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
@@ -479,6 +479,22 @@ function DeniteCustomize()
   call denite#custom#var('grep', 'separator', [])
   call denite#custom#var('grep', 'default_opts',
       \ ['--vimgrep', '--hidden', '--ignore', '.git', '--ignore', '.min.js'])
+
+  autocmd FileType denite call s:denite_my_settings()
+  function! s:denite_my_settings() abort
+    nnoremap <silent><buffer><expr> <CR>
+    \ denite#do_map('do_action')
+    nnoremap <silent><buffer><expr> d
+    \ denite#do_map('do_action', 'delete')
+    nnoremap <silent><buffer><expr> p
+    \ denite#do_map('do_action', 'preview')
+    nnoremap <silent><buffer><expr> q
+    \ denite#do_map('quit')
+    nnoremap <silent><buffer><expr> i
+    \ denite#do_map('open_filter_buffer')
+    nnoremap <silent><buffer><expr> <Space>
+    \ denite#do_map('toggle_select').'j'
+  endfunction
 
 
   " call coc#add_extension('coc-json', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-vetur', 'coc-pyls', 'coc-rls')

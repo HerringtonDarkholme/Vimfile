@@ -280,7 +280,7 @@ au FileType scss setlocal commentstring=//%s
 " nn <silent> gb :Unite grep:%<CR><C-r><C-w><CR>
 " nn <silent> gl :Unite grep:$buffers -default-action=tabopen<CR><C-r><C-w>
 " nn <silent> gr :Unite grep:.:'-G\.<C-r>=expand("%:e")<CR>$' -default-action=tabopen<CR><C-r><C-w><CR>
-nn <silent> <leader>g :Denite grep -default-action=tabopen<CR>
+nn <silent> <leader>g :Denite grep -default-action=tabswitch<CR>
 nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$:<C-r><C-w><CR>
 
 "let g:dein#install_process_timeout=1000
@@ -488,7 +488,7 @@ function DeniteCustomize()
     \ denite#do_map('do_action', 'delete')
     nnoremap <silent><buffer><expr> p
     \ denite#do_map('do_action', 'preview')
-    nnoremap <silent><buffer><expr> q
+    nnoremap <silent><buffer><expr> <ESC>
     \ denite#do_map('quit')
     nnoremap <silent><buffer><expr> i
     \ denite#do_map('open_filter_buffer')

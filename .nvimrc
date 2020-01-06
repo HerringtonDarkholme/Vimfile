@@ -393,11 +393,15 @@ call dein#add('flowtype/vim-flow',
       \{'on_ft': 'javascript'})
 call dein#add('othree/yajs.vim',
       \{'on_ft': 'javascript'})
+call dein#add('mxw/vim-jsx',
+      \{'on_ft': 'javascript'})
 call dein#add('othree/es.next.syntax.vim',
       \{'on_ft': 'javascript'})
 call dein#add('moll/vim-node')
 call dein#add('HerringtonDarkholme/yats.vim',
       \{'on_ft': ['typescript', 'typescriptreact']})
+call dein#add('solarnz/thrift.vim',
+      \{'on_ft': ['thrift']})
 " call dein#add('HerringtonDarkholme/typescript-vim',
 "       \{'on_ft': ['vue']})
 " call dein#add('Quramy/tsuquyomi',

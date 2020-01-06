@@ -280,8 +280,8 @@ au FileType scss setlocal commentstring=//%s
 " nn <silent> gb :Unite grep:%<CR><C-r><C-w><CR>
 " nn <silent> gl :Unite grep:$buffers -default-action=tabopen<CR><C-r><C-w>
 " nn <silent> gr :Unite grep:.:'-G\.<C-r>=expand("%:e")<CR>$' -default-action=tabopen<CR><C-r><C-w><CR>
-nn <silent> <leader>g :Denite grep -default-action=tabswitch<CR>
-nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$:<C-r><C-w><CR>
+nn <silent> <leader>g :Denite grep -default-action=tabswitch -prompt='>'<CR>
+nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$:<C-r><C-w> -prompt='>'<CR>
 
 "let g:dein#install_process_timeout=1000
 ""eclim

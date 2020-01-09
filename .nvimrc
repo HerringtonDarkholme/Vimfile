@@ -261,7 +261,8 @@ nn <silent> <leader>u :GundoToggle<CR>
 " autocmd BufEnter *.html imap <buffer><expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
  imap <C-y><C-y> <plug>(emmet-expand-abbr)
 let g:gitgutter_async = 0
-let g:EditorConfig_core_mode = 'python_external'
+" let g:EditorConfig_core_mode = 'external_command'
+" let g:EditorConfig_exec_path = 'editorconfig'
 
 " comment plugin"
 au FileType scss setlocal commentstring=//%s

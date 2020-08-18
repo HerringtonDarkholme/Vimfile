@@ -424,6 +424,8 @@ call dein#add('Shougo/denite.nvim',
       \ {'on_cmd': 'Denite'})
 call dein#add('Shougo/vinarise.vim',
       \ {'on_cmd': 'Vinarise'})
+" call dein#add('pechorin/any-jump.vim',
+"       \ {'on_cmd': 'AnyJump'})
 
 call dein#add('posva/vim-vue',
       \{'on_ft': ['vue']})

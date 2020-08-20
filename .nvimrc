@@ -518,3 +518,4 @@ filetype plugin indent on
 colorscheme solarized
 syntax enable
 hi Normal ctermbg=None
+hi NormalFloat cterm=none ctermfg=7 ctermbg=0

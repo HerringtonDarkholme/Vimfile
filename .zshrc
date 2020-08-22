@@ -86,7 +86,7 @@ export LC_CTYPE="en_US.UTF-8"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # alias ctags=/usr/local/bin/ctags
 # alias v='NVIM_TUI_ENABLE_CURSOR_SHAPE=1 nvim'
-alias v='TERM=gnome-256color nvim'
+alias v='nvim'
 alias r='ranger'
 # alias cm="screen -d -m cmus"
 # alias n="cmus-remote -n"

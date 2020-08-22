@@ -2,10 +2,6 @@
     "suggest.noselect": false,
     "suggest.echodocSupport": true,
     "suggest.enablePreview": true,
-    "coc.preferences.hoverTarget": "echo",
-    "diagnostic.checkCurrentLine": true,
-    "diagnostic.messageTarget": "echo",
-    "coc.preferences.enableFloatHighlight": false,
     "diagnostic.errorSign": "✗",
     "diagnostic.infoSign": "ℹ",
     "suggest.snippetIndicator": " "

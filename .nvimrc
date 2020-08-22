@@ -50,8 +50,6 @@ set noshowmode
 "      augroup END
 " endif
 
-" " GUIsh insert cursor"
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => plugin
@@ -68,24 +66,12 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 let g:echodoc_enable_at_startup=1
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_completion_start_length = 1
-let g:deoplete#file#enable_buffer_path = 1
-let g:deoplete#omni_patterns = {}
-let g:deoplete#omni_patterns.c =
-\ '\w+\.\|\h\w*->'
-" let g:deoplete#omni_patterns.javascript = '[^. *\t]\.\w*'
-let g:deoplete#omni_patterns.scala='[^. *\t]\.\w*'
 
 set previewheight=10
 set completeopt-=preview
 set completeopt+=noinsert
 
-" let g:deoplete#sources#jedi#python_path='python3'
 " let g:flow#autoclose = 1
-" let g:jedi#auto_vim_configuration = 0
-" let g:jedi#goto_assignments_command = "<C-]>"
-" let g:jedi#completions_enabled = 0
 
 """"""""""""""""""""""""""""""""
 " => TextMate like Ultisnip"
@@ -362,10 +348,6 @@ call dein#add('justmao945/vim-clang',
       \{'on_ft': ['c', 'cpp']})
 call dein#add('octol/vim-cpp-enhanced-highlight',
       \{'on_ft': 'cpp'})
-" call dein#add('davidhalter/jedi-vim',
-"       \{'on_ft': 'python'})
-" call dein#add('zchee/deoplete-jedi',
-"       \{'on_ft': 'python'})
 call dein#add('derekwyatt/vim-scala',
       \{'on_ft': 'scala'})
 call dein#add('rust-lang/rust.vim',
@@ -374,16 +356,12 @@ call dein#add('rust-lang/rust.vim',
 "       \{'on_ft': 'scala'})
 " call dein#add('fatih/vim-go',
 "       \{'on_ft': 'go'})
-" call dein#add('zchee/deoplete-go',
-"       \{'on_ft': 'go'})
 call dein#add('digitaltoad/vim-pug',
       \{'on_ft': ['pug', 'vue']})
-" call dein#add('HerringtonDarkholme/jedi-syntax',
-"       \{'on_ft': 'jedi'})
 call dein#add('mattn/emmet-vim',
       \{'on_ft': ['html', 'xml', 'vue']})
 call dein#add('othree/html5.vim',
-      \{'on_ft': ['html', 'pug', 'jedi']})
+      \{'on_ft': ['html', 'pug']})
 call dein#add('wavded/vim-stylus',
       \{'on_ft': ['stylus', 'vue']})
 call dein#add('cakebaker/scss-syntax.vim',
@@ -431,8 +409,6 @@ call dein#add('posva/vim-vue',
       \{'on_ft': ['vue']})
 call dein#add('honza/vim-snippets',
               \{'on_i': 1})
-" call dein#add('Shougo/deoplete.nvim',
-"               \{'on_i': 1})
 call dein#add('neoclide/coc.nvim',
               \{'on_i': 1, 'build': 'yarn install'})
 call dein#add('Shougo/echodoc.vim',

@@ -119,3 +119,4 @@ export GO111MODULE="on"
 export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
 source $HOME/.cargo/env
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+eval "$(zoxide init zsh)"

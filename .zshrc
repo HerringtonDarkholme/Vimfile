@@ -122,6 +122,7 @@ export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 eval "$(zoxide init zsh)"
 
 
+export BAT_THEME='Solarized (light)'
 _gen_fzf_default_opts() {
   local base03="12"
   local base02="14"
@@ -150,6 +151,11 @@ _gen_fzf_default_opts() {
   export FZF_DEFAULT_OPTS="
     --color fg:-1,bg:-1,hl:$blue,fg+:$base2,bg+:$base01,hl+:$blue,gutter:$base02
     --color info:$green,prompt:$red,pointer:$base02,marker:$base3,spinner:$yellow
+  "
+
+  export FZF_CTRL_T_OPTS="
+    --ansi --preview-window 'right:60%'
+    --preview '([[ -f {} ]] && (bat --color=always --style=header --line-range :300 {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
   "
   ## Solarized Light color scheme for fzf
   #export FZF_DEFAULT_OPTS="

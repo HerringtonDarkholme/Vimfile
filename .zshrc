@@ -120,3 +120,41 @@ export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
 source $HOME/.cargo/env
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 eval "$(zoxide init zsh)"
+
+
+_gen_fzf_default_opts() {
+  local base03="12"
+  local base02="14"
+  local base01="7"
+  local base00="15"
+  # local base0="12"
+  # local base1="14"
+  # local base2="7"
+  # local base3="15"
+  local base0="8"
+  local base1="0"
+  local base2="10"
+  local base3="11"
+  local yellow="3"
+  local orange="9"
+  local red="1"
+  local magenta="5"
+  local violet="13"
+  local blue="4"
+  local cyan="6"
+  local green="2"
+
+  # Comment and uncomment below for the light theme.
+
+  # Solarized Dark color scheme for fzf
+  export FZF_DEFAULT_OPTS="
+    --color fg:-1,bg:-1,hl:$blue,fg+:$base2,bg+:$base01,hl+:$blue,gutter:$base02
+    --color info:$green,prompt:$red,pointer:$base02,marker:$base3,spinner:$yellow
+  "
+  ## Solarized Light color scheme for fzf
+  #export FZF_DEFAULT_OPTS="
+  #  --color fg:-1,bg:-1,hl:$blue,fg+:$base02,bg+:$base2,hl+:$blue
+  #  --color info:$yellow,prompt:$yellow,pointer:$base03,marker:$base03,spinner:$yellow
+  #"
+}
+_gen_fzf_default_opts

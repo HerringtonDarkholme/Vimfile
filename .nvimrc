@@ -232,12 +232,8 @@ nnoremap <silent><F2> :call ToggleLocationList()<CR>
 " nn <silent> <F12> :Unite history/yank<CR>
 nn <silent> <F8> :TagbarToggle<CR>
 
-"VimShell"
-nn <leader>s :lcd %:p:h<CR>:Ttoggle<CR>
-"CtrlP MRU first"
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files --exclude-standard']
- let g:ctrlp_tilde_homedir = 1
+"CtrlP like"
+nn <C-p> :<C-u>Files<cr>
 
 "undo list"
 nn <silent> <leader>u :GundoToggle<CR>
@@ -317,8 +313,11 @@ augroup CSSSyntax
   autocmd FileType css,scss,stylus setlocal iskeyword+=-
 augroup END
 
+let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+let g:fzf_layout = {'window': '15new'}
 
 set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
+set rtp+=~/.fzf
 call dein#begin(expand('~/.vim/dein'))
 
 call dein#add('Shougo/dein.vim')
@@ -340,9 +339,10 @@ call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-surround')
 call dein#add('altercation/vim-colors-solarized')
 call dein#add('ryanoasis/vim-devicons')
-call dein#add('ctrlpvim/ctrlp.vim')
-call dein#add('FelikZ/ctrlp-py-matcher')
-" call dein#add('HerringtonDarkholme/LanguageClient-neovim')
+" call dein#add('ctrlpvim/ctrlp.vim')
+" call dein#add('FelikZ/ctrlp-py-matcher')
+call dein#add('junegunn/fzf')
+call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})
 
 call dein#add('justmao945/vim-clang',
       \{'on_ft': ['c', 'cpp']})
@@ -381,12 +381,6 @@ call dein#add('HerringtonDarkholme/yats.vim',
       \{'on_ft': ['typescript', 'typescriptreact']})
 call dein#add('solarnz/thrift.vim',
       \{'on_ft': ['thrift']})
-" call dein#add('HerringtonDarkholme/typescript-vim',
-"       \{'on_ft': ['vue']})
-" call dein#add('Quramy/tsuquyomi',
-"       \{'on_ft': 'typescript'})
-" call dein#add('mhartington/nvim-typescript',
-"       \{'on_ft': 'typescript'})
 
 call dein#add('godlygeek/tabular',
       \ {'on_cmd': 'Tabularize'})
@@ -423,19 +417,6 @@ call dein#add('othree/eregex.vim',
             \{'on_func': 'eregex#toggle'})
 
 call dein#add('gerw/vim-HiLinkTrace')
-" call dein#add('autozimu/LanguageClient-neovim')
-" call dein#add('terryma/vim-multiple-cursors')
-
-" NeoBundleLazy 'slim-template/vim-slim',
-"             \FiletypeLoad('slim')
-" NeoBundleLazy 'tpope/vim-haml',
-"             \FiletypeLoad('slim', 'haml')
-" NeoBundleLazy 'tpope/vim-rails',
-"             \FiletypeLoad('ruby')
-" NeoBundleLazy 'jon-jacky/PyModel',
-"             \FiletypeLoad('python')
-" NeoBundleLazy 'HerringtonDarkholme/vim-coffee-script',
-"             \FiletypeLoad('coffee')
 
 " NeoBundleLazy 'Xuyuanp/nerdtree-git-plugin',
 "             \CMDLoad('IndentLineToggle')

@@ -157,10 +157,11 @@ _gen_fzf_default_opts() {
     --ansi --preview-window 'right:60%'
     --preview '([[ -f {} ]] && (bat --color=always --style=header --line-range :300 {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
   "
-  ## Solarized Light color scheme for fzf
-  #export FZF_DEFAULT_OPTS="
-  #  --color fg:-1,bg:-1,hl:$blue,fg+:$base02,bg+:$base2,hl+:$blue
-  #  --color info:$yellow,prompt:$yellow,pointer:$base03,marker:$base03,spinner:$yellow
-  #"
+  export FZF_ALT_C_OPTS="
+    --ansi --preview-window 'right:60%'
+    --preview '([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
+    "
+  export FZF_DEFAULT_COMMAND='ag -g ""'
 }
 _gen_fzf_default_opts
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

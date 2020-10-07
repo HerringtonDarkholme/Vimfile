@@ -249,43 +249,16 @@ let g:gitgutter_async = 0
 " comment plugin"
 au FileType scss setlocal commentstring=//%s
 
-"Unite"
-" nnoremap <leader><C-p> :<C-u>Unite -start-insert file_rec/async<CR>
-" let g:unite_split_rule = 'botright'
-" let g:unite_prompt='> '
-" let g:unite_source_grep_command = 'ag'
-" let g:unite_source_grep_default_opts =
-" \ '--vimgrep --hidden --ignore ''.git'' ' .
-" \ '--ignore ''.min.js'''
-" let g:unite_source_grep_recursive_opt = ''
-
 "Grep"
 " nn <silent> gb :Unite grep:%<CR><C-r><C-w><CR>
 " nn <silent> gl :Unite grep:$buffers -default-action=tabopen<CR><C-r><C-w>
 " nn <silent> gr :Unite grep:.:'-G\.<C-r>=expand("%:e")<CR>$' -default-action=tabopen<CR><C-r><C-w><CR>
-nn <silent> <leader>g :Denite grep -default-action=tabswitch -prompt='>'<CR>
-nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$:<C-r><C-w> -prompt='>'<CR>
+nn <silent> <leader>g :Ag<Space>
+" nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$:<C-r><C-w> -prompt='>'<CR>
+nn <silent> gr :call fzf#vim#ag('<C-r><C-w>', '--hidden --<C-r>=expand("%:e")<CR>', v:false)<CR>
+nn <silent> gb :BLines <C-r><C-w><CR>
 
 "let g:dein#install_process_timeout=1000
-""eclim
-"let g:EclimCompletionMethod='omnifunc'
-"let g:EclimFileTypeValidate = 0
-"autocmd FileType scala nn <buffer> <leader>i :ScalaImport<cr>
-"autocmd FileType java nn <buffer> <leader>i :JavaImport<cr>
-
-" let g:LanguageClient_serverCommands = {
-"     \ 'rust': ['rls'],
-"     \ 'vue': ['vls'],
-"     \ }
-" let g:LanguageClient_signColumnAlwaysOn = 0
-" let g:LanguageClient_autoStart = 1
-" let g:LanguageClient_diagnosticsList = 'Location'
-
-" augroup vueautocmd
-"   autocmd FileType vue,rust nn <buffer> K :call LanguageClient_textDocument_hover()<CR>
-"   autocmd FileType vue,rust nn <buffer> <C-]> :call LanguageClient_textDocument_definition()<CR>
-"   autocmd FileType vue,rust nn <buffer> <c-^> :call LanguageClient_textDocument_references()<CR>
-" augroup end
 
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
@@ -314,7 +287,7 @@ augroup CSSSyntax
 augroup END
 
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
-let g:fzf_layout = {'window': '15new'}
+let g:fzf_layout = {'down': '15'}
 
 set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
 set rtp+=~/.fzf
@@ -327,7 +300,6 @@ call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('bling/vim-bufferline')
 call dein#add('Raimondi/delimitMate')
-" call dein#add('Shougo/unite.vim')
 call dein#add('HerringtonDarkholme/vim-nerdtree-syntax-highlight')
 call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 call dein#add('airblade/vim-gitgutter')
@@ -352,8 +324,6 @@ call dein#add('derekwyatt/vim-scala',
       \{'on_ft': 'scala'})
 call dein#add('rust-lang/rust.vim',
       \{'on_ft': 'rust'})
-" call dein#add('ensime/ensime-vim',
-"       \{'on_ft': 'scala'})
 " call dein#add('fatih/vim-go',
 "       \{'on_ft': 'go'})
 call dein#add('digitaltoad/vim-pug',
@@ -390,14 +360,10 @@ call dein#add('scrooloose/nerdtree',
       \ {'on_cmd': 'NERDTreeToggle'})
 call dein#add('sjl/gundo.vim',
       \ {'on_cmd': 'GundoToggle'})
-" call dein#add('neomake/neomake',
-"       \ {'on_cmd': 'Neomake'})
 call dein#add('Shougo/denite.nvim',
       \ {'on_cmd': 'Denite'})
 call dein#add('Shougo/vinarise.vim',
       \ {'on_cmd': 'Vinarise'})
-" call dein#add('pechorin/any-jump.vim',
-"       \ {'on_cmd': 'AnyJump'})
 
 call dein#add('posva/vim-vue',
       \{'on_ft': ['vue']})
@@ -423,53 +389,45 @@ call dein#add('gerw/vim-HiLinkTrace')
 
 call dein#end()
 
-function DeniteCustomize()
-  call denite#custom#var('file/rec', 'command',
-  \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-  call denite#custom#alias('source', 'file/rec/git', 'file/rec')
-  call denite#custom#var('file/rec/git', 'command',
-  \ ['git', 'ls-files', '-co', '--exclude-standard'])
-  nnoremap <silent> <leader>p :<C-u>Denite
-    \ `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<CR>
-  " call denite#custom#map('input', "<C-g>", 'input_command_line')
-  call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
-  call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
-  call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
+" function DeniteCustomize()
+"   call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
+"   call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
+"   call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
 
-  call denite#custom#var('grep', 'command', ['ag'])
-  call denite#custom#var('grep', 'recursive_opts', [])
-  call denite#custom#var('grep', 'final_opts', [])
-  call denite#custom#var('grep', 'pattern_opt', [])
-  call denite#custom#var('grep', 'separator', [])
-  call denite#custom#var('grep', 'default_opts',
-      \ ['--vimgrep', '--hidden', '--ignore', '.git', '--ignore', '.min.js'])
+"   call denite#custom#var('grep', 'command', ['ag'])
+"   call denite#custom#var('grep', 'recursive_opts', [])
+"   call denite#custom#var('grep', 'final_opts', [])
+"   call denite#custom#var('grep', 'pattern_opt', [])
+"   call denite#custom#var('grep', 'separator', [])
+"   call denite#custom#var('grep', 'default_opts',
+"       \ ['--vimgrep', '--hidden', '--ignore', '.git', '--ignore', '.min.js'])
 
-  autocmd FileType denite call s:denite_my_settings()
-  function! s:denite_my_settings() abort
-    nnoremap <silent><buffer><expr> <CR>
-    \ denite#do_map('do_action')
-    nnoremap <silent><buffer><expr> d
-    \ denite#do_map('do_action', 'delete')
-    nnoremap <silent><buffer><expr> p
-    \ denite#do_map('do_action', 'preview')
-    nnoremap <silent><buffer><expr> t
-    \ denite#do_map('do_action', 'tabopen')
-    nnoremap <silent><buffer><expr> v
-    \ denite#do_map('do_action', 'vsplit')
-    nnoremap <silent><buffer><expr> s
-    \ denite#do_map('do_action', 'split')
-    nnoremap <silent><buffer><expr> <ESC>
-    \ denite#do_map('quit')
-    nnoremap <silent><buffer><expr> i
-    \ denite#do_map('open_filter_buffer')
-    nnoremap <silent><buffer><expr> <Space>
-    \ denite#do_map('toggle_select').'j'
-  endfunction
+"   autocmd FileType denite call s:denite_my_settings()
+"   function! s:denite_my_settings() abort
+"     nnoremap <silent><buffer><expr> <CR>
+"     \ denite#do_map('do_action')
+"     nnoremap <silent><buffer><expr> d
+"     \ denite#do_map('do_action', 'delete')
+"     nnoremap <silent><buffer><expr> p
+"     \ denite#do_map('do_action', 'preview')
+"     nnoremap <silent><buffer><expr> t
+"     \ denite#do_map('do_action', 'tabopen')
+"     nnoremap <silent><buffer><expr> v
+"     \ denite#do_map('do_action', 'vsplit')
+"     nnoremap <silent><buffer><expr> s
+"     \ denite#do_map('do_action', 'split')
+"     nnoremap <silent><buffer><expr> <ESC>
+"     \ denite#do_map('quit')
+"     nnoremap <silent><buffer><expr> i
+"     \ denite#do_map('open_filter_buffer')
+"     nnoremap <silent><buffer><expr> <Space>
+"     \ denite#do_map('toggle_select').'j'
+"   endfunction
+" endfunction
 
+" call coc#add_extension('coc-json', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-vetur', 'coc-pyls', 'coc-rls')
 
-  " call coc#add_extension('coc-json', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-vetur', 'coc-pyls', 'coc-rls')
-endfunction
-call dein#set_hook('denite.nvim', 'hook_source', function('DeniteCustomize'))
+" call dein#set_hook('denite.nvim', 'hook_source', function('DeniteCustomize'))
 
 filetype plugin indent on
 colorscheme solarized

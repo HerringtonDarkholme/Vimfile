@@ -435,5 +435,9 @@ call dein#end()
 filetype plugin indent on
 colorscheme solarized
 syntax enable
+" NormalFloat for coc doc window
 hi Normal ctermbg=None
+" the default highlight reverse is readability disaster
 hi NormalFloat cterm=none ctermfg=7 ctermbg=0
+" search hilight reverse is unreadable in FZF ag output
+hi Search cterm=bold ctermfg=15 ctermbg=3

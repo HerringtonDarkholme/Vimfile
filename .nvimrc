@@ -249,13 +249,16 @@ let g:gitgutter_async = 0
 " comment plugin"
 au FileType scss setlocal commentstring=//%s
 
+
 "Grep"
-" nn <silent> gb :Unite grep:%<CR><C-r><C-w><CR>
-" nn <silent> gl :Unite grep:$buffers -default-action=tabopen<CR><C-r><C-w>
-" nn <silent> gr :Unite grep:.:'-G\.<C-r>=expand("%:e")<CR>$' -default-action=tabopen<CR><C-r><C-w><CR>
+function! s:search_word()
+  let arg = call('fzf#vim#with_preview', ['right'])
+  let ag_opt = '-s --hidden --' . expand('%:e')
+  call fzf#vim#ag(expand('<cword>'), ag_opt, arg, v:false)
+endfunction
 nn <silent> <leader>g :Ag<Space>
 " nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$:<C-r><C-w> -prompt='>'<CR>
-nn <silent> gr :call fzf#vim#ag('<C-r><C-w>', '--hidden --<C-r>=expand("%:e")<CR>', v:false)<CR>
+nn <silent> gr :call <SID>search_word()<CR>
 nn <silent> gb :BLines <C-r><C-w><CR>
 
 "let g:dein#install_process_timeout=1000

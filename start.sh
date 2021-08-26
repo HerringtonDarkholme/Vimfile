@@ -1,14 +1,3 @@
-function eclim() {
-    current_path=$(pwd)
-    cd /Applications/eclipse
-    nohup ./eclimd > /dev/null &
-    cd $current_path
-}
-
-function close_eclim() {
-    ps -ef | grep "java.*eclipse" | grep -v grep | awk '{print $2;}' | xargs kill
-}
-
 function git_pull(){
   current_path=$(pwd)
 

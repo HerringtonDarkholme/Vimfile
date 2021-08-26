@@ -112,7 +112,7 @@ export NVM_DIR="$HOME/.nvm"
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
 alias npm='npm --registry=https://registry.npm.taobao.org'
 
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 export GOPATH="$HOME/gocode"
 export GO111MODULE="on"

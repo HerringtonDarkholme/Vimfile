@@ -327,8 +327,8 @@ call dein#add('derekwyatt/vim-scala',
       \{'on_ft': 'scala'})
 call dein#add('rust-lang/rust.vim',
       \{'on_ft': 'rust'})
-" call dein#add('fatih/vim-go',
-"       \{'on_ft': 'go'})
+call dein#add('fatih/vim-go',
+      \{'on_ft': 'go'})
 call dein#add('digitaltoad/vim-pug',
       \{'on_ft': ['pug', 'vue']})
 call dein#add('mattn/emmet-vim',

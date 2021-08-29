@@ -188,7 +188,7 @@ no gj j
 no gk k
 
 "Emacs like c-k"
-inoremap <c-k> <space><left><c-o>d$
+inoremap <c-k> <space><left><c-o>D
 
 "Quick switch buffer"
 noremap [b :bn<CR>
@@ -214,10 +214,10 @@ exe "vn <A-l> >gv".g:tabsize."l"
 nn <A-a> :tabp<CR>
 nn <A-d> :tabn<CR>
 
-autocmd FileType c nn <space>s :vert sf %:t:r.c<cr>
-autocmd FileType cpp nn <space>s :vert sf %:t:r.cpp<cr>
-autocmd FileType c nn <space>h :vert sf %:t:r.h<cr>
-autocmd FileType cpp nn <space>h :vert sf %:t:r.h<cr>
+autocmd FileType c nn <localleader>s :vert sf %:t:r.c<cr>
+autocmd FileType cpp nn <localleader>s :vert sf %:t:r.cpp<cr>
+autocmd FileType c nn <localleader>h :vert sf %:t:r.h<cr>
+autocmd FileType cpp nn <localleader>h :vert sf %:t:r.h<cr>
 
 " set <A-j>=j
 " set <A-k>=k
@@ -275,22 +275,34 @@ nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> <localleader>d <Plug>(coc-definition)
+nmap <silent> <localleader>d <Plug>(coc-declaration)
 nmap <silent> <localleader>t <Plug>(coc-type-definition)
 nmap <silent> <localleader>i <Plug>(coc-implementation)
 nmap <silent> <localleader>l <Plug>(coc-references)
+nmap <silent> <localleader>a <Plug>(coc-codeaction)
 
 nn <silent> gs :Gstatus<CR>
 nn <silent> gb :Gblame<CR>
 
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> <c-]> :call <SID>jump_definition()<CR>
 
 function! s:show_documentation()
-  if &filetype == 'vim'
+  if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+function! s:jump_definition()
+  if (index(['vim','help'], &filetype) >= 0 || !coc#rpc#ready())
+    execute 'tag '.expand('<cword>')
+  else
+    call CocActionAsync('jumpDefinition')
   endif
 endfunction
 

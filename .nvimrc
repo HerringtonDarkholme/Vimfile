@@ -148,6 +148,7 @@ nmap <leader>a :HLT<cr>
 " => Spell checking: https://github.com/kamykn/spelunker.vim
 """"""""""""""""""""""""""""""""""""""""""""""""
 set updatetime=500
+set timeoutlen=500 " for WhichKey"
 let g:spelunker_check_type = 2
 let g:spelunker_disable_uri_checking = 1
 let g:spelunker_spell_bad_group = 'SpellBad'
@@ -321,7 +322,7 @@ call dein#add('ryanoasis/vim-devicons')
 call dein#add('editorconfig/editorconfig-vim')
 call dein#add('junegunn/fzf')
 call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})
-call dein#add('kamykn/spelunker.vim')
+call dein#add('folke/which-key.nvim')
 
 call dein#add('justmao945/vim-clang',
       \{'on_ft': ['c', 'cpp']})
@@ -335,6 +336,8 @@ call dein#add('fatih/vim-go',
       \{'on_ft': 'go'})
 call dein#add('digitaltoad/vim-pug',
       \{'on_ft': ['pug', 'vue']})
+call dein#add('posva/vim-vue',
+      \{'on_ft': ['vue']})
 call dein#add('mattn/emmet-vim',
       \{'on_ft': ['html', 'xml', 'vue']})
 call dein#add('othree/html5.vim',
@@ -372,16 +375,16 @@ call dein#add('sjl/gundo.vim',
 call dein#add('Shougo/vinarise.vim',
       \ {'on_cmd': 'Vinarise'})
 
-call dein#add('posva/vim-vue',
-      \{'on_ft': ['vue']})
 call dein#add('honza/vim-snippets',
-              \{'on_i': 1})
+      \{'on_i': 1})
 call dein#add('neoclide/coc.nvim',
-              \{'on_i': 1, 'build': 'yarn install'})
+      \{'on_i': 1, 'build': 'yarn install'})
 call dein#add('Shougo/echodoc.vim',
-              \{'on_i': 1})
+      \{'on_i': 1})
 call dein#add('SirVer/ultisnips',
-              \{'on_i': 1})
+      \{'on_i': 1})
+call dein#add('kamykn/spelunker.vim',
+      \{'on_i': 1})
 
 call dein#add('milkypostman/vim-togglelist',
             \{'on_func': 'ToggleLocationList'})
@@ -397,6 +400,7 @@ call dein#end()
 
 " call coc#add_extension('coc-json', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-vetur', 'coc-pyls', 'coc-rls')
 
+
 filetype plugin indent on
 colorscheme solarized
 syntax enable
@@ -406,3 +410,13 @@ hi Normal ctermbg=None
 hi NormalFloat cterm=none ctermfg=7 ctermbg=0
 " search hilight reverse is unreadable in FZF ag output
 hi Search cterm=None ctermfg=15 ctermbg=3
+hi WhichKeyFloat ctermbg=7
+lua << EOF
+  require("which-key").setup {
+    plugins = {
+      spelling = {
+        enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+      },
+    }
+  }
+EOF

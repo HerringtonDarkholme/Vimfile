@@ -32,8 +32,8 @@ set hlsearch
 "instant search(help re?)"
 set incsearch
 nn <silent> <F4> :set hlsearch! hlsearch?<CR>
-"egrep for PCRE"
-nnoremap <leader>/ :call eregex#toggle()<CR>
+" remap F3 to ;. The latter is used as localleader
+nnoremap <F3> ;
 let g:eregex_default_enable = 0
 "Powerline"
 "keep statusline fixed
@@ -58,13 +58,17 @@ set omnifunc=syntaxcomplete#Complete
 
 " remap leader key to space
 let mapleader = "\<space>"
-
+" filetype plugin should use <LocalLeader>.
+let maplocalleader = ";"
 
 set splitbelow
 " Enable omni completion."
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+"egrep for PCRE"
+nnoremap <leader>/ :call eregex#toggle()<CR>
 
 let g:echodoc_enable_at_startup=1
 
@@ -160,11 +164,11 @@ silent! nmap <unique> [s <Plug>(spelunker-jump-prev)
 " => key binding
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => jsbeautify
-autocmd FileType javascript nn <buffer>  <leader>f :call JsBeautify()<cr>
+autocmd FileType javascript nn <buffer>  <localleader>f :call JsBeautify()<cr>
 " for html
-autocmd FileType html nn <buffer> <leader>f :call HtmlBeautify()<cr>
+autocmd FileType html nn <buffer> <localleader>f :call HtmlBeautify()<cr>
 " for css or scss
-autocmd FileType css nn <buffer> <leader>f :call CSSBeautify()<cr>
+autocmd FileType css nn <buffer> <localleader>f :call CSSBeautify()<cr>
 " redraw
 nnoremap <C-S-l> <esc>:<c-u>redraw!
 
@@ -271,10 +275,10 @@ nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> <c-]> <Plug>(coc-definition)
-nmap <silent> gd <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> <leader>l <Plug>(coc-references)
+nmap <silent> <localleader>d <Plug>(coc-definition)
+nmap <silent> <localleader>t <Plug>(coc-type-definition)
+nmap <silent> <localleader>i <Plug>(coc-implementation)
+nmap <silent> <localleader>l <Plug>(coc-references)
 
 nn <silent> gs :Gstatus<CR>
 nn <silent> gb :Gblame<CR>

@@ -320,29 +320,72 @@ let g:fzf_layout = {'down': '15'}
 
 set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
 set rtp+=~/.fzf
+
+command! -nargs=+ -bar Dein call dein#add(<args>)
+
 call dein#begin(expand('~/.vim/dein'))
 
-call dein#add('Shougo/dein.vim')
+Dein 'Shougo/dein.vim'
 
-call dein#add('vim-scripts/L9')
-call dein#add('vim-airline/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
-call dein#add('bling/vim-bufferline')
-call dein#add('Raimondi/delimitMate')
-call dein#add('HerringtonDarkholme/vim-nerdtree-syntax-highlight')
-" call dein#add('Shougo/vimproc.vim', {'build': 'make'})
-call dein#add('airblade/vim-gitgutter')
-call dein#add('michaeljsmith/vim-indent-object')
-call dein#add('tpope/vim-repeat')
-call dein#add('tpope/vim-rsi')
-call dein#add('tpope/vim-commentary')
-call dein#add('tpope/vim-surround')
-call dein#add('altercation/vim-colors-solarized')
-call dein#add('ryanoasis/vim-devicons')
-call dein#add('editorconfig/editorconfig-vim')
-call dein#add('junegunn/fzf')
-call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})
-call dein#add('folke/which-key.nvim')
+Dein 'vim-scripts/L9'
+Dein 'vim-airline/vim-airline'
+Dein 'vim-airline/vim-airline-themes'
+Dein 'bling/vim-bufferline'
+Dein 'Raimondi/delimitMate'
+Dein 'HerringtonDarkholme/vim-nerdtree-syntax-highlight'
+Dein 'Shougo/vimproc.vim', {'build': 'make'}
+Dein 'airblade/vim-gitgutter'
+Dein 'michaeljsmith/vim-indent-object'
+Dein 'tpope/vim-repeat'
+Dein 'tpope/vim-rsi'
+Dein 'tpope/vim-commentary'
+Dein 'tpope/vim-surround'
+Dein 'altercation/vim-colors-solarized'
+Dein 'ryanoasis/vim-devicons'
+Dein 'editorconfig/editorconfig-vim'
+Dein 'junegunn/fzf'
+Dein 'junegunn/fzf.vim', {'depends': 'fzf'}
+Dein 'folke/which-key.nvim'
+
+Dein 'justmao945/vim-clang', {'on_ft': ['c', 'cpp']}
+Dein 'octol/vim-cpp-enhanced-highlight', {'on_ft': 'cpp'}
+Dein 'derekwyatt/vim-scala', {'on_ft': 'scala'}
+Dein 'rust-lang/rust.vim', {'on_ft': 'rust'}
+Dein 'fatih/vim-go', {'on_ft': 'go'}
+Dein 'digitaltoad/vim-pug', {'on_ft': ['pug', 'vue']}
+Dein 'posva/vim-vue', {'on_ft': ['vue']}
+Dein 'mattn/emmet-vim', {'on_ft': ['html', 'xml', 'vue']}
+Dein 'othree/html5.vim', {'on_ft': ['html', 'pug']}
+Dein 'wavded/vim-stylus', {'on_ft': ['stylus', 'vue']}
+Dein 'cakebaker/scss-syntax.vim', {'on_ft': ['scss', 'sass']}
+Dein 'maksimr/vim-jsbeautify', {'on_ft': 'javascript'}
+Dein 'flowtype/vim-flow', {'on_ft': 'javascript'}
+Dein 'othree/yajs.vim', {'on_ft': 'javascript'}
+Dein 'mxw/vim-jsx', {'on_ft': 'javascript'}
+Dein 'othree/es.next.syntax.vim', {'on_ft': 'javascript'}
+Dein 'moll/vim-node'
+Dein 'HerringtonDarkholme/yats.vim', {'on_ft': ['typescript', 'typescriptreact']}
+Dein 'solarnz/thrift.vim', {'on_ft': ['thrift']}
+
+Dein 'tpope/vim-fugitive', {'on_cmd': ['Gstatus', 'Gblame']}
+Dein 'godlygeek/tabular',  {'on_cmd': 'Tabularize'}
+Dein 'majutsushi/tagbar',  {'on_cmd': 'TagbarToggle'}
+Dein 'scrooloose/nerdtree',  {'on_cmd': 'NERDTreeToggle'}
+Dein 'sjl/gundo.vim',  {'on_cmd': 'GundoToggle'}
+Dein 'Shougo/vinarise.vim',  {'on_cmd': 'Vinarise'}
+
+Dein 'honza/vim-snippets', {'on_i': 1}
+Dein 'neoclide/coc.nvim', {'on_i': 1, 'build': 'yarn install'}
+Dein 'antoinemadec/coc-fzf', {'on_i': 1}
+Dein 'Shougo/echodoc.vim', {'on_i': 1}
+Dein 'SirVer/ultisnips', {'on_i': 1}
+Dein 'kamykn/spelunker.vim', {'on_i': 1}
+
+Dein 'milkypostman/vim-togglelist', {'on_func': 'ToggleLocationList'}
+Dein 'othree/eregex.vim', {'on_func': 'eregex#toggle'}
+
+Dein 'gerw/vim-HiLinkTrace'
+
 lua << EOF
   require("which-key").setup {
     plugins = {
@@ -352,80 +395,6 @@ lua << EOF
     }
   }
 EOF
-
-call dein#add('justmao945/vim-clang',
-      \{'on_ft': ['c', 'cpp']})
-call dein#add('octol/vim-cpp-enhanced-highlight',
-      \{'on_ft': 'cpp'})
-call dein#add('derekwyatt/vim-scala',
-      \{'on_ft': 'scala'})
-call dein#add('rust-lang/rust.vim',
-      \{'on_ft': 'rust'})
-call dein#add('fatih/vim-go',
-      \{'on_ft': 'go'})
-call dein#add('digitaltoad/vim-pug',
-      \{'on_ft': ['pug', 'vue']})
-call dein#add('posva/vim-vue',
-      \{'on_ft': ['vue']})
-call dein#add('mattn/emmet-vim',
-      \{'on_ft': ['html', 'xml', 'vue']})
-call dein#add('othree/html5.vim',
-      \{'on_ft': ['html', 'pug']})
-call dein#add('wavded/vim-stylus',
-      \{'on_ft': ['stylus', 'vue']})
-call dein#add('cakebaker/scss-syntax.vim',
-      \{'on_ft': ['scss', 'sass']})
-call dein#add('maksimr/vim-jsbeautify',
-      \{'on_ft': 'javascript'})
-call dein#add('flowtype/vim-flow',
-      \{'on_ft': 'javascript'})
-call dein#add('othree/yajs.vim',
-      \{'on_ft': 'javascript'})
-call dein#add('mxw/vim-jsx',
-      \{'on_ft': 'javascript'})
-call dein#add('othree/es.next.syntax.vim',
-      \{'on_ft': 'javascript'})
-call dein#add('moll/vim-node')
-call dein#add('HerringtonDarkholme/yats.vim',
-      \{'on_ft': ['typescript', 'typescriptreact']})
-call dein#add('solarnz/thrift.vim',
-      \{'on_ft': ['thrift']})
-
-call dein#add('tpope/vim-fugitive',
-  \{'on_cmd': ['Gstatus', 'Gblame']})
-call dein#add('godlygeek/tabular',
-      \ {'on_cmd': 'Tabularize'})
-call dein#add('majutsushi/tagbar',
-      \ {'on_cmd': 'TagbarToggle'})
-call dein#add('scrooloose/nerdtree',
-      \ {'on_cmd': 'NERDTreeToggle'})
-call dein#add('sjl/gundo.vim',
-      \ {'on_cmd': 'GundoToggle'})
-call dein#add('Shougo/vinarise.vim',
-      \ {'on_cmd': 'Vinarise'})
-
-call dein#add('honza/vim-snippets',
-      \{'on_i': 1})
-call dein#add('neoclide/coc.nvim',
-      \{'on_i': 1, 'build': 'yarn install'})
-call dein#add('antoinemadec/coc-fzf',
-      \{'on_i': 1})
-call dein#add('Shougo/echodoc.vim',
-      \{'on_i': 1})
-call dein#add('SirVer/ultisnips',
-      \{'on_i': 1})
-call dein#add('kamykn/spelunker.vim',
-      \{'on_i': 1})
-
-call dein#add('milkypostman/vim-togglelist',
-            \{'on_func': 'ToggleLocationList'})
-call dein#add('othree/eregex.vim',
-            \{'on_func': 'eregex#toggle'})
-
-call dein#add('gerw/vim-HiLinkTrace')
-
-" NeoBundleLazy 'Xuyuanp/nerdtree-git-plugin',
-"             \CMDLoad('IndentLineToggle')
 
 call dein#end()
 

@@ -270,6 +270,10 @@ nn <silent> gr :call <SID>search_word()<CR>
 
 "let g:dein#install_process_timeout=1000
 
+" don't mimic coc list like
+let g:coc_fzf_preview = 'right'
+let g:coc_fzf_opts = ['--bind', 'alt-a:select-all,alt-d:deselect-all']
+
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
@@ -339,6 +343,15 @@ call dein#add('editorconfig/editorconfig-vim')
 call dein#add('junegunn/fzf')
 call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})
 call dein#add('folke/which-key.nvim')
+lua << EOF
+  require("which-key").setup {
+    plugins = {
+      spelling = {
+        enabled = true,
+      },
+    }
+  }
+EOF
 
 call dein#add('justmao945/vim-clang',
       \{'on_ft': ['c', 'cpp']})
@@ -395,6 +408,8 @@ call dein#add('honza/vim-snippets',
       \{'on_i': 1})
 call dein#add('neoclide/coc.nvim',
       \{'on_i': 1, 'build': 'yarn install'})
+call dein#add('antoinemadec/coc-fzf',
+      \{'on_i': 1})
 call dein#add('Shougo/echodoc.vim',
       \{'on_i': 1})
 call dein#add('SirVer/ultisnips',
@@ -427,12 +442,3 @@ hi NormalFloat cterm=none ctermfg=7 ctermbg=0
 " search hilight reverse is unreadable in FZF ag output
 hi Search cterm=None ctermfg=15 ctermbg=3
 hi WhichKeyFloat ctermbg=7
-lua << EOF
-  require("which-key").setup {
-    plugins = {
-      spelling = {
-        enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-      },
-    }
-  }
-EOF

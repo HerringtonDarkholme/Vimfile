@@ -260,7 +260,6 @@ endfunction
 nn <silent> <leader>g :Ag<Space>
 " nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$:<C-r><C-w> -prompt='>'<CR>
 nn <silent> gr :call <SID>search_word()<CR>
-nn <silent> gb :BLines <C-r><C-w><CR>
 
 "let g:dein#install_process_timeout=1000
 
@@ -273,6 +272,9 @@ nmap <silent> <c-]> <Plug>(coc-definition)
 nmap <silent> gd <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 " nmap <silent> gr <Plug>(coc-references)
+
+nn <silent> gs :Gstatus<CR>
+nn <silent> gb :Gblame<CR>
 
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>

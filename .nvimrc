@@ -264,7 +264,7 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 nmap <silent> <c-]> <Plug>(coc-definition)
 nmap <silent> gd <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <leader>l <Plug>(coc-references)
 
 nn <silent> gs :Gstatus<CR>
 nn <silent> gb :Gblame<CR>
@@ -303,7 +303,6 @@ call dein#add('HerringtonDarkholme/vim-nerdtree-syntax-highlight')
 " call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 call dein#add('airblade/vim-gitgutter')
 call dein#add('michaeljsmith/vim-indent-object')
-call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-repeat')
 call dein#add('tpope/vim-rsi')
 call dein#add('tpope/vim-commentary')
@@ -350,6 +349,8 @@ call dein#add('HerringtonDarkholme/yats.vim',
 call dein#add('solarnz/thrift.vim',
       \{'on_ft': ['thrift']})
 
+call dein#add('tpope/vim-fugitive',
+  \{'on_cmd': ['Gstatus', 'Gblame']})
 call dein#add('godlygeek/tabular',
       \ {'on_cmd': 'Tabularize'})
 call dein#add('majutsushi/tagbar',

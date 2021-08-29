@@ -258,7 +258,6 @@ function! s:search_word()
   call fzf#vim#ag(expand('<cword>'), ag_opt, arg, v:false)
 endfunction
 nn <silent> <leader>g :Ag<Space>
-" nn <silent> gr :Denite grep:.:-G\.<C-r>=expand("%:e")<CR>$:<C-r><C-w> -prompt='>'<CR>
 nn <silent> gr :call <SID>search_word()<CR>
 
 "let g:dein#install_process_timeout=1000
@@ -307,7 +306,7 @@ call dein#add('vim-airline/vim-airline-themes')
 call dein#add('bling/vim-bufferline')
 call dein#add('Raimondi/delimitMate')
 call dein#add('HerringtonDarkholme/vim-nerdtree-syntax-highlight')
-call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+" call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 call dein#add('airblade/vim-gitgutter')
 call dein#add('michaeljsmith/vim-indent-object')
 call dein#add('tpope/vim-fugitive')
@@ -391,45 +390,7 @@ call dein#add('gerw/vim-HiLinkTrace')
 
 call dein#end()
 
-" function DeniteCustomize()
-"   call denite#custom#map('insert', "<C-j>", '<denite:move_to_next_line>')
-"   call denite#custom#map('insert', "<C-k>", '<denite:move_to_previous_line>')
-"   call denite#custom#map('insert', "<C-t>", '<denite:do_action:tabopen>')
-
-"   call denite#custom#var('grep', 'command', ['ag'])
-"   call denite#custom#var('grep', 'recursive_opts', [])
-"   call denite#custom#var('grep', 'final_opts', [])
-"   call denite#custom#var('grep', 'pattern_opt', [])
-"   call denite#custom#var('grep', 'separator', [])
-"   call denite#custom#var('grep', 'default_opts',
-"       \ ['--vimgrep', '--hidden', '--ignore', '.git', '--ignore', '.min.js'])
-
-"   autocmd FileType denite call s:denite_my_settings()
-"   function! s:denite_my_settings() abort
-"     nnoremap <silent><buffer><expr> <CR>
-"     \ denite#do_map('do_action')
-"     nnoremap <silent><buffer><expr> d
-"     \ denite#do_map('do_action', 'delete')
-"     nnoremap <silent><buffer><expr> p
-"     \ denite#do_map('do_action', 'preview')
-"     nnoremap <silent><buffer><expr> t
-"     \ denite#do_map('do_action', 'tabopen')
-"     nnoremap <silent><buffer><expr> v
-"     \ denite#do_map('do_action', 'vsplit')
-"     nnoremap <silent><buffer><expr> s
-"     \ denite#do_map('do_action', 'split')
-"     nnoremap <silent><buffer><expr> <ESC>
-"     \ denite#do_map('quit')
-"     nnoremap <silent><buffer><expr> i
-"     \ denite#do_map('open_filter_buffer')
-"     nnoremap <silent><buffer><expr> <Space>
-"     \ denite#do_map('toggle_select').'j'
-"   endfunction
-" endfunction
-
 " call coc#add_extension('coc-json', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-vetur', 'coc-pyls', 'coc-rls')
-
-" call dein#set_hook('denite.nvim', 'hook_source', function('DeniteCustomize'))
 
 filetype plugin indent on
 colorscheme solarized

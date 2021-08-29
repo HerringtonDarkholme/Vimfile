@@ -155,9 +155,6 @@ autocmd FileType css nn <buffer> <leader>f :call CSSBeautify()<cr>
 " redraw
 nnoremap <C-S-l> <esc>:<c-u>redraw!
 
-" autocmd FileType typescript nn <buffer> K :<C-u>echo tsuquyomi#hint()<CR>
-let g:nvim_typescript#default_mappings = 1
-
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Moving Around!!
 """"""""""""""""""""""""""""""""""""""""""""""""

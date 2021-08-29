@@ -251,7 +251,6 @@ nn <silent> <leader>u :GundoToggle<CR>
 " autocmd BufEnter *.xml imap <buffer><expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " autocmd BufEnter *.html imap <buffer><expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
  imap <C-y><C-y> <plug>(emmet-expand-abbr)
-let g:gitgutter_async = 0
 " let g:EditorConfig_core_mode = 'external_command'
 " let g:EditorConfig_exec_path = 'editorconfig'
 
@@ -333,7 +332,7 @@ Dein 'vim-airline/vim-airline-themes'
 Dein 'bling/vim-bufferline'
 Dein 'Raimondi/delimitMate'
 Dein 'HerringtonDarkholme/vim-nerdtree-syntax-highlight'
-Dein 'Shougo/vimproc.vim', {'build': 'make'}
+" Dein 'Shougo/vimproc.vim', {'build': 'make'}
 Dein 'airblade/vim-gitgutter'
 Dein 'michaeljsmith/vim-indent-object'
 Dein 'tpope/vim-repeat'
@@ -410,4 +409,5 @@ hi Normal ctermbg=None
 hi NormalFloat cterm=none ctermfg=7 ctermbg=0
 " search hilight reverse is unreadable in FZF ag output
 hi Search cterm=None ctermfg=15 ctermbg=3
+hi SignColumn ctermbg=15
 hi WhichKeyFloat ctermbg=7

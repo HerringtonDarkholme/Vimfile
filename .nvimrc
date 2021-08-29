@@ -56,6 +56,7 @@ set noshowmode
 """"""""""""""""""""""""""""""""""""""""""""""""
 set omnifunc=syntaxcomplete#Complete
 
+" remap leader key to space
 let mapleader = "\<space>"
 
 
@@ -314,8 +315,7 @@ call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-surround')
 call dein#add('altercation/vim-colors-solarized')
 call dein#add('ryanoasis/vim-devicons')
-" call dein#add('ctrlpvim/ctrlp.vim')
-" call dein#add('FelikZ/ctrlp-py-matcher')
+call dein#add('editorconfig/editorconfig-vim')
 call dein#add('junegunn/fzf')
 call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})
 
@@ -363,8 +363,6 @@ call dein#add('scrooloose/nerdtree',
       \ {'on_cmd': 'NERDTreeToggle'})
 call dein#add('sjl/gundo.vim',
       \ {'on_cmd': 'GundoToggle'})
-call dein#add('Shougo/denite.nvim',
-      \ {'on_cmd': 'Denite'})
 call dein#add('Shougo/vinarise.vim',
       \ {'on_cmd': 'Vinarise'})
 
@@ -378,7 +376,6 @@ call dein#add('Shougo/echodoc.vim',
               \{'on_i': 1})
 call dein#add('SirVer/ultisnips',
               \{'on_i': 1})
-call dein#add('editorconfig/editorconfig-vim')
 
 call dein#add('milkypostman/vim-togglelist',
             \{'on_func': 'ToggleLocationList'})

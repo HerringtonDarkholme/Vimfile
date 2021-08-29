@@ -103,6 +103,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 " => Files and Backup
 """""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
+" constant writing backup hurts SSD
 set nobackup
 set nowb
 set noswapfile
@@ -142,6 +143,17 @@ nnoremap <s-tab> :bp<cr>
 let g:neomake_warning_sign = {'text': '!!', 'texthl': 'Search'}
 let g:neomake_error_sign = {'text': '✗', 'texthl': 'ErrorMsg'}
 nmap <leader>a :HLT<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""
+" => Spell checking: https://github.com/kamykn/spelunker.vim
+""""""""""""""""""""""""""""""""""""""""""""""""
+set updatetime=500
+let g:spelunker_check_type = 2
+let g:spelunker_disable_uri_checking = 1
+let g:spelunker_spell_bad_group = 'SpellBad'
+let g:spelunker_complex_or_compound_word_group = 'SpellRare'
+silent! nmap <unique> ]s <Plug>(spelunker-jump-next)
+silent! nmap <unique> [s <Plug>(spelunker-jump-prev)
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => key binding
@@ -309,6 +321,7 @@ call dein#add('ryanoasis/vim-devicons')
 call dein#add('editorconfig/editorconfig-vim')
 call dein#add('junegunn/fzf')
 call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})
+call dein#add('kamykn/spelunker.vim')
 
 call dein#add('justmao945/vim-clang',
       \{'on_ft': ['c', 'cpp']})

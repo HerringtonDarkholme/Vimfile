@@ -220,12 +220,6 @@ let NERDTreeMapOpenSplit = 's'
 let NERDTreeMapOpenVSplit = 'v'
 let NERDTreeIgnore = ['\.pyc$']
 
-" => TernJs shortcut
-autocmd FileType javascript nn <buffer> <leader>. :TernDef<cr>
-autocmd FileType javascript nn <buffer> <leader>r :TernRefs<cr>
-autocmd FileType javascript nn <buffer> <leader>t :TernType<cr>
-autocmd FileType javascript nn <buffer> <leader>q :TernRename<cr>
-
 " => Syntastic Lint
 nnoremap <silent><F2> :call ToggleLocationList()<CR>
 

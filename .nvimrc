@@ -283,6 +283,7 @@ nmap <silent> <localleader>t <Plug>(coc-type-definition)
 nmap <silent> <localleader>i <Plug>(coc-implementation)
 nmap <silent> <localleader>l <Plug>(coc-references)
 nmap <silent> <localleader>a <Plug>(coc-codeaction)
+nmap <silent> <localleader>r <Plug>(coc-rename)
 
 nn <silent> gs :Gstatus<CR>
 nn <silent> gb :Gblame<CR>

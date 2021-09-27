@@ -54,18 +54,12 @@ set noshowmode
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => plugin
 """"""""""""""""""""""""""""""""""""""""""""""""
-set omnifunc=syntaxcomplete#Complete
-
 " remap leader key to space
 let mapleader = "\<space>"
 " filetype plugin should use <LocalLeader>.
 let maplocalleader = ";"
 
 set splitbelow
-" Enable omni completion."
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 "egrep for PCRE"
 nnoremap <leader>/ :call eregex#toggle()<CR>
@@ -142,10 +136,6 @@ let g:bufferline_echo=0
 nnoremap <tab> :bn<cr>
 nnoremap <s-tab> :bp<cr>
 
-"lint"
-" autocmd! BufWritePost * Neomake
-let g:neomake_warning_sign = {'text': '!!', 'texthl': 'Search'}
-let g:neomake_error_sign = {'text': '✗', 'texthl': 'ErrorMsg'}
 nmap <leader>a :HLT<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -238,7 +228,6 @@ let NERDTreeIgnore = ['\.pyc$']
 nnoremap <silent><F2> :call ToggleLocationList()<CR>
 
 "yank history yankring"
-" nn <silent> <F12> :Unite history/yank<CR>
 nn <silent> <F8> :TagbarToggle<CR>
 
 "CtrlP like"
@@ -316,6 +305,7 @@ augroup CSSSyntax
   autocmd FileType css,scss,stylus setlocal iskeyword+=-
 augroup END
 
+let g:fzf_statusline = 0 " disable statusline overwriting
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 let g:fzf_layout = {'down': '15'}
 
@@ -329,9 +319,10 @@ call dein#begin(expand('~/.vim/dein'))
 Dein 'Shougo/dein.vim'
 
 Dein 'vim-scripts/L9'
-Dein 'vim-airline/vim-airline'
-Dein 'vim-airline/vim-airline-themes'
-Dein 'bling/vim-bufferline'
+Dein 'hoob3rt/lualine.nvim'
+" Dein 'vim-airline/vim-airline'
+" Dein 'vim-airline/vim-airline-themes'
+" Dein 'bling/vim-bufferline'
 Dein 'Raimondi/delimitMate'
 Dein 'HerringtonDarkholme/vim-nerdtree-syntax-highlight'
 " Dein 'Shougo/vimproc.vim', {'build': 'make'}
@@ -341,7 +332,8 @@ Dein 'tpope/vim-repeat'
 Dein 'tpope/vim-rsi'
 Dein 'tpope/vim-commentary'
 Dein 'tpope/vim-surround'
-Dein 'altercation/vim-colors-solarized'
+Dein 'lifepillar/vim-solarized8'
+" Dein 'altercation/vim-colors-solarized'
 Dein 'ryanoasis/vim-devicons'
 Dein 'editorconfig/editorconfig-vim'
 Dein 'junegunn/fzf'
@@ -364,7 +356,7 @@ Dein 'flowtype/vim-flow', {'on_ft': 'javascript'}
 Dein 'othree/yajs.vim', {'on_ft': 'javascript'}
 Dein 'mxw/vim-jsx', {'on_ft': 'javascript'}
 Dein 'othree/es.next.syntax.vim', {'on_ft': 'javascript'}
-Dein 'moll/vim-node'
+Dein 'moll/vim-node', {'on_ft': ['javascript', 'typescript']}
 Dein 'HerringtonDarkholme/yats.vim', {'on_ft': ['typescript', 'typescriptreact']}
 Dein 'solarnz/thrift.vim', {'on_ft': ['thrift']}
 
@@ -388,7 +380,11 @@ Dein 'othree/eregex.vim', {'on_func': 'eregex#toggle'}
 Dein 'gerw/vim-HiLinkTrace'
 
 lua << EOF
-  require("which-key").setup {
+  require('lualine').setup {
+    options = {theme = 'solarized_light'},
+    extensions = {'fzf', 'nerdtree'}
+  }
+  require('which-key').setup {
     plugins = {
       spelling = {
         enabled = true,
@@ -403,7 +399,8 @@ call dein#end()
 
 
 filetype plugin indent on
-colorscheme solarized
+set termguicolors
+colorscheme solarized8
 syntax enable
 " NormalFloat for coc doc window
 hi Normal ctermbg=None

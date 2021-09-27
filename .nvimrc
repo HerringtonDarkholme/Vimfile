@@ -223,6 +223,7 @@ nn - :NERDTreeToggle<CR>
 let NERDTreeMapOpenSplit = 's'
 let NERDTreeMapOpenVSplit = 'v'
 let NERDTreeIgnore = ['\.pyc$']
+let g:NERDTreeStatusline = -1
 
 " => Syntastic Lint
 nnoremap <silent><F2> :call ToggleLocationList()<CR>
@@ -382,7 +383,8 @@ Dein 'gerw/vim-HiLinkTrace'
 lua << EOF
   require('lualine').setup {
     options = {theme = 'solarized_light'},
-    extensions = {'fzf', 'nerdtree'}
+    tabline = {},
+    extensions = {'fzf', 'nerdtree'},
   }
   require('which-key').setup {
     plugins = {
@@ -402,11 +404,14 @@ filetype plugin indent on
 set termguicolors
 colorscheme solarized8
 syntax enable
+hi Pmenu guibg=#e5decc
+hi SpellBad guifg=transparent guisp=red
+hi SpellRare guifg=transparent
 " NormalFloat for coc doc window
-hi Normal ctermbg=None
+" hi Normal ctermbg=None
 " the default highlight reverse is readability disaster
-hi NormalFloat cterm=none ctermfg=7 ctermbg=0
+" hi NormalFloat cterm=none ctermfg=7 ctermbg=0
 " search hilight reverse is unreadable in FZF ag output
-hi Search cterm=None ctermfg=15 ctermbg=3
-hi SignColumn ctermbg=15
-hi WhichKeyFloat ctermbg=7
+" hi Search cterm=None ctermfg=15 ctermbg=3
+" hi SignColumn ctermbg=15
+" hi WhichKeyFloat ctermbg=7

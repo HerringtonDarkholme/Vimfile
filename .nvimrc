@@ -240,9 +240,9 @@ au FileType scss setlocal commentstring=//%s
 
 "Grep"
 function! s:search_word()
-  let arg = call('fzf#vim#with_preview', ['right'])
-  let ag_opt = '-s --hidden --' . expand('%:e')
-  call fzf#vim#ag(expand('<cword>'), ag_opt, arg, v:false)
+  let cmd = 'ag --color --' . expand('%:e')
+  let word = expand('<cword>')
+  exec "lua require('fzf-lua').grep({ cmd = '" . cmd . "', search='".word."' })"
 endfunction
 nn <silent> <leader>g :FzfLua grep<CR>
 nn <silent> gr :call <SID>search_word()<CR>

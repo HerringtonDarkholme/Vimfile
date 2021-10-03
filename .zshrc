@@ -159,7 +159,7 @@ _gen_fzf_default_opts() {
 
   export FZF_CTRL_T_OPTS="
     --ansi --preview-window 'right:60%'
-    --preview '([[ -f {} ]] && (bat --color=always --style=header --line-range :300 {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
+    --preview '([[ -f {} ]] && (bat --color=always --style=plain --line-range :300 {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
   "
   export FZF_ALT_C_OPTS="
     --ansi --preview-window 'right:60%'

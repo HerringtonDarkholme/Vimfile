@@ -400,11 +400,12 @@ syntax enable
 hi Pmenu guibg=#e5decc
 hi SpellBad guifg=transparent guisp=red
 hi SpellRare guifg=transparent
+" search hilight reverse is unreadable in FZF ag output
+hi Search gui=none guifg=#fdf6e3 guibg=#b58900
+
 " NormalFloat for coc doc window
 " hi Normal ctermbg=None
 " the default highlight reverse is readability disaster
 " hi NormalFloat cterm=none ctermfg=7 ctermbg=0
-" search hilight reverse is unreadable in FZF ag output
-" hi Search cterm=None ctermfg=15 ctermbg=3
 " hi SignColumn ctermbg=15
 " hi WhichKeyFloat ctermbg=7

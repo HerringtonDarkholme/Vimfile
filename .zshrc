@@ -47,7 +47,11 @@ ZSH_THEME="lambda"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=14"
+ZSH_AUTOSUGGEST_STRATEGY=(completion match_prev_cmd)
+ZSH_AUTOSUGGEST_COMPLETION_IGNORE="*[ /]" # less noisy
+ZSH_AUTOSUGGEST_HISTORY_IGNORE="cd *"
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,14 +103,14 @@ alias r='ranger'
 # zle-line-init () {auto-fu-init;}; zle -N zle-line-init
 zstyle ':completion:*' completer _oldlist _complete
 # zle -N zle-keymap-select auto-fu-zle-keymap-select
-zstyle ':auto-fu:highlight' input bold
-zstyle ':auto-fu:highlight' completion fg=14
-zstyle ':auto-fu:highlight' completion/one fg=14
+# zstyle ':auto-fu:highlight' input bold
+# zstyle ':auto-fu:highlight' completion fg=14
+# zstyle ':auto-fu:highlight' completion/one fg=14
 
 # . <(npm completion) # search npm tab completion
 
-zstyle ':auto-fu:var' autoable-function/skiplines \
-        "('|$'|\")*" "^(??)##" "npm##*"
+# zstyle ':auto-fu:var' autoable-function/skiplines \
+#         "('|$'|\")*" "^(??)##" "npm##*"
 
 export NVM_DIR="$HOME/.nvm"
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist

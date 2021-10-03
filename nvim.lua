@@ -4,7 +4,7 @@ require('lualine').setup {
     lualine_b = {'buffers'},
     lualine_z = {'tabs'}
   },
-  extensions = {'fzf', 'nerdtree'},
+  extensions = {'fzf', 'nvim-tree'},
 }
 require('which-key').setup {
   plugins = {

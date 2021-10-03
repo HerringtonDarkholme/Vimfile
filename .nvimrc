@@ -267,7 +267,7 @@ nmap <silent> <localleader>r <Plug>(coc-rename)
 nmap <silent> <localleader>f <Plug>(coc-refactor)
 
 nn <silent> gs :Git<CR>
-nn <silent> gb :Gblame<CR>
+nn <silent> gb :Git blame<CR>
 
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -351,7 +351,7 @@ Dein 'moll/vim-node', {'on_ft': ['javascript', 'typescript']}
 Dein 'HerringtonDarkholme/yats.vim', {'on_ft': ['typescript', 'typescriptreact']}
 Dein 'solarnz/thrift.vim', {'on_ft': ['thrift']}
 
-Dein 'tpope/vim-fugitive', {'on_cmd': ['Git', 'Gblame']}
+Dein 'tpope/vim-fugitive', {'on_cmd': ['Git']}
 Dein 'godlygeek/tabular',  {'on_cmd': 'Tabularize'}
 Dein 'majutsushi/tagbar',  {'on_cmd': 'TagbarToggle'}
 Dein 'scrooloose/nerdtree',  {'on_cmd': 'NERDTreeToggle'}

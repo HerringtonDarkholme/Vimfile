@@ -122,19 +122,8 @@ let g:solarized_bold=1
 let g:solarized_italic=1
 let g:solarized_underline=1
 
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#tab_min_count = 2
-" let g:airline#extensions#tabline#switch_buffers_and_tabs = 1
-" let g:airline#extensions#tabline#show_tabs = 0
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 0
 let g:bufferline_echo=0
-
-nnoremap <tab> :bn<cr>
-nnoremap <s-tab> :bp<cr>
 
 nmap <leader>a :HLT<cr>
 
@@ -180,9 +169,13 @@ no gk k
 "Emacs like c-k"
 inoremap <c-k> <space><left><c-o>D
 
-"Quick switch buffer"
-noremap [b :bn<CR>
-noremap ]b :bp<CR>
+"Quick switch tab"
+nnoremap <tab> :tabn<cr>
+nnoremap <s-tab> :tabp<cr>
+"switch buffer"
+nn <A-a> :bp<CR>
+nn <A-d> :bn<CR>
+
 
 tnoremap <esc><esc> <C-\><C-n>
 
@@ -200,9 +193,6 @@ nn <A-l> >>
 exe "vn <A-h> <lt>gv".g:tabsize."h"
 exe "vn <A-l> >gv".g:tabsize."l"
 
-"switch tab"
-nn <A-a> :tabp<CR>
-nn <A-d> :tabn<CR>
 
 autocmd FileType c nn <localleader>s :vert sf %:t:r.c<cr>
 autocmd FileType cpp nn <localleader>s :vert sf %:t:r.cpp<cr>
@@ -313,14 +303,14 @@ let g:fzf_layout = {'down': '15'}
 set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
 set rtp+=~/.fzf
 
-command! -nargs=+ -bar Dein call dein#add(<args>)
+command! -nargs=+ -buffer Dein call dein#add(<args>)
 
 call dein#begin(expand('~/.vim/dein'))
 
 Dein 'Shougo/dein.vim'
 
-Dein 'vim-scripts/L9'
-Dein 'hoob3rt/lualine.nvim'
+" Dein 'vim-scripts/L9'
+Dein 'shadmansaleh/lualine.nvim'
 " Dein 'vim-airline/vim-airline'
 " Dein 'vim-airline/vim-airline-themes'
 " Dein 'bling/vim-bufferline'
@@ -378,12 +368,15 @@ Dein 'kamykn/spelunker.vim', {'on_i': 1}
 Dein 'milkypostman/vim-togglelist', {'on_func': 'ToggleLocationList'}
 Dein 'othree/eregex.vim', {'on_func': 'eregex#toggle'}
 
-Dein 'gerw/vim-HiLinkTrace'
+" Dein 'gerw/vim-HiLinkTrace'
 
 lua << EOF
   require('lualine').setup {
     options = {theme = 'solarized_light'},
-    tabline = {},
+    tabline = {
+      lualine_b = {'buffers'},
+      lualine_z = {'tabs'}
+    },
     extensions = {'fzf', 'nerdtree'},
   }
   require('which-key').setup {

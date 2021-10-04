@@ -299,10 +299,31 @@ augroup END
 let g:fzf_statusline = 0 " disable statusline overwriting
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 let g:fzf_layout = {'down': '15'}
+function! SetupWilder() abort
+call wilder#set_option('pipeline', [
+      \   wilder#branch(
+      \     wilder#cmdline_pipeline({
+      \       'language': 'python',
+      \       'sorter': wilder#python_difflib_sorter(),
+      \       'fuzzy': 1,
+      \     }),
+      \     wilder#python_search_pipeline({
+      \       'sorter': wilder#python_difflib_sorter(),
+      \     }),
+      \   ),
+      \ ])
+let s:highlighters = [
+        \ wilder#basic_highlighter(),
+        \ ]
+call wilder#setup({'modes': [':', '/', '?'], 'accept_key': '<c-e>'})
+call wilder#set_option('renderer', wilder#wildmenu_renderer(wilder#wildmenu_airline_theme({ 'use_powerline_symbols': v:true, 'highlights': { 'default': 'lualine_c', 'selected': 'lualine_b_normal', 'mode': 'lualine_a_command', 'left_arrow2': '', 'right_arrow2': '', 'index': 'lualine_b_inactive', }, 'highlighter': s:highlighters, 'separator': ' ', })))
+endfunction
+
 
 set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
 " set rtp+=~/.fzf
 
+let g:dein#lazy_rplugins = v:true
 
 command! -nargs=+ -buffer Dein call dein#add(<args>)
 
@@ -328,6 +349,7 @@ Dein 'lifepillar/vim-solarized8'
 " Dein 'altercation/vim-colors-solarized'
 " Dein 'ryanoasis/vim-devicons'
 Dein 'editorconfig/editorconfig-vim'
+Dein 'gelguy/wilder.nvim', {'on_event': 'CmdlineEnter', 'hook_source': function('SetupWilder')}
 
 Dein 'vijaymarupudi/nvim-fzf'
 Dein 'ibhagwan/fzf-lua', {'on_idle': 1, 'hook_source': 'call g:setup_fzf_lua()'}
@@ -393,6 +415,7 @@ hi SpellBad guifg=transparent guisp=red
 hi SpellRare guifg=transparent
 " search hilight reverse is unreadable in FZF ag output
 hi Search gui=none guifg=#fdf6e3 guibg=#b58900
+hi lualine_a_command gui=bold guifg=#fdf6e3 guibg=#b58900
 
 " NormalFloat for coc doc window
 " hi Normal ctermbg=None

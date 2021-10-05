@@ -170,8 +170,8 @@ no gk k
 inoremap <c-k> <space><left><c-o>D
 
 "Quick switch tab"
-nnoremap <tab> :bp<cr>
-nnoremap <s-tab> :bn<cr>
+nnoremap <tab> :bn<cr>
+nnoremap <s-tab> :bp<cr>
 "switch buffer"
 nn <A-a> :tabp<CR>
 nn <A-d> :tabn<CR>

@@ -170,11 +170,11 @@ no gk k
 inoremap <c-k> <space><left><c-o>D
 
 "Quick switch tab"
-nnoremap <tab> :tabn<cr>
-nnoremap <s-tab> :tabp<cr>
+nnoremap <tab> :bp<cr>
+nnoremap <s-tab> :bn<cr>
 "switch buffer"
-nn <A-a> :bp<CR>
-nn <A-d> :bn<CR>
+nn <A-a> :tabp<CR>
+nn <A-d> :tabn<CR>
 
 
 " tnoremap <esc><esc> <C-\><C-n>
@@ -222,7 +222,7 @@ nnoremap <silent><F2> :call ToggleLocationList()<CR>
 nn <silent> <F8> :TagbarToggle<CR>
 
 "CtrlP like"
-nn <C-p> :<C-u>FzfLua files<cr>
+nn <C-p> <Cmd>FzfLua files<cr>
 
 "undo list"
 " nn <silent> <leader>u :GundoToggle<CR>

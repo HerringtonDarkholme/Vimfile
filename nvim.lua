@@ -1,10 +1,18 @@
 require('lualine').setup {
   options = {theme = 'solarized_light'},
-  tabline = {
-    lualine_b = {'buffers'},
-    lualine_z = {'tabs'}
+  sections = {
+    lualine_c = {'buffers'},
   },
-  extensions = {'fzf', 'nvim-tree'},
+  tabline = {
+    lualine_b = {
+      {
+        'tabs',
+        mode = 1,
+        max_length = vim.o.columns,
+      },
+    }
+  },
+  extensions = {'fzf', 'nvim-tree', 'fugitive'},
 }
 require('which-key').setup {
   plugins = {
@@ -139,9 +147,9 @@ vim.g.setup_nvim_tree = function()
 
   vim.g.nvim_tree_ignore = { '.git', 'node_modules', '.cache' } -- empty by default
   vim.g.nvim_tree_gitignore = 1
-  vim.g.nvim_tree_indent_markers = 1
   vim.g.nvim_tree_hide_dotfiles = 1
   vim.g.nvim_tree_group_empty = 1
+  -- vim.g.nvim_tree_indent_markers = 1
   -- vim.g.nvim_tree_disable_window_picker = 1 "0 by default, will disable the window picker.
   vim.g.nvim_tree_icon_padding = ' '
 
@@ -191,3 +199,6 @@ vim.g.setup_nvim_tree = function()
     }
   }
 end
+
+-- keybindings
+vim.api.nvim_set_keymap('n', '<leader>b', '<Cmd>FzfLua buffers<cr>', {noremap = true})

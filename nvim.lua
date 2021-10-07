@@ -150,7 +150,7 @@ vim.g.setup_nvim_tree = function()
   vim.g.nvim_tree_hide_dotfiles = 1
   vim.g.nvim_tree_group_empty = 1
   -- vim.g.nvim_tree_indent_markers = 1
-  -- vim.g.nvim_tree_disable_window_picker = 1 "0 by default, will disable the window picker.
+  vim.g.nvim_tree_disable_window_picker = 1 "0 by default, will disable the window picker.
   vim.g.nvim_tree_icon_padding = ' '
 
   local tree_cb = require'nvim-tree.config'.nvim_tree_callback

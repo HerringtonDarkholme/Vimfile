@@ -352,7 +352,7 @@ Dein 'editorconfig/editorconfig-vim'
 Dein 'gelguy/wilder.nvim', {'on_event': 'CmdlineEnter', 'hook_source': function('SetupWilder')}
 
 Dein 'vijaymarupudi/nvim-fzf'
-Dein 'ibhagwan/fzf-lua', {'on_idle': 1, 'hook_source': 'call g:setup_fzf_lua()'}
+Dein 'ibhagwan/fzf-lua', {'hook_source': 'call g:setup_fzf_lua()'}
 Dein 'kyazdani42/nvim-web-devicons'
 Dein 'kyazdani42/nvim-tree.lua'
 
@@ -387,12 +387,12 @@ Dein 'scrooloose/nerdtree',  {'on_cmd': 'NERDTreeToggle'}
 " Dein 'sjl/gundo.vim',  {'on_cmd': 'GundoToggle'}
 Dein 'Shougo/vinarise.vim',  {'on_cmd': 'Vinarise'}
 
-Dein 'honza/vim-snippets', {'on_i': 1}
-Dein 'neoclide/coc.nvim', {'on_i': 1, 'build': 'yarn install'}
-Dein 'antoinemadec/coc-fzf', {'on_i': 1}
-Dein 'Shougo/echodoc.vim', {'on_i': 1}
-Dein 'SirVer/ultisnips', {'on_i': 1}
-Dein 'kamykn/spelunker.vim', {'on_i': 1}
+Dein 'honza/vim-snippets', {'on_event': 'InsertEnter'}
+Dein 'neoclide/coc.nvim', {'on_event': 'InsertEnter', 'build': 'yarn install'}
+Dein 'antoinemadec/coc-fzf', {'on_event': 'InsertEnter'}
+Dein 'Shougo/echodoc.vim', {'on_event': 'InsertEnter'}
+Dein 'SirVer/ultisnips', {'on_event': 'InsertEnter'}
+Dein 'kamykn/spelunker.vim', {'on_event': 'InsertEnter'}
 
 Dein 'milkypostman/vim-togglelist', {'on_func': 'ToggleLocationList'}
 Dein 'othree/eregex.vim', {'on_func': 'eregex#toggle'}

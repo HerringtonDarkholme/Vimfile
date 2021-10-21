@@ -112,11 +112,12 @@ zstyle ':completion:*' completer _oldlist _complete
 # zstyle ':auto-fu:var' autoable-function/skiplines \
 #         "('|$'|\")*" "^(??)##" "npm##*"
 
-export NVM_DIR="$HOME/.nvm"
-export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
-alias npm='npm --registry=https://registry.npm.taobao.org'
+# export NVM_DIR="$HOME/.nvm"
+# export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
+# alias npm='npm --registry=https://registry.npm.taobao.org'
 
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+eval "$(fnm env)"
 
 export GOPATH="$HOME/gocode"
 export GO111MODULE="on"

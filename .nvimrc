@@ -332,7 +332,7 @@ call dein#begin(expand('~/.vim/dein'))
 Dein 'Shougo/dein.vim'
 
 " Dein 'vim-scripts/L9'
-Dein 'shadmansaleh/lualine.nvim'
+Dein 'nvim-lualine/lualine.nvim'
 " Dein 'vim-airline/vim-airline'
 " Dein 'vim-airline/vim-airline-themes'
 " Dein 'bling/vim-bufferline'

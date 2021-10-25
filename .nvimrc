@@ -352,7 +352,7 @@ Dein 'editorconfig/editorconfig-vim'
 Dein 'gelguy/wilder.nvim', {'on_event': 'CmdlineEnter', 'hook_source': function('SetupWilder')}
 
 Dein 'vijaymarupudi/nvim-fzf'
-Dein 'ibhagwan/fzf-lua', {'hook_source': 'call g:setup_fzf_lua()'}
+Dein 'ibhagwan/fzf-lua', {'on_event': ['CursorHold', 'FocusLost'], 'hook_source': 'call g:setup_fzf_lua()'}
 Dein 'kyazdani42/nvim-web-devicons'
 Dein 'kyazdani42/nvim-tree.lua'
 
@@ -403,7 +403,7 @@ exec 'source ' . expand('<sfile>:p:h') . '/nvim.lua'
 call dein#end()
 
 
-" call coc#add_extension('coc-json', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-vetur', 'coc-pyls', 'coc-rls')
+" call coc#add_extension('coc-json', 'coc-tsserver', 'coc-css', 'coc-html', '@yaegassy/coc-volar', 'coc-pyls', 'coc-rls')
 
 
 filetype plugin indent on

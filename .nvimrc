@@ -67,8 +67,6 @@ nnoremap <leader>/ :call eregex#toggle()<CR>
 let g:echodoc_enable_at_startup=1
 
 set previewheight=10
-set completeopt-=preview
-set completeopt+=noinsert
 
 " let g:flow#autoclose = 1
 
@@ -269,27 +267,27 @@ nmap <silent> <localleader>f <Plug>(coc-refactor)
 nn <silent> gs :Git<CR>
 nn <silent> gb :Git blame<CR>
 
-" Use K for show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-nnoremap <silent> <c-]> :call <SID>jump_definition()<CR>
+" " Use K for show documentation in preview window
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
+" nnoremap <silent> <c-]> :call <SID>jump_definition()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   elseif (coc#rpc#ready())
+"     call CocActionAsync('doHover')
+"   else
+"     execute '!' . &keywordprg . " " . expand('<cword>')
+"   endif
+" endfunction
 
-function! s:jump_definition()
-  if (index(['vim','help'], &filetype) >= 0 || !coc#rpc#ready())
-    execute 'tag '.expand('<cword>')
-  else
-    call CocActionAsync('jumpDefinition')
-  endif
-endfunction
+" function! s:jump_definition()
+"   if (index(['vim','help'], &filetype) >= 0 || !coc#rpc#ready())
+"     execute 'tag '.expand('<cword>')
+"   else
+"     call CocActionAsync('jumpDefinition')
+"   endif
+" endfunction
 
 augroup CSSSyntax
   autocmd!
@@ -386,12 +384,20 @@ Dein 'godlygeek/tabular',  {'on_cmd': 'Tabularize'}
 Dein 'scrooloose/nerdtree',  {'on_cmd': 'NERDTreeToggle'}
 " Dein 'sjl/gundo.vim',  {'on_cmd': 'GundoToggle'}
 Dein 'Shougo/vinarise.vim',  {'on_cmd': 'Vinarise'}
+Dein 'neovim/nvim-lspconfig', {'on_event': 'InsertEnter', 'hook_source': 'call g:setup_nvim_cmp()'}
+Dein 'hrsh7th/cmp-nvim-lsp', {'on_event': 'InsertEnter'}
+Dein 'hrsh7th/cmp-buffer', {'on_event': 'InsertEnter'}
+Dein 'hrsh7th/cmp-path', {'on_event': 'InsertEnter'}
+Dein 'hrsh7th/cmp-cmdline', {'on_event': 'InsertEnter'}
+Dein 'hrsh7th/nvim-cmp', {'on_event': 'InsertEnter'}
+Dein 'hrsh7th/cmp-vsnip', {'on_event': 'InsertEnter'}
+Dein 'hrsh7th/vim-vsnip', {'on_event': 'InsertEnter'}
 
-Dein 'honza/vim-snippets', {'on_event': 'InsertEnter'}
-Dein 'neoclide/coc.nvim', {'on_event': 'InsertEnter', 'build': 'yarn install'}
-Dein 'antoinemadec/coc-fzf', {'on_event': 'InsertEnter'}
-Dein 'Shougo/echodoc.vim', {'on_event': 'InsertEnter'}
-Dein 'SirVer/ultisnips', {'on_event': 'InsertEnter'}
+" Dein 'honza/vim-snippets', {'on_event': 'InsertEnter'}
+" Dein 'neoclide/coc.nvim', {'on_event': 'InsertEnter', 'build': 'yarn install'}
+" Dein 'antoinemadec/coc-fzf', {'on_event': 'InsertEnter'}
+" Dein 'Shougo/echodoc.vim', {'on_event': 'InsertEnter'}
+" Dein 'SirVer/ultisnips', {'on_event': 'InsertEnter'}
 Dein 'kamykn/spelunker.vim', {'on_event': 'InsertEnter'}
 
 Dein 'milkypostman/vim-togglelist', {'on_func': 'ToggleLocationList'}

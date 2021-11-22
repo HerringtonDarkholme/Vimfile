@@ -250,21 +250,21 @@ nn <silent> gr :call <SID>search_word()<CR>
 "let g:dein#install_process_timeout=1000
 
 " don't mimic coc list like
-let g:coc_fzf_preview = 'right'
-let g:coc_fzf_opts = ['--bind', 'alt-a:select-all,alt-d:deselect-all']
+" let g:coc_fzf_preview = 'right'
+" let g:coc_fzf_opts = ['--bind', 'alt-a:select-all,alt-d:deselect-all']
 
 " Use `[c` and `]c` for navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+" nmap <silent> [c <Plug>(coc-diagnostic-prev)
+" nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> <localleader>d <Plug>(coc-declaration)
-nmap <silent> <localleader>t <Plug>(coc-type-definition)
-nmap <silent> <localleader>i <Plug>(coc-implementation)
-nmap <silent> <localleader>l <Plug>(coc-references)
-nmap <silent> <localleader>a <Plug>(coc-codeaction)
-nmap <silent> <localleader>r <Plug>(coc-rename)
-nmap <silent> <localleader>f <Plug>(coc-refactor)
+" nmap <silent> <localleader>d <Plug>(coc-declaration)
+" nmap <silent> <localleader>t <Plug>(coc-type-definition)
+" nmap <silent> <localleader>i <Plug>(coc-implementation)
+" nmap <silent> <localleader>l <Plug>(coc-references)
+" nmap <silent> <localleader>a <Plug>(coc-codeaction)
+" nmap <silent> <localleader>r <Plug>(coc-rename)
+" nmap <silent> <localleader>f <Plug>(coc-refactor)
 
 nn <silent> gs :Git<CR>
 nn <silent> gb :Git blame<CR>
@@ -296,9 +296,9 @@ augroup CSSSyntax
   autocmd FileType css,scss,stylus setlocal iskeyword+=-
 augroup END
 
-let g:fzf_statusline = 0 " disable statusline overwriting
-let g:fzf_nvim_statusline = 0 " disable statusline overwriting
-let g:fzf_layout = {'down': '15'}
+" let g:fzf_statusline = 0 " disable statusline overwriting
+" let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+" let g:fzf_layout = {'down': '15'}
 function! SetupWilder() abort
 call wilder#set_option('pipeline', [
       \   wilder#branch(

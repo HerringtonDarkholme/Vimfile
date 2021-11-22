@@ -320,6 +320,7 @@ call wilder#set_option('renderer', wilder#wildmenu_renderer(wilder#wildmenu_airl
 endfunction
 
 
+let g:dein#types#git#clone_depth = 1
 set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
 " set rtp+=~/.fzf
 

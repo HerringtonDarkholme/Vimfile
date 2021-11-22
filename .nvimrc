@@ -149,6 +149,8 @@ autocmd FileType css nn <buffer> <localleader>f :call CSSBeautify()<cr>
 " redraw
 nnoremap <C-S-l> <esc>:<c-u>redraw!
 
+autocmd FileType FZF setlocal nonumber
+
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Moving Around!!
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -388,7 +390,7 @@ Dein 'neovim/nvim-lspconfig', {'on_event': 'InsertEnter', 'hook_source': 'call g
 Dein 'hrsh7th/cmp-nvim-lsp', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/cmp-buffer', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/cmp-path', {'on_event': 'InsertEnter'}
-Dein 'hrsh7th/cmp-cmdline', {'on_event': 'InsertEnter'}
+" Dein 'hrsh7th/cmp-cmdline', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/nvim-cmp', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/cmp-vsnip', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/vim-vsnip', {'on_event': 'InsertEnter'}

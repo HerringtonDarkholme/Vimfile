@@ -383,7 +383,7 @@ Dein 'solarnz/thrift.vim', {'on_ft': ['thrift']}
 Dein 'tpope/vim-fugitive', {'on_cmd': ['Git']}
 Dein 'godlygeek/tabular',  {'on_cmd': 'Tabularize'}
 " Dein 'majutsushi/tagbar',  {'on_cmd': 'TagbarToggle'}
-Dein 'scrooloose/nerdtree',  {'on_cmd': 'NERDTreeToggle'}
+" Dein 'scrooloose/nerdtree',  {'on_cmd': 'NERDTreeToggle'}
 " Dein 'sjl/gundo.vim',  {'on_cmd': 'GundoToggle'}
 Dein 'Shougo/vinarise.vim',  {'on_cmd': 'Vinarise'}
 Dein 'neovim/nvim-lspconfig', {'on_event': 'InsertEnter', 'hook_source': 'call g:setup_nvim_cmp()'}

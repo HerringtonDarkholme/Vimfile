@@ -124,6 +124,8 @@ let g:WebDevIconsUnicodeGlyphDoubleWidth = 0
 let g:bufferline_echo=0
 
 nmap <leader>a :HLT<cr>
+nmap <leader>ve <cmd>e ~/Vimfile/.nvimrc<cr>
+nmap <leader>vl <cmd>e ~/Vimfile/nvim.lua<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking: https://github.com/kamykn/spelunker.vim

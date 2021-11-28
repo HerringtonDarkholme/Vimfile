@@ -4,8 +4,7 @@
 set encoding=utf-8
 set fileencoding=utf-8
 set hidden
-set foldlevel=99
-set foldmethod=indent
+set termguicolors
 if !exists('g:tabsize')
   let g:tabsize=2
 endif
@@ -64,7 +63,7 @@ set splitbelow
 "egrep for PCRE"
 nnoremap <leader>/ :call eregex#toggle()<CR>
 
-let g:echodoc_enable_at_startup=1
+" let g:echodoc_enable_at_startup=1
 
 set previewheight=10
 
@@ -418,7 +417,6 @@ call dein#end()
 
 
 filetype plugin indent on
-set termguicolors
 colorscheme solarized8
 syntax enable
 hi Pmenu guibg=#e5decc

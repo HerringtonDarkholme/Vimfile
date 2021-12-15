@@ -297,7 +297,7 @@ vim.g.setup_nvim_cmp = function()
     buf_set_keymap('n', ']c', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', ';q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     buf_set_keymap('n', ';f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
+    vim.api.nvim_command('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()')
   end
 
   -- Use a loop to conveniently call 'setup' on multiple servers and

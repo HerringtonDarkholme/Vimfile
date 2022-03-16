@@ -380,6 +380,7 @@ Dein 'mxw/vim-jsx', {'on_ft': 'javascript'}
 Dein 'othree/es.next.syntax.vim', {'on_ft': 'javascript'}
 Dein 'moll/vim-node', {'on_ft': ['javascript', 'typescript']}
 Dein 'HerringtonDarkholme/yats.vim', {'on_ft': ['typescript', 'typescriptreact']}
+Dein 'udalov/kotlin-vim', {'on_ft': 'kotlin'}
 Dein 'solarnz/thrift.vim', {'on_ft': ['thrift']}
 
 Dein 'tpope/vim-fugitive', {'on_cmd': ['Git']}

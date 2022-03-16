@@ -196,7 +196,11 @@ vim.g.setup_nvim_tree = function()
         -- list of mappings to set on the tree manually
         list = list
       }
-    }
+    },
+    update_focused_file = {
+      enable      = true,
+      update_cwd  = true,
+    },
   }
 end
 

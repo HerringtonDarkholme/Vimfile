@@ -397,6 +397,7 @@ Dein 'hrsh7th/cmp-path', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/nvim-cmp', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/cmp-vsnip', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/vim-vsnip', {'on_event': 'InsertEnter'}
+Dein 'rafamadriz/friendly-snippets', {'on_event': 'InsertEnter'}
 
 " Dein 'honza/vim-snippets', {'on_event': 'InsertEnter'}
 " Dein 'neoclide/coc.nvim', {'on_event': 'InsertEnter', 'build': 'yarn install'}

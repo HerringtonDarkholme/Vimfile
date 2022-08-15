@@ -145,12 +145,9 @@ vim.g.setup_nvim_tree = function()
   if tree_loaded then return end
   tree_loaded = true
 
-  vim.g.nvim_tree_ignore = { '.git', 'node_modules', '.cache' } -- empty by default
-  vim.g.nvim_tree_gitignore = 1
+  -- vim.g.nvim_tree_ignore = { '.git', 'node_modules', '.cache' } -- empty by default
+  -- vim.g.nvim_tree_gitignore = 1
   vim.g.nvim_tree_hide_dotfiles = 1
-  vim.g.nvim_tree_group_empty = 1
-  -- vim.g.nvim_tree_indent_markers = 1
-  vim.g.nvim_tree_disable_window_picker = 1 -- "0 by default, will disable the window picker.
   vim.g.nvim_tree_icon_padding = ' '
 
   local tree_cb = require'nvim-tree.config'.nvim_tree_callback
@@ -166,8 +163,9 @@ vim.g.setup_nvim_tree = function()
     { key = "<Tab>",                        cb = tree_cb("preview") },
     { key = "K",                            cb = tree_cb("first_sibling") },
     { key = "J",                            cb = tree_cb("last_sibling") },
-    { key = "H",                            cb = tree_cb("toggle_ignored") },
-    { key = "I",                            cb = tree_cb("toggle_dotfiles") },
+    { key = "-",                            cb = tree_cb("close") },
+    -- { key = "H",                            cb = tree_cb("toggle_ignored") },
+    -- { key = "I",                            cb = tree_cb("toggle_dotfiles") },
     { key = "R",                            cb = tree_cb("refresh") },
     { key = "a",                            cb = tree_cb("create") },
     { key = "d",                            cb = tree_cb("remove") },
@@ -192,7 +190,7 @@ vim.g.setup_nvim_tree = function()
       mappings = {
         -- custom only false will merge the list with the default mappings
         -- if true, it will only use your list to set the mappings
-        custom_only = true,
+        custom_only = false,
         -- list of mappings to set on the tree manually
         list = list
       }
@@ -200,6 +198,19 @@ vim.g.setup_nvim_tree = function()
     update_focused_file = {
       enable      = true,
       update_cwd  = false,
+    },
+      renderer = {
+        group_empty = true,
+    },
+    filters = {
+      custom = { '.git', 'node_modules', '.cache' }
+    },
+    actions = {
+      open_file = {
+        window_picker = {
+          enable = false,
+        },
+      },
     },
   }
 end
@@ -219,6 +230,8 @@ vim.g.setup_nvim_cmp = function()
       end,
     },
     mapping = {
+      ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+      ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
       ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
       ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
       ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
@@ -299,7 +312,7 @@ vim.g.setup_nvim_cmp = function()
     buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
     buf_set_keymap('n', '[c', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', ']c', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-    buf_set_keymap('n', ';q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+    buf_set_keymap('n', ';q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
     buf_set_keymap('n', ';f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
     -- vim.api.nvim_command('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()')
   end

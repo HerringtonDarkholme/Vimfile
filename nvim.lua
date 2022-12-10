@@ -22,9 +22,21 @@ require('gitsigns').setup({
   current_line_blame_opts = {
     virt_text_pos = 'right_align',
   },
+  current_line_blame_formatter = '<author>(<author_time:%R>) <summary>',
 })
 
-require('satellite').setup()
+require('satellite').setup({
+  width = 1,
+  winblend = 35,
+  handlers = {
+    -- make gitsign overlap with scrollbar
+    gitsigns = {
+      overlap = true,
+      -- also, bump down priority to make it less noisy
+      priority = 5,
+    }
+  }
+})
 
 require('which-key').setup {
   plugins = {

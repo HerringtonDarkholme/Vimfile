@@ -24,6 +24,8 @@ require('gitsigns').setup({
   },
 })
 
+require('satellite').setup()
+
 require('which-key').setup {
   plugins = {
     spelling = {

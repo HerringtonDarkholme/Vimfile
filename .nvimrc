@@ -324,6 +324,7 @@ Dein 'Raimondi/delimitMate'
 " Dein 'HerringtonDarkholme/vim-nerdtree-syntax-highlight'
 " Dein 'Shougo/vimproc.vim', {'build': 'make'}
 Dein 'lewis6991/gitsigns.nvim'
+Dein 'lewis6991/satellite.nvim'
 Dein 'michaeljsmith/vim-indent-object'
 Dein 'tpope/vim-repeat'
 Dein 'tpope/vim-rsi'
@@ -411,6 +412,7 @@ hi SpellRare guifg=transparent
 " search hilight reverse is unreadable in FZF ag output
 hi Search gui=none guifg=#fdf6e3 guibg=#b58900
 hi lualine_a_command gui=bold guifg=#fdf6e3 guibg=#b58900
+hi GitSignsCurrentLineBlame guifg=#93a1a1 gui=italic
 
 " NormalFloat for coc doc window
 " hi Normal ctermbg=None

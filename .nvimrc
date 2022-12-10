@@ -82,7 +82,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 "Replace tabs with spaces"
 set expandtab
 
-"Make tabs 4 spaces"
+"Make tabs 2 spaces"
 exe "set tabstop=".g:tabsize
 exe "set shiftwidth=".g:tabsize
 exe "set softtabstop=".g:tabsize
@@ -320,6 +320,7 @@ call wilder#setup({'modes': [':', '/', '?'], 'accept_key': '<c-e>'})
 call wilder#set_option('renderer', wilder#wildmenu_renderer(wilder#wildmenu_airline_theme({ 'use_powerline_symbols': v:true, 'highlights': { 'default': 'lualine_c', 'selected': 'lualine_b_normal', 'mode': 'lualine_a_command', 'left_arrow2': '', 'right_arrow2': '', 'index': 'lualine_b_inactive', }, 'highlighter': s:highlighters, 'separator': ' ', })))
 endfunction
 
+let g:copilot_filetypes = {'*': v:false, 'markdown': v:true}
 
 let g:dein#types#git#clone_depth = 1
 set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
@@ -341,7 +342,7 @@ Dein 'nvim-lualine/lualine.nvim'
 Dein 'Raimondi/delimitMate'
 " Dein 'HerringtonDarkholme/vim-nerdtree-syntax-highlight'
 " Dein 'Shougo/vimproc.vim', {'build': 'make'}
-Dein 'airblade/vim-gitgutter'
+Dein 'lewis6991/gitsigns.nvim'
 Dein 'michaeljsmith/vim-indent-object'
 Dein 'tpope/vim-repeat'
 Dein 'tpope/vim-rsi'
@@ -390,6 +391,7 @@ Dein 'godlygeek/tabular',  {'on_cmd': 'Tabularize'}
 " Dein 'sjl/gundo.vim',  {'on_cmd': 'GundoToggle'}
 Dein 'Shougo/vinarise.vim',  {'on_cmd': 'Vinarise'}
 Dein 'neovim/nvim-lspconfig', {'on_event': 'InsertEnter', 'hook_source': 'call g:setup_nvim_cmp()'}
+Dein 'github/copilot.vim', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/cmp-nvim-lsp', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/cmp-buffer', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/cmp-path', {'on_event': 'InsertEnter'}
@@ -398,6 +400,7 @@ Dein 'hrsh7th/nvim-cmp', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/cmp-vsnip', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/vim-vsnip', {'on_event': 'InsertEnter'}
 Dein 'rafamadriz/friendly-snippets', {'on_event': 'InsertEnter'}
+Dein 'SmiteshP/nvim-navic', {'on_event': 'InsertEnter'}
 
 " Dein 'honza/vim-snippets', {'on_event': 'InsertEnter'}
 " Dein 'neoclide/coc.nvim', {'on_event': 'InsertEnter', 'build': 'yarn install'}

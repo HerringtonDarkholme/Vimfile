@@ -1,4 +1,6 @@
-require('lualine').setup {
+local lualine = require('lualine')
+
+lualine.setup {
   options = {theme = 'solarized_light'},
   sections = {
     lualine_c = {'buffers'},
@@ -10,7 +12,7 @@ require('lualine').setup {
         mode = 1,
         max_length = vim.o.columns,
       },
-    }
+    },
   },
   extensions = {'fzf', 'nvim-tree', 'fugitive'},
 }
@@ -283,6 +285,14 @@ vim.g.setup_nvim_cmp = function()
   vim.api.nvim_set_keymap('n', '<leader>b', '<Cmd>FzfLua buffers<cr>', {noremap = true})
 
   local nvim_lsp = require('lspconfig')
+  local navic = require("nvim-navic")
+  lualine.setup {
+    tabline = {
+      lualine_c = {
+        { navic.get_location, cond = navic.is_available },
+      }
+    },
+  }
 
   -- Use an on_attach function to only map the following keys
   -- after the language server attaches to the current buffer
@@ -315,11 +325,23 @@ vim.g.setup_nvim_cmp = function()
     buf_set_keymap('n', ';q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
     buf_set_keymap('n', ';f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
     -- vim.api.nvim_command('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()')
+    if client.server_capabilities.documentSymbolProvider then
+      navic.attach(client, bufnr)
+    end
   end
 
+  local configs = require 'lspconfig.configs'
+  configs.ast_grep = {
+    default_config = {
+      cmd = {'sg', 'lsp'};
+      filetypes = {'typescript'};
+      single_file_support = true;
+      root_dir = nvim_lsp.util.root_pattern('.git', 'sgconfig.yml');
+    };
+  }
   -- Use a loop to conveniently call 'setup' on multiple servers and
   -- map buffer local keybindings when the language server attaches
-  local servers = { 'cssls', 'rust_analyzer', 'tsserver', 'volar' }
+  local servers = { 'cssls', 'rust_analyzer', 'tsserver', 'volar', 'ast_grep' }
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
       on_attach = on_attach,

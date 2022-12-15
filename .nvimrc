@@ -349,7 +349,7 @@ Dein 'justmao945/vim-clang', {'on_ft': ['c', 'cpp']}
 Dein 'octol/vim-cpp-enhanced-highlight', {'on_ft': 'cpp'}
 " Dein 'derekwyatt/vim-scala', {'on_ft': 'scala'}
 Dein 'rust-lang/rust.vim', {'on_ft': 'rust'}
-Dein 'fatih/vim-go', {'on_ft': 'go'}
+" Dein 'fatih/vim-go', {'on_ft': 'go'}
 " Dein 'digitaltoad/vim-pug', {'on_ft': ['pug', 'vue']}
 Dein 'posva/vim-vue', {'on_ft': ['vue']}
 " Dein 'mattn/emmet-vim', {'on_ft': ['html', 'xml', 'vue']}

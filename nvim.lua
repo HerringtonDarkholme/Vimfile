@@ -17,13 +17,7 @@ lualine.setup {
   extensions = {'fzf', 'nvim-tree', 'fugitive'},
 }
 
-require('gitsigns').setup({
-  current_line_blame = true,
-  current_line_blame_opts = {
-    virt_text_pos = 'right_align',
-  },
-  current_line_blame_formatter = '<author>(<author_time:%R>) <summary>',
-})
+require('gitsigns').setup()
 
 require('satellite').setup({
   width = 1,
@@ -363,7 +357,7 @@ vim.g.setup_nvim_cmp = function()
   }
   -- Use a loop to conveniently call 'setup' on multiple servers and
   -- map buffer local keybindings when the language server attaches
-  local servers = { 'cssls', 'rust_analyzer', 'tsserver', 'volar', 'ast_grep' }
+  local servers = { 'cssls', 'rust_analyzer', 'tsserver', 'volar', 'ast_grep', 'gopls' }
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
       on_attach = on_attach,

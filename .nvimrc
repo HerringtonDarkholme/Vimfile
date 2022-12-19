@@ -63,18 +63,10 @@ set splitbelow
 "egrep for PCRE"
 nnoremap <leader>/ :call eregex#toggle()<CR>
 
-" let g:echodoc_enable_at_startup=1
-
 set previewheight=10
 
 " let g:flow#autoclose = 1
 
-""""""""""""""""""""""""""""""""
-" => TextMate like Ultisnip"
-""""""""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Text, Tab and Indent Related
@@ -86,6 +78,8 @@ set expandtab
 exe "set tabstop=".g:tabsize
 exe "set shiftwidth=".g:tabsize
 exe "set softtabstop=".g:tabsize
+" Disable Rust plugin's indentation
+let g:rust_recommended_style = 0
 
 
 "auto indent"

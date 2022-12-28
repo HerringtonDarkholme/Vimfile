@@ -62,11 +62,7 @@ set splitbelow
 
 "egrep for PCRE"
 nnoremap <leader>/ :call eregex#toggle()<CR>
-
 set previewheight=10
-
-" let g:flow#autoclose = 1
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " => Text, Tab and Indent Related
@@ -205,10 +201,6 @@ autocmd FileType cpp nn <localleader>h :vert sf %:t:r.h<cr>
 
 " => File Browswing
 nn - :call g:setup_nvim_tree()<CR>:NvimTreeToggle<CR>
-let NERDTreeMapOpenSplit = 's'
-let NERDTreeMapOpenVSplit = 'v'
-let NERDTreeIgnore = ['\.pyc$']
-let g:NERDTreeStatusline = -1
 
 " => Syntastic Lint
 nnoremap <silent><F2> :call ToggleLocationList()<CR>
@@ -244,28 +236,6 @@ nn <silent> gr :call <SID>search_word()<CR>
 
 nn <silent> gs :Git<CR>
 nn <silent> gb :Git blame<CR>
-
-" " Use K for show documentation in preview window
-" nnoremap <silent> K :call <SID>show_documentation()<CR>
-" nnoremap <silent> <c-]> :call <SID>jump_definition()<CR>
-
-" function! s:show_documentation()
-"   if (index(['vim','help'], &filetype) >= 0)
-"     execute 'h '.expand('<cword>')
-"   elseif (coc#rpc#ready())
-"     call CocActionAsync('doHover')
-"   else
-"     execute '!' . &keywordprg . " " . expand('<cword>')
-"   endif
-" endfunction
-
-" function! s:jump_definition()
-"   if (index(['vim','help'], &filetype) >= 0 || !coc#rpc#ready())
-"     execute 'tag '.expand('<cword>')
-"   else
-"     call CocActionAsync('jumpDefinition')
-"   endif
-" endfunction
 
 augroup CSSSyntax
   autocmd!
@@ -311,11 +281,7 @@ Dein 'Shougo/dein.vim'
 
 " Dein 'vim-scripts/L9'
 Dein 'nvim-lualine/lualine.nvim'
-" Dein 'vim-airline/vim-airline'
-" Dein 'vim-airline/vim-airline-themes'
-" Dein 'bling/vim-bufferline'
 Dein 'Raimondi/delimitMate'
-" Dein 'HerringtonDarkholme/vim-nerdtree-syntax-highlight'
 " Dein 'Shougo/vimproc.vim', {'build': 'make'}
 Dein 'lewis6991/gitsigns.nvim'
 Dein 'lewis6991/satellite.nvim'
@@ -374,15 +340,9 @@ Dein 'hrsh7th/cmp-path', {'on_event': 'InsertEnter'}
 " Dein 'hrsh7th/cmp-cmdline', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/nvim-cmp', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/cmp-vsnip', {'on_event': 'InsertEnter'}
-Dein 'hrsh7th/vim-vsnip', {'on_event': 'InsertEnter'}
 Dein 'rafamadriz/friendly-snippets', {'on_event': 'InsertEnter'}
 Dein 'SmiteshP/nvim-navic', {'on_event': 'InsertEnter'}
 
-" Dein 'honza/vim-snippets', {'on_event': 'InsertEnter'}
-" Dein 'neoclide/coc.nvim', {'on_event': 'InsertEnter', 'build': 'yarn install'}
-" Dein 'antoinemadec/coc-fzf', {'on_event': 'InsertEnter'}
-" Dein 'Shougo/echodoc.vim', {'on_event': 'InsertEnter'}
-" Dein 'SirVer/ultisnips', {'on_event': 'InsertEnter'}
 Dein 'kamykn/spelunker.vim', {'on_event': 'InsertEnter'}
 
 Dein 'milkypostman/vim-togglelist', {'on_func': 'ToggleLocationList'}
@@ -392,9 +352,6 @@ exec 'source ' . expand('<sfile>:p:h') . '/nvim.lua'
 
 " Dein 'gerw/vim-HiLinkTrace'
 call dein#end()
-
-
-" call coc#add_extension('coc-json', 'coc-tsserver', 'coc-css', 'coc-html', '@yaegassy/coc-volar', 'coc-pyls', 'coc-rls')
 
 
 filetype plugin indent on

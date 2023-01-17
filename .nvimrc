@@ -206,7 +206,7 @@ nn - :call g:setup_nvim_tree()<CR>:NvimTreeToggle<CR>
 nnoremap <silent><F2> :call ToggleLocationList()<CR>
 
 "yank history yankring"
-nn <silent> <F8> :TagbarToggle<CR>
+nn <silent> <F8> :SymbolsOutline<CR>
 
 "CtrlP like"
 nn <C-p> <Cmd>FzfLua files<cr>
@@ -328,6 +328,7 @@ Dein 'solarnz/thrift.vim', {'on_ft': ['thrift']}
 
 Dein 'tpope/vim-fugitive', {'on_cmd': ['Git']}
 Dein 'godlygeek/tabular',  {'on_cmd': 'Tabularize'}
+Dein 'simrat39/symbols-outline.nvim',  {'on_cmd': 'SymbolsOutline', 'hook_source': 'lua require("symbols-outline").setup()'}
 " Dein 'majutsushi/tagbar',  {'on_cmd': 'TagbarToggle'}
 " Dein 'scrooloose/nerdtree',  {'on_cmd': 'NERDTreeToggle'}
 " Dein 'sjl/gundo.vim',  {'on_cmd': 'GundoToggle'}

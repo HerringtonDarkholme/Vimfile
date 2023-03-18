@@ -300,6 +300,8 @@ Dein 'vijaymarupudi/nvim-fzf'
 Dein 'ibhagwan/fzf-lua', {'on_event': ['CursorHold', 'FocusLost'], 'hook_source': 'call g:setup_fzf_lua()'}
 Dein 'kyazdani42/nvim-web-devicons'
 Dein 'kyazdani42/nvim-tree.lua'
+Dein 'nvim-treesitter/nvim-treesitter'
+Dein 'anuvyklack/pretty-fold.nvim'
 
 " Dein 'junegunn/fzf'
 " Dein 'junegunn/fzf.vim', {'depends': 'fzf'}

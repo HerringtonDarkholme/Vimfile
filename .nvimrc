@@ -353,7 +353,7 @@ Dein 'othree/eregex.vim', {'on_func': 'eregex#toggle'}
 
 exec 'source ' . expand('<sfile>:p:h') . '/nvim.lua'
 
-" Dein 'gerw/vim-HiLinkTrace'
+Dein 'gerw/vim-HiLinkTrace'
 call dein#end()
 
 

@@ -186,7 +186,7 @@ local function my_nvim_tree_on_attach(bufnr)
     { key = "dd",                           cb = api.fs.remove },
     -- { key = "r",                            cb = tree_cb("rename") },
     -- { key = "<C-r>",                        cb = tree_cb("full_rename") },
-    -- { key = "x",                            cb = tree_cb("close_node") },
+    { key = "x",                            cb = api.node.navigate.parent_close },
     -- { key = "yy",                           cb = tree_cb("copy") },
     { key = "P",                            cb = api.fs.paste },
     -- { key = "<c-y>",                        cb = tree_cb("copy_name") },

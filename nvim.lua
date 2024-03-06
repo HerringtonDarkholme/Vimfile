@@ -158,6 +158,53 @@ vim.g.setup_fzf_lua = function()
   }
 end
 
+local function my_nvim_tree_on_attach(bufnr)
+  local api = require "nvim-tree.api"
+
+  local function opts(desc)
+    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  -- default mappings
+  api.config.mappings.default_on_attach(bufnr)
+  local list = {
+    { key = "<CR>",                         cb = api.node.open.edit },
+    { key = "v",                            cb = api.node.open.vertical },
+    { key = "C",                            cb = api.tree.change_root_to_node },
+    { key = "s",                            cb = api.node.open.horizontal },
+    { key = "t",                            cb = api.node.open.tab },
+    -- { key = "<",                            cb = tree_cb("prev_sibling") },
+    -- { key = ">",                            cb = tree_cb("next_sibling") },
+    -- { key = "<Tab>",                        cb = tree_cb("preview") },
+    -- { key = "K",                            cb = tree_cb("first_sibling") },
+    -- { key = "J",                            cb = tree_cb("last_sibling") },
+    { key = "-",                            cb = api.tree.close },
+    -- { key = "H",                            cb = tree_cb("toggle_ignored") },
+    -- { key = "I",                            cb = tree_cb("toggle_dotfiles") },
+    -- { key = "R",                            cb = tree_cb("refresh") },
+    -- { key = "a",                            cb = tree_cb("create") },
+    { key = "dd",                           cb = api.fs.remove },
+    -- { key = "r",                            cb = tree_cb("rename") },
+    -- { key = "<C-r>",                        cb = tree_cb("full_rename") },
+    -- { key = "x",                            cb = tree_cb("close_node") },
+    -- { key = "yy",                           cb = tree_cb("copy") },
+    { key = "P",                            cb = api.fs.paste },
+    -- { key = "<c-y>",                        cb = tree_cb("copy_name") },
+    -- { key = "Y",                            cb = tree_cb("copy_path") },
+    -- { key = "gy",                           cb = tree_cb("copy_absolute_path") },
+    -- { key = "[c",                           cb = tree_cb("prev_git_item") },
+    -- { key = "]c",                           cb = tree_cb("next_git_item") },
+    -- { key = "<BC>",                         cb = tree_cb("dir_up") },
+    -- { key = "<c-s>",                        cb = tree_cb("system_open") },
+    { key = "q",                            cb = api.tree.close },
+    { key = "?",                           cb = api.tree.toggle_help },
+  }
+  -- vim.keymap.set('n', '<C-t>', api.tree.change_root_to_parent,        opts('Up'))
+  for _, config in ipairs(list) do
+    vim.keymap.set('n', config.key, config.cb, opts('TODO'))
+  end
+end
+
 local tree_loaded = false
 vim.g.setup_nvim_tree = function()
   if tree_loaded then return end
@@ -168,51 +215,13 @@ vim.g.setup_nvim_tree = function()
   vim.g.nvim_tree_hide_dotfiles = 1
   vim.g.nvim_tree_icon_padding = ' '
 
-  local tree_cb = require'nvim-tree.config'.nvim_tree_callback
-  -- default mappings
-  local list = {
-    { key = {"<CR>", "o", "<2-LeftMouse>"}, cb = tree_cb("edit") },
-    { key = "v",                            cb = tree_cb("vsplit") },
-    { key = "C",                            cb = tree_cb("cd") },
-    { key = "s",                            cb = tree_cb("split") },
-    { key = "t",                            cb = tree_cb("tabnew") },
-    { key = "<",                            cb = tree_cb("prev_sibling") },
-    { key = ">",                            cb = tree_cb("next_sibling") },
-    { key = "<Tab>",                        cb = tree_cb("preview") },
-    { key = "K",                            cb = tree_cb("first_sibling") },
-    { key = "J",                            cb = tree_cb("last_sibling") },
-    { key = "-",                            cb = tree_cb("close") },
-    -- { key = "H",                            cb = tree_cb("toggle_ignored") },
-    -- { key = "I",                            cb = tree_cb("toggle_dotfiles") },
-    { key = "R",                            cb = tree_cb("refresh") },
-    { key = "a",                            cb = tree_cb("create") },
-    { key = "d",                            cb = tree_cb("remove") },
-    { key = "r",                            cb = tree_cb("rename") },
-    { key = "<C-r>",                        cb = tree_cb("full_rename") },
-    { key = "x",                            cb = tree_cb("close_node") },
-    { key = "yy",                           cb = tree_cb("copy") },
-    { key = "P",                            cb = tree_cb("paste") },
-    { key = "<c-y>",                        cb = tree_cb("copy_name") },
-    { key = "Y",                            cb = tree_cb("copy_path") },
-    { key = "gy",                           cb = tree_cb("copy_absolute_path") },
-    { key = "[c",                           cb = tree_cb("prev_git_item") },
-    { key = "]c",                           cb = tree_cb("next_git_item") },
-    { key = "<BC>",                         cb = tree_cb("dir_up") },
-    { key = "<c-s>",                        cb = tree_cb("system_open") },
-    { key = "q",                            cb = tree_cb("close") },
-    { key = "g?",                           cb = tree_cb("toggle_help") },
-  }
+  -- local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+  -- -- default mappings
   require'nvim-tree'.setup {
     view = {
       width = 35,
-      mappings = {
-        -- custom only false will merge the list with the default mappings
-        -- if true, it will only use your list to set the mappings
-        custom_only = false,
-        -- list of mappings to set on the tree manually
-        list = list
-      }
     },
+    on_attach = my_nvim_tree_on_attach,
     update_focused_file = {
       enable      = true,
       update_cwd  = false,
@@ -258,7 +267,7 @@ require'nvim-treesitter.configs'.setup {
     -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
     -- the name of the parser)
     -- list of language that will be disabled
-    disable = { "c", "rust", "javascript", "typescript", "tsx" },
+    disable = { "c", "rust", "javascript", "typescript", "tsx", "vue" },
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
     -- disable = function(lang, buf)
     --     local max_filesize = 100 * 1024 -- 100 KB
@@ -389,6 +398,9 @@ vim.g.setup_nvim_cmp = function()
     if client.server_capabilities.documentSymbolProvider then
       navic.attach(client, bufnr)
     end
+    -- disable highlight from lsp
+    -- https://www.reddit.com/r/neovim/comments/109vgtl/how_to_disable_highlight_from_lsp/
+    client.server_capabilities.semanticTokensProvider = nil
   end
 
   local configs = require 'lspconfig.configs'

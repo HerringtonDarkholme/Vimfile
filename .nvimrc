@@ -343,6 +343,7 @@ Dein 'hrsh7th/cmp-path', {'on_event': 'InsertEnter'}
 " Dein 'hrsh7th/cmp-cmdline', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/nvim-cmp', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/cmp-vsnip', {'on_event': 'InsertEnter'}
+Dein 'hrsh7th/vim-vsnip', {'on_event': 'InsertEnter'}
 Dein 'rafamadriz/friendly-snippets', {'on_event': 'InsertEnter'}
 Dein 'SmiteshP/nvim-navic', {'on_event': 'InsertEnter'}
 

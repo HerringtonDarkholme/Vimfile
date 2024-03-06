@@ -21,7 +21,7 @@ require('gitsigns').setup()
 
 require('satellite').setup({
   width = 1,
-  winblend = 35,
+  winblend = 50,
   handlers = {
     -- make gitsign overlap with scrollbar
     gitsigns = {

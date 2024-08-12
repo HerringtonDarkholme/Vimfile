@@ -361,7 +361,7 @@ call dein#end()
 filetype plugin indent on
 colorscheme solarized8
 syntax enable
-hi Pmenu guibg=#e5decc
+" hi Pmenu guibg=#e5decc
 hi NormalFloat guibg=#e5decc
 hi SpellBad guifg=transparent guisp=red
 hi SpellRare guifg=transparent

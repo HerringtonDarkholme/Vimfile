@@ -167,7 +167,7 @@ _gen_fzf_default_opts() {
     --ansi --preview-window 'right:60%'
     --preview '([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
     "
-  export FZF_DEFAULT_COMMAND='ag -g ""'
+  export FZF_DEFAULT_COMMAND='rg --files'
 }
 _gen_fzf_default_opts
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

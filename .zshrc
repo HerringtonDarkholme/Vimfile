@@ -171,3 +171,6 @@ _gen_fzf_default_opts() {
 }
 _gen_fzf_default_opts
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# gpg https://gist.github.com/troyfontaine/18c9146295168ee9ca2b30c00bd1b41e
+export GPG_TTY=$(tty)

@@ -227,7 +227,7 @@ au FileType scss setlocal commentstring=//%s
 
 "Grep"
 function! s:search_word()
-  let cmd = 'ag --color --' . expand('%:e')
+  let cmd = 'rg --color=always -g "*' . expand('%:e') . '"'
   let word = expand('<cword>')
   exec "lua require('fzf-lua').grep({ cmd = '" . cmd . "', search='".word."' })"
 endfunction

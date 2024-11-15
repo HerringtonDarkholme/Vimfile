@@ -404,17 +404,9 @@ vim.g.setup_nvim_cmp = function()
   end
 
   local configs = require 'lspconfig.configs'
-  configs.ast_grep = {
-    default_config = {
-      cmd = {'sg', 'lsp'};
-      filetypes = {'typescript'};
-      single_file_support = true;
-      root_dir = nvim_lsp.util.root_pattern('.git', 'sgconfig.yml');
-    };
-  }
   -- Use a loop to conveniently call 'setup' on multiple servers and
   -- map buffer local keybindings when the language server attaches
-  local servers = { 'cssls', 'rust_analyzer', 'tsserver', 'volar', 'ast_grep', 'gopls', 'pyright', 'eslint' }
+  local servers = { 'cssls', 'rust_analyzer', 'tsserver', 'volar', 'ast_grep', 'gopls', 'pyright', 'eslint', 'biome' }
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
       on_attach = on_attach,

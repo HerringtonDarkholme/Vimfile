@@ -265,7 +265,7 @@ call wilder#setup({'modes': [':', '/', '?'], 'accept_key': '<c-e>'})
 call wilder#set_option('renderer', wilder#wildmenu_renderer(wilder#wildmenu_airline_theme({ 'use_powerline_symbols': v:true, 'highlights': { 'default': 'lualine_c', 'selected': 'lualine_b_normal', 'mode': 'lualine_a_command', 'left_arrow2': '', 'right_arrow2': '', 'index': 'lualine_b_inactive', }, 'highlighter': s:highlighters, 'separator': ' ', })))
 endfunction
 
-let g:copilot_filetypes = {'*': v:false, 'markdown': v:true}
+let g:copilot_filetypes = {'*': v:true, 'markdown': v:true}
 
 let g:dein#types#git#clone_depth = 1
 set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
@@ -344,7 +344,7 @@ Dein 'hrsh7th/cmp-path', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/nvim-cmp', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/cmp-vsnip', {'on_event': 'InsertEnter'}
 Dein 'hrsh7th/vim-vsnip', {'on_event': 'InsertEnter'}
-Dein 'rafamadriz/friendly-snippets', {'on_event': 'InsertEnter'}
+" Dein 'rafamadriz/friendly-snippets', {'on_event': 'InsertEnter'}
 Dein 'SmiteshP/nvim-navic', {'on_event': 'InsertEnter'}
 
 Dein 'kamykn/spelunker.vim', {'on_event': 'InsertEnter'}

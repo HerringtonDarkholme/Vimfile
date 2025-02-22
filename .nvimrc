@@ -278,77 +278,9 @@ command! -nargs=+ -buffer Dein call dein#add(<args>)
 call dein#begin(expand('~/.vim/dein'))
 
 Dein 'Shougo/dein.vim'
-
-" Dein 'vim-scripts/L9'
-Dein 'nvim-lualine/lualine.nvim'
-Dein 'Raimondi/delimitMate'
-" Dein 'Shougo/vimproc.vim', {'build': 'make'}
-Dein 'lewis6991/gitsigns.nvim'
-Dein 'lewis6991/satellite.nvim'
-Dein 'michaeljsmith/vim-indent-object'
-Dein 'tpope/vim-repeat'
-Dein 'tpope/vim-rsi'
-Dein 'tpope/vim-commentary'
-Dein 'tpope/vim-surround'
-Dein 'lifepillar/vim-solarized8'
-" Dein 'altercation/vim-colors-solarized'
-" Dein 'ryanoasis/vim-devicons'
-Dein 'editorconfig/editorconfig-vim'
 Dein 'gelguy/wilder.nvim', {'on_event': 'CmdlineEnter', 'hook_source': function('SetupWilder')}
-
 Dein 'vijaymarupudi/nvim-fzf'
 Dein 'ibhagwan/fzf-lua', {'on_event': ['CursorHold', 'FocusLost'], 'hook_source': 'call g:setup_fzf_lua()'}
-Dein 'kyazdani42/nvim-web-devicons'
-Dein 'kyazdani42/nvim-tree.lua'
-Dein 'nvim-treesitter/nvim-treesitter'
-Dein 'anuvyklack/pretty-fold.nvim'
-
-" Dein 'junegunn/fzf'
-" Dein 'junegunn/fzf.vim', {'depends': 'fzf'}
-Dein 'folke/which-key.nvim'
-
-Dein 'justmao945/vim-clang', {'on_ft': ['c', 'cpp']}
-Dein 'octol/vim-cpp-enhanced-highlight', {'on_ft': 'cpp'}
-" Dein 'derekwyatt/vim-scala', {'on_ft': 'scala'}
-Dein 'rust-lang/rust.vim', {'on_ft': 'rust'}
-" Dein 'fatih/vim-go', {'on_ft': 'go'}
-" Dein 'digitaltoad/vim-pug', {'on_ft': ['pug', 'vue']}
-Dein 'posva/vim-vue', {'on_ft': ['vue']}
-" Dein 'mattn/emmet-vim', {'on_ft': ['html', 'xml', 'vue']}
-Dein 'othree/html5.vim', {'on_ft': ['html', 'pug']}
-" Dein 'wavded/vim-stylus', {'on_ft': ['stylus', 'vue']}
-Dein 'cakebaker/scss-syntax.vim', {'on_ft': ['scss', 'sass']}
-Dein 'maksimr/vim-jsbeautify', {'on_ft': 'javascript'}
-" Dein 'flowtype/vim-flow', {'on_ft': 'javascript'}
-Dein 'othree/yajs.vim', {'on_ft': 'javascript'}
-Dein 'mxw/vim-jsx', {'on_ft': 'javascript'}
-Dein 'othree/es.next.syntax.vim', {'on_ft': 'javascript'}
-Dein 'moll/vim-node', {'on_ft': ['javascript', 'typescript']}
-Dein 'HerringtonDarkholme/yats.vim', {'on_ft': ['typescript', 'typescriptreact']}
-Dein 'udalov/kotlin-vim', {'on_ft': 'kotlin'}
-Dein 'solarnz/thrift.vim', {'on_ft': ['thrift']}
-
-Dein 'tpope/vim-fugitive', {'on_cmd': ['Git']}
-Dein 'godlygeek/tabular',  {'on_cmd': 'Tabularize'}
-Dein 'simrat39/symbols-outline.nvim',  {'on_cmd': 'SymbolsOutline', 'hook_source': 'lua require("symbols-outline").setup()'}
-" Dein 'majutsushi/tagbar',  {'on_cmd': 'TagbarToggle'}
-" Dein 'scrooloose/nerdtree',  {'on_cmd': 'NERDTreeToggle'}
-" Dein 'sjl/gundo.vim',  {'on_cmd': 'GundoToggle'}
-Dein 'Shougo/vinarise.vim',  {'on_cmd': 'Vinarise'}
-Dein 'neovim/nvim-lspconfig', {'on_event': 'InsertEnter', 'hook_source': 'call g:setup_nvim_cmp()'}
-Dein 'github/copilot.vim', {'on_event': 'InsertEnter'}
-Dein 'hrsh7th/cmp-nvim-lsp', {'on_event': 'InsertEnter'}
-Dein 'hrsh7th/cmp-buffer', {'on_event': 'InsertEnter'}
-Dein 'hrsh7th/cmp-path', {'on_event': 'InsertEnter'}
-" Dein 'hrsh7th/cmp-cmdline', {'on_event': 'InsertEnter'}
-Dein 'hrsh7th/nvim-cmp', {'on_event': 'InsertEnter'}
-Dein 'hrsh7th/cmp-vsnip', {'on_event': 'InsertEnter'}
-Dein 'hrsh7th/vim-vsnip', {'on_event': 'InsertEnter'}
-" Dein 'rafamadriz/friendly-snippets', {'on_event': 'InsertEnter'}
-Dein 'SmiteshP/nvim-navic', {'on_event': 'InsertEnter'}
-
-Dein 'kamykn/spelunker.vim', {'on_event': 'InsertEnter'}
-
 Dein 'milkypostman/vim-togglelist', {'on_func': 'ToggleLocationList'}
 Dein 'othree/eregex.vim', {'on_func': 'eregex#toggle'}
 
@@ -357,6 +289,7 @@ exec 'source ' . expand('<sfile>:p:h') . '/nvim.lua'
 Dein 'gerw/vim-HiLinkTrace'
 call dein#end()
 
+lua require('init')
 
 filetype plugin indent on
 colorscheme solarized8

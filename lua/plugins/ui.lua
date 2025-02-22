@@ -83,7 +83,7 @@ local function setupWilder()
       },
       use_powerline_symbols = true,
       highlighter = wilder.basic_highlighter(),
-      separator = '',
+      separator = ' ',
     })
   ))
   wilder.setup({modes = {':', '/', '?'}})

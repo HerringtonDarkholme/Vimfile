@@ -56,7 +56,7 @@ return {
   },
   { 'anuvyklack/pretty-fold.nvim', lazy = false },
 
-  { 'kyazdani42/nvim-web-devicons', lazy = true },
+  { 'nvim/nvim-web-devicons', lazy = true },
 
   -- language plugin
   { 'justmao945/vim-clang', ft= { 'c', 'cpp' } },

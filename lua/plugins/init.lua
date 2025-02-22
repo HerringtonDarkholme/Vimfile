@@ -7,7 +7,6 @@ return {
   { 'tpope/vim-commentary', lazy = false },
   { 'tpope/vim-surround', lazy = false },
   { 'editorconfig/editorconfig-vim', lazy = false },
-  { 'vijaymarupudi/nvim-fzf', lazy = false },
   {
     'nvim-treesitter/nvim-treesitter',
     config = function()

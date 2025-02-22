@@ -279,8 +279,6 @@ call dein#begin(expand('~/.vim/dein'))
 
 Dein 'Shougo/dein.vim'
 Dein 'gelguy/wilder.nvim', {'on_event': 'CmdlineEnter', 'hook_source': function('SetupWilder')}
-Dein 'vijaymarupudi/nvim-fzf'
-Dein 'ibhagwan/fzf-lua', {'on_event': ['CursorHold', 'FocusLost'], 'hook_source': 'call g:setup_fzf_lua()'}
 Dein 'milkypostman/vim-togglelist', {'on_func': 'ToggleLocationList'}
 Dein 'othree/eregex.vim', {'on_func': 'eregex#toggle'}
 

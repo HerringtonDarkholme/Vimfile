@@ -84,6 +84,12 @@ return {
       { "<leader>/", "<cmd>call eregex#toggle()<cr>", desc = "Enable PCRE search" },
     },
   },
+  {
+    'milkypostman/vim-togglelist',
+    keys = {
+      { "<silent><F2>", "<cmd>call ToggleLocationList()<CR>", desc = "Toggle Location List" },
+    },
+  },
 }
 
 
@@ -92,5 +98,4 @@ return {
 -- " Dein 'mattn/emmet-vim', {'on_ft': ['html', 'xml', 'vue']}
 -- " Dein 'flowtype/vim-flow', {'on_ft': 'javascript'}
 
--- Dein 'milkypostman/vim-togglelist', {'on_func': 'ToggleLocationList'}
 -- Dein 'gerw/vim-HiLinkTrace'

@@ -200,10 +200,6 @@ autocmd FileType cpp nn <localleader>h :vert sf %:t:r.h<cr>
 " => File Browswing
 nn - :NvimTreeToggle<CR>
 
-" => Syntastic Lint
-nnoremap <silent><F2> :call ToggleLocationList()<CR>
-
-"yank history yankring"
 nn <silent> <F8> :SymbolsOutline<CR>
 
 "CtrlP like"

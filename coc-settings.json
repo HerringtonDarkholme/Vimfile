@@ -1,8 +1,0 @@
-{
-    "suggest.noselect": false,
-    "suggest.echodocSupport": true,
-    "suggest.enablePreview": true,
-    "diagnostic.errorSign": "✗",
-    "diagnostic.infoSign": "ℹ",
-    "suggest.snippetIndicator": " "
-}

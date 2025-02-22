@@ -60,8 +60,6 @@ let maplocalleader = ";"
 
 set splitbelow
 
-"egrep for PCRE"
-nnoremap <leader>/ :call eregex#toggle()<CR>
 set previewheight=10
 
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -240,10 +238,6 @@ augroup CSSSyntax
 augroup END
 
 let g:copilot_filetypes = {'*': v:true, 'markdown': v:true}
-
-
-" Dein 'milkypostman/vim-togglelist', {'on_func': 'ToggleLocationList'}
-" Dein 'othree/eregex.vim', {'on_func': 'eregex#toggle'}
 
 lua require('init')
 

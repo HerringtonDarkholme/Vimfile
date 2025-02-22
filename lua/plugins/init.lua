@@ -78,6 +78,12 @@ return {
   { 'tpope/vim-fugitive', cmd = 'Git' },
   { 'godlygeek/tabular',  cmd = 'Tabularize'},
   { 'simrat39/symbols-outline.nvim',  cmd = 'SymbolsOutline' },
+  {
+    'othree/eregex.vim',
+    keys = {
+      { "<leader>/", "<cmd>call eregex#toggle()<cr>", desc = "Enable PCRE search" },
+    },
+  },
 }
 
 
@@ -87,5 +93,4 @@ return {
 -- " Dein 'flowtype/vim-flow', {'on_ft': 'javascript'}
 
 -- Dein 'milkypostman/vim-togglelist', {'on_func': 'ToggleLocationList'}
--- Dein 'othree/eregex.vim', {'on_func': 'eregex#toggle'}
 -- Dein 'gerw/vim-HiLinkTrace'

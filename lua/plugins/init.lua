@@ -55,7 +55,6 @@ return {
     end
   },
   { 'anuvyklack/pretty-fold.nvim', lazy = false },
-  { 'kyazdani42/nvim-tree.lua', lazy = false },
 
   { 'kyazdani42/nvim-web-devicons', lazy = true },
 

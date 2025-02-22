@@ -200,7 +200,7 @@ autocmd FileType cpp nn <localleader>h :vert sf %:t:r.h<cr>
 " set <A-a>=a
 
 " => File Browswing
-nn - :call g:setup_nvim_tree()<CR>:NvimTreeToggle<CR>
+nn - :NvimTreeToggle<CR>
 
 " => Syntastic Lint
 nnoremap <silent><F2> :call ToggleLocationList()<CR>
@@ -281,8 +281,6 @@ Dein 'Shougo/dein.vim'
 Dein 'gelguy/wilder.nvim', {'on_event': 'CmdlineEnter', 'hook_source': function('SetupWilder')}
 Dein 'milkypostman/vim-togglelist', {'on_func': 'ToggleLocationList'}
 Dein 'othree/eregex.vim', {'on_func': 'eregex#toggle'}
-
-exec 'source ' . expand('<sfile>:p:h') . '/nvim.lua'
 
 Dein 'gerw/vim-HiLinkTrace'
 call dein#end()

@@ -86,12 +86,6 @@ return {
 -- " Dein 'mattn/emmet-vim', {'on_ft': ['html', 'xml', 'vue']}
 -- " Dein 'flowtype/vim-flow', {'on_ft': 'javascript'}
 
--- Dein 'gelguy/wilder.nvim', {'on_event': 'CmdlineEnter', 'hook_source': function('SetupWilder')}
-
-
 -- Dein 'milkypostman/vim-togglelist', {'on_func': 'ToggleLocationList'}
 -- Dein 'othree/eregex.vim', {'on_func': 'eregex#toggle'}
-
--- exec 'source ' . expand('<sfile>:p:h') . '/nvim.lua'
-
 -- Dein 'gerw/vim-HiLinkTrace'

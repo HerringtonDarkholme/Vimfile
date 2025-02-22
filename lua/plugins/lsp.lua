@@ -133,6 +133,8 @@ end
 return {
   { 'github/copilot.vim', event = 'InsertEnter' },
   { 'neovim/nvim-lspconfig' },
+  { 'SmiteshP/nvim-navic', event = 'InsertEnter' },
+  { 'kamykn/spelunker.vim', event = 'InsertEnter' },
   { 'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
     -- these dependencies will only be loaded when cmp loads
@@ -146,6 +148,4 @@ return {
     },
     config = setupCmp
   },
-  { 'SmiteshP/nvim-navic', event = 'InsertEnter' },
-  { 'kamykn/spelunker.vim', event = 'InsertEnter' },
 }

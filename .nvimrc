@@ -214,9 +214,6 @@ nn <C-p> <Cmd>FzfLua files<cr>
 "undo list"
 " nn <silent> <leader>u :GundoToggle<CR>
 
-"emmet
-" autocmd BufEnter *.xml imap <buffer><expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
-" autocmd BufEnter *.html imap <buffer><expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
  imap <C-y><C-y> <plug>(emmet-expand-abbr)
 " let g:EditorConfig_core_mode = 'external_command'
 " let g:EditorConfig_exec_path = 'editorconfig'
@@ -242,48 +239,11 @@ augroup CSSSyntax
   autocmd FileType css,scss,stylus setlocal iskeyword+=-
 augroup END
 
-" let g:fzf_statusline = 0 " disable statusline overwriting
-" let g:fzf_nvim_statusline = 0 " disable statusline overwriting
-" let g:fzf_layout = {'down': '15'}
-function! SetupWilder() abort
-call wilder#set_option('pipeline', [
-      \   wilder#branch(
-      \     wilder#cmdline_pipeline({
-      \       'language': 'python',
-      \       'sorter': wilder#python_difflib_sorter(),
-      \       'fuzzy': 1,
-      \     }),
-      \     wilder#python_search_pipeline({
-      \       'sorter': wilder#python_difflib_sorter(),
-      \     }),
-      \   ),
-      \ ])
-let s:highlighters = [
-        \ wilder#basic_highlighter(),
-        \ ]
-call wilder#setup({'modes': [':', '/', '?'], 'accept_key': '<c-e>'})
-call wilder#set_option('renderer', wilder#wildmenu_renderer(wilder#wildmenu_airline_theme({ 'use_powerline_symbols': v:true, 'highlights': { 'default': 'lualine_c', 'selected': 'lualine_b_normal', 'mode': 'lualine_a_command', 'left_arrow2': '', 'right_arrow2': '', 'index': 'lualine_b_inactive', }, 'highlighter': s:highlighters, 'separator': ' ', })))
-endfunction
-
 let g:copilot_filetypes = {'*': v:true, 'markdown': v:true}
 
-let g:dein#types#git#clone_depth = 1
-set rtp+=~/.vim/dein/repos/github.com/Shougo/dein.vim/
-" set rtp+=~/.fzf
 
-let g:dein#lazy_rplugins = v:true
-
-command! -nargs=+ -buffer Dein call dein#add(<args>)
-
-call dein#begin(expand('~/.vim/dein'))
-
-Dein 'Shougo/dein.vim'
-Dein 'gelguy/wilder.nvim', {'on_event': 'CmdlineEnter', 'hook_source': function('SetupWilder')}
-Dein 'milkypostman/vim-togglelist', {'on_func': 'ToggleLocationList'}
-Dein 'othree/eregex.vim', {'on_func': 'eregex#toggle'}
-
-Dein 'gerw/vim-HiLinkTrace'
-call dein#end()
+" Dein 'milkypostman/vim-togglelist', {'on_func': 'ToggleLocationList'}
+" Dein 'othree/eregex.vim', {'on_func': 'eregex#toggle'}
 
 lua require('init')
 

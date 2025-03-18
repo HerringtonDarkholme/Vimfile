@@ -110,7 +110,7 @@ return {
       extensions = {'fzf', 'nvim-tree', 'fugitive'},
     }
   },
-  { 'lewis6991/gitsigns.nvim' },
+  { 'lewis6991/gitsigns.nvim', lazy = false, opts = {} },
   {
     'lewis6991/satellite.nvim',
     opts = {

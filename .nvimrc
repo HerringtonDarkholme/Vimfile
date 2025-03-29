@@ -21,7 +21,6 @@ set wildmenu
 set wildmode=list:longest,full "list possible commands"
 set showmatch "match parens"
 set nojoinspaces "no space between J"
-set pastetoggle=<f10> "toggle paste"
 set wildignore=*.o,*.pyc,node_modules
 set mouse=a
 set nojoinspaces

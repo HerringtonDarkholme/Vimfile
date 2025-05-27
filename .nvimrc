@@ -235,9 +235,10 @@ augroup END
 let g:copilot_filetypes = {'*': v:true, 'markdown': v:true}
 
 lua require('init')
+autocmd InsertEnter * LspStart ++once
 
 filetype plugin indent on
-colorscheme solarized8
+colorscheme solarized
 syntax enable
 " hi Pmenu guibg=#e5decc
 hi NormalFloat guibg=#e5decc

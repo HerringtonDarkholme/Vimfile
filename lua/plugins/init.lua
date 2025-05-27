@@ -1,5 +1,5 @@
 return {
-  { 'lifepillar/vim-solarized8', lazy = false },
+  { 'maxmx03/solarized.nvim', lazy = false },
   { 'Raimondi/delimitMate', lazy = false },
   { 'michaeljsmith/vim-indent-object', lazy = false },
   { 'tpope/vim-repeat', lazy = false },

@@ -232,26 +232,19 @@ augroup CSSSyntax
   autocmd FileType css,scss,stylus setlocal iskeyword+=-
 augroup END
 
-let g:copilot_filetypes = {'*': v:true, 'markdown': v:true}
+let g:copilot_filetypes = {'*': v:true}
 
 lua require('init')
 autocmd InsertEnter * LspStart ++once
 
 filetype plugin indent on
-colorscheme solarized
+colorscheme solarized8
 syntax enable
 " hi Pmenu guibg=#e5decc
-hi NormalFloat guibg=#e5decc
+" hi NormalFloat guibg=#e5decc
 hi SpellBad guifg=transparent guisp=red
 hi SpellRare guifg=transparent
-" search hilight reverse is unreadable in FZF ag output
-hi Search gui=none guifg=#fdf6e3 guibg=#b58900
+" " search hilight reverse is unreadable in FZF ag output
+" hi Search gui=none guifg=#fdf6e3 guibg=#b58900
 hi lualine_a_command gui=bold guifg=#fdf6e3 guibg=#b58900
-hi GitSignsCurrentLineBlame guifg=#93a1a1 gui=italic
-
-" NormalFloat for coc doc window
-" hi Normal ctermbg=None
-" the default highlight reverse is readability disaster
-" hi NormalFloat cterm=none ctermfg=7 ctermbg=0
-" hi SignColumn ctermbg=15
-" hi WhichKeyFloat ctermbg=7
+" hi GitSignsCurrentLineBlame guifg=#93a1a1 gui=italic

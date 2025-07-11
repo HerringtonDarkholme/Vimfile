@@ -128,7 +128,6 @@ return {
   },
   {
     'folke/which-key.nvim',
-    lazy = true,
     opts = {
       plugins = {
         spelling = {

@@ -109,7 +109,7 @@ let g:solarized_underline=1
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 0
 let g:bufferline_echo=0
 
-nmap <leader>a :HLT<cr>
+" nmap <leader>a :HLT<cr>
 nmap <leader>ve <cmd>e ~/Vimfile/.nvimrc<cr>
 nmap <leader>vl <cmd>e ~/Vimfile/lua/init.lua<cr>
 

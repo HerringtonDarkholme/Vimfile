@@ -223,6 +223,7 @@ function! s:search_word()
 endfunction
 nn <silent> <leader>g :FzfLua grep<CR>
 nn <silent> gr :call <SID>search_word()<CR>
+nn <silent> <leader>f :FzfLua<CR>
 
 nn <silent> gs :Git<CR>
 nn <silent> gb :Git blame<CR>

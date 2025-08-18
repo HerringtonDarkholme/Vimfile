@@ -288,5 +288,17 @@ return {
     'gelguy/wilder.nvim',
     event = 'CmdlineEnter',
     config = setupWilder,
-  }
+  },
+  {
+    'stevearc/aerial.nvim',
+    cmd = 'AerialToggle',
+    config = function()
+      require('aerial').setup {
+        layout = {
+          max_width = { 40, 0.25 }, -- max width of the aerial window
+          width = 0.25
+        }
+      }
+    end
+  },
 }

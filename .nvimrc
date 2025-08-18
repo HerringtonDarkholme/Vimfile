@@ -199,7 +199,7 @@ autocmd FileType cpp nn <localleader>h :vert sf %:t:r.h<cr>
 " => File Browswing
 nn - :NvimTreeToggle<CR>
 
-nn <silent> <F8> :SymbolsOutline<CR>
+nn <silent> <F8> :AerialToggle<CR>
 
 "CtrlP like"
 nn <C-p> <Cmd>FzfLua files<cr>

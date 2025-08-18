@@ -77,7 +77,6 @@ return {
   { 'Shougo/vinarise.vim',  cmd = 'Vinarise' },
   { 'tpope/vim-fugitive', cmd = 'Git' },
   { 'godlygeek/tabular',  cmd = 'Tabularize'},
-  { 'simrat39/symbols-outline.nvim',  cmd = 'SymbolsOutline' },
   {
     'othree/eregex.vim',
     keys = {

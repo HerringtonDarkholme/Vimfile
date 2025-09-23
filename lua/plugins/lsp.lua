@@ -65,7 +65,6 @@ function setupCmp()
   -- keybindings
   vim.api.nvim_set_keymap('n', '<leader>b', '<Cmd>FzfLua buffers<cr>', {noremap = true})
 
-  local nvim_lsp = require('lspconfig')
   local navic = require("nvim-navic")
   local lualine = require('lualine')
 
@@ -121,12 +120,13 @@ function setupCmp()
   -- map buffer local keybindings when the language server attaches
   local servers = { 'cssls', 'rust_analyzer', 'ts_ls', 'volar', 'gopls', 'pyright', 'eslint', 'biome', 'ast_grep' }
   for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup {
+    vim.lsp.config(lsp, {
       on_attach = on_attach,
       flags = {
         debounce_text_changes = 150,
       }
-    }
+    })
+    vim.lsp.enable(lsp)
   end
 end
 

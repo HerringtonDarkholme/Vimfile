@@ -118,7 +118,7 @@ function setupCmp()
   local configs = require 'lspconfig.configs'
   -- Use a loop to conveniently call 'setup' on multiple servers and
   -- map buffer local keybindings when the language server attaches
-  local servers = { 'cssls', 'rust_analyzer', 'ts_ls', 'volar', 'gopls', 'pyright', 'eslint', 'biome', 'ast_grep' }
+  local servers = { 'cssls', 'rust_analyzer', 'ts_ls', 'vue_ls', 'gopls', 'pyright', 'eslint', 'biome', 'ast_grep' }
   for _, lsp in ipairs(servers) do
     vim.lsp.config(lsp, {
       on_attach = on_attach,

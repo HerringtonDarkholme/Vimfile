@@ -9,6 +9,14 @@ return {
   { 'editorconfig/editorconfig-vim', lazy = false },
   {
     'nvim-treesitter/nvim-treesitter',
+    init = function()
+      if vim.fn.has('nvim-0.12') == 1 then
+        -- The legacy plugin's Markdown injection directive uses the old
+        -- capture API and breaks LSP hover rendering on Neovim 0.12.
+        local injections = vim.fn.readfile(vim.env.VIMRUNTIME .. '/queries/markdown/injections.scm')
+        vim.treesitter.query.set('markdown', 'injections', table.concat(injections, '\n'))
+      end
+    end,
     config = function()
       require'nvim-treesitter.configs'.setup {
         -- A list of parser names, or "all" (the four listed parsers should always be installed)

@@ -236,7 +236,6 @@ augroup END
 let g:copilot_filetypes = {'*': v:true}
 
 lua require('init')
-autocmd InsertEnter * LspStart ++once
 
 filetype plugin indent on
 colorscheme solarized8
